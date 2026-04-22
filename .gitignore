@@ -1,0 +1,20 @@
+node_modules/
+dist/
+.vercel/
+__pycache__/
+*.pyc
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+
+# Local source material and generated transcription data.
+*.pdf
+*.crdownload
+data/ocr/
+ocr_samples/
+public/study-data.json
+src/data/study-data.generated.json
+vite-dev.log
+
+.DS_Store
+Thumbs.db

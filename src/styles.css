@@ -1,0 +1,534 @@
+:root {
+  color-scheme: light;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #1d2527;
+  background: #f7f5ef;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.74), rgba(247, 245, 239, 0.96)),
+    #f7f5ef;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.appShell {
+  width: min(1120px, calc(100% - 32px));
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 28px 0 20px;
+}
+
+.topbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.brandMark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #0e6f71;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+h1 {
+  margin: 8px 0 0;
+  font-size: clamp(2rem, 5vw, 4.35rem);
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+
+.tabList,
+.controlsBand,
+.sessionStats,
+.swipeActions,
+.exerciseActions {
+  display: flex;
+  align-items: center;
+}
+
+.tabList {
+  gap: 8px;
+  padding: 6px;
+  border: 1px solid #d8d2c4;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.tabList button,
+.toggleButton,
+.selectButton,
+.iconButton,
+.swipeActions button,
+.exerciseActions button,
+.chapterOption.all {
+  min-height: 42px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #1d2527;
+  background: transparent;
+}
+
+.tabList button {
+  padding: 0 14px;
+  font-weight: 800;
+}
+
+.tabList button.active {
+  color: #f8fbfa;
+  background: #1d2527;
+}
+
+.controlsBand {
+  position: relative;
+  z-index: 3;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 28px 0;
+  padding: 12px;
+  border: 1px solid #d8d2c4;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 18px 45px rgba(37, 45, 42, 0.08);
+}
+
+.selectWrap {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.selectButton {
+  width: min(360px, 100%);
+  padding: 0 14px;
+  justify-content: space-between;
+  border-color: #d8d2c4;
+  background: #ffffff;
+  font-weight: 800;
+}
+
+.selectButton span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.toggleButton,
+.iconButton {
+  padding: 0 14px;
+  border-color: #d8d2c4;
+  background: #ffffff;
+  font-weight: 800;
+}
+
+.iconButton {
+  width: 44px;
+  padding: 0;
+}
+
+.chapterMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: min(460px, calc(100vw - 48px));
+  max-height: 420px;
+  overflow: auto;
+  padding: 8px;
+  border: 1px solid #d8d2c4;
+  border-radius: 8px;
+  background: #fffdf8;
+  box-shadow: 0 24px 70px rgba(29, 37, 39, 0.18);
+}
+
+.chapterOption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: #263033;
+  font-weight: 700;
+}
+
+.chapterOption:hover,
+.chapterOption.all:hover {
+  background: #eef3f1;
+}
+
+.chapterOption input {
+  width: 18px;
+  height: 18px;
+  accent-color: #0e6f71;
+}
+
+.chapterOption.all {
+  width: 100%;
+  justify-content: flex-start;
+  padding: 0 10px;
+  color: #0e6f71;
+  font-weight: 900;
+}
+
+.studyGrid {
+  display: grid;
+  place-items: center;
+  gap: 18px;
+}
+
+.sessionStats {
+  width: min(680px, 100%);
+  justify-content: space-between;
+  gap: 8px;
+  color: #596563;
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.sessionStats span {
+  min-width: 0;
+}
+
+.flashcard {
+  position: relative;
+  width: min(680px, 100%);
+  min-height: 420px;
+  padding: 34px;
+  border: 1px solid #d8d2c4;
+  border-radius: 8px;
+  color: #142022;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 252, 244, 0.95)),
+    #ffffff;
+  box-shadow: 0 26px 80px rgba(29, 37, 39, 0.16);
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+  touch-action: pan-y;
+}
+
+.flashcard.left {
+  border-color: #c25e4d;
+  background: linear-gradient(145deg, #fff7f3, #ffffff);
+}
+
+.flashcard.right {
+  border-color: #0e6f71;
+  background: linear-gradient(145deg, #f2fbf7, #ffffff);
+}
+
+.chapterPill {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  min-height: 28px;
+  padding: 5px 9px;
+  border-radius: 8px;
+  color: #66716f;
+  background: #f0ede4;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.cardFace {
+  min-height: 350px;
+  display: grid;
+  place-items: center;
+  gap: 28px;
+  text-align: center;
+}
+
+.jpTerm {
+  max-width: 100%;
+  color: #11191b;
+  font-family:
+    "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", "Times New Roman", serif;
+  font-size: clamp(3.2rem, 11vw, 6.8rem);
+  line-height: 1.08;
+  overflow-wrap: anywhere;
+}
+
+ruby {
+  ruby-position: over;
+}
+
+rt {
+  color: #0e6f71;
+  font-family:
+    "Yu Gothic", "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
+  font-size: 0.28em;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.exampleJa {
+  max-width: 560px;
+  margin: 0;
+  color: #3d4749;
+  font-family:
+    "Yu Gothic", "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
+  font-size: clamp(1.15rem, 3vw, 1.55rem);
+  line-height: 1.7;
+}
+
+.cardFace.back {
+  align-content: center;
+}
+
+.meaningBlock p,
+.exampleBack p {
+  margin: 0;
+}
+
+.meaningBlock p {
+  color: #0e6f71;
+  font-size: clamp(2rem, 6vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.08;
+}
+
+.meaningBlock small,
+.exampleBack small {
+  display: block;
+  margin-top: 10px;
+  color: #5b6665;
+  font-size: clamp(1rem, 2.6vw, 1.2rem);
+  font-weight: 700;
+}
+
+.exampleBack {
+  max-width: 560px;
+  padding-top: 22px;
+  border-top: 1px solid #ded8c9;
+  color: #2f383a;
+  font-size: clamp(1.1rem, 3vw, 1.45rem);
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.swipeActions {
+  width: min(680px, 100%);
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.swipeActions button {
+  flex: 1;
+  min-height: 54px;
+  padding: 0 18px;
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.swipeActions .missed {
+  background: #b95647;
+}
+
+.swipeActions .remembered {
+  background: #0e6f71;
+}
+
+.dataNote {
+  margin: 0;
+  color: #7b6751;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.exerciseList {
+  display: grid;
+  gap: 14px;
+}
+
+.exerciseItem {
+  border: 1px solid #d8d2c4;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 18px 44px rgba(37, 45, 42, 0.08);
+  overflow: hidden;
+}
+
+.exerciseItem.remembered {
+  border-color: #0e6f71;
+}
+
+.exerciseItem.missed {
+  border-color: #b95647;
+}
+
+.exerciseHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+  border-bottom: 1px solid #e5dfd1;
+  background: #fbfaf5;
+}
+
+.exerciseHeader span {
+  display: block;
+  color: #172123;
+  font-weight: 900;
+}
+
+.exerciseHeader small {
+  color: #6d7775;
+  font-weight: 800;
+}
+
+.exerciseActions {
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.exerciseActions button {
+  width: 38px;
+  min-height: 38px;
+  border-color: #d8d2c4;
+  background: #ffffff;
+}
+
+.exerciseActions .missed.active {
+  color: #ffffff;
+  background: #b95647;
+  border-color: #b95647;
+}
+
+.exerciseActions .remembered.active {
+  color: #ffffff;
+  background: #0e6f71;
+  border-color: #0e6f71;
+}
+
+.exerciseText {
+  padding: 16px;
+  color: #273134;
+  font-family:
+    "Yu Gothic", "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
+  font-size: clamp(1rem, 2.2vw, 1.16rem);
+  line-height: 1.55;
+}
+
+.exerciseText p {
+  margin: 0 0 8px;
+  overflow-wrap: anywhere;
+}
+
+.emptyState {
+  min-height: 360px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  color: #62706e;
+  border: 1px dashed #cfc7b8;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.62);
+  text-align: center;
+}
+
+.emptyState p {
+  margin: 0;
+  font-weight: 800;
+}
+
+.credit {
+  margin-top: 28px;
+  padding: 16px 0 4px;
+  color: #697472;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .appShell {
+    width: min(100% - 20px, 1120px);
+    padding-top: 18px;
+  }
+
+  .topbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .tabList {
+    width: 100%;
+  }
+
+  .tabList button {
+    flex: 1;
+  }
+
+  .controlsBand {
+    flex-wrap: wrap;
+    margin: 18px 0;
+  }
+
+  .selectWrap {
+    flex-basis: 100%;
+  }
+
+  .selectButton {
+    width: 100%;
+  }
+
+  .toggleButton {
+    flex: 1;
+  }
+
+  .flashcard {
+    min-height: 360px;
+    padding: 28px 18px;
+  }
+
+  .cardFace {
+    min-height: 300px;
+  }
+
+  .sessionStats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .swipeActions {
+    flex-direction: column;
+  }
+
+  .swipeActions button {
+    width: 100%;
+  }
+
+  .exerciseHeader {
+    align-items: flex-start;
+  }
+}
