@@ -151,6 +151,8 @@ def fix_pt(text: str | None) -> str | None:
         return text
     text = clean_text(text)
     text = re.sub(r"\s+([.,!?;:])", r"\1", text)
+    text = re.sub(r"\b(?:It'?s|I was|I have|This|That|There|Please|Can|The|A lot|If|At|She|He|My|Your|Let'?s)\b.*$", "", text)
+    text = text.replace(" t?", "").replace(" G?", "").replace(" Gi?", "").replace(" Geu?", "")
     english_marker = r"\b(?:I|You|We|They|This|That|There|Please|Can|The|A lot|If|At|She|He|My|Your|Let's|To)\b"
     portuguese_starter = re.search(
         r"\b(?:Vou|Você|Tem|Meu|Minha|Não|Nao|Dá|Da para|Este|Esta|Realmente|Se é|Palavra|Uma|Sumir|envergonhar)\b",
@@ -169,7 +171,260 @@ def fix_latin(text: str | None) -> str | None:
     if not text:
         return text
     text = clean_text(text)
+    text = text.replace("Isomeone", "someone").replace("Isomeonel", "someone")
+    text = text.replace("Itime", "time").replace("Itriste", "triste").replace("Igripado", "gripado")
+    text = text.replace("It.]", "").replace("I]", "").replace("I ", "")
     return re.sub(r"\s+([.,!?;:])", r"\1", text).strip()
+
+
+TERM_OVERRIDES = {
+    "ちょうどいしい": "ちょうどいい",
+    "たすねる": "たずねる",
+    "迅える": "迎える",
+    "すいぶん": "ずいぶん",
+    "あいさつ(する": "あいさつ(する)",
+    "(高校)": "高校",
+    "決して(ーない": "決して(～ない)",
+    "1市": None,
+    "野の": "普通",
+    "中変": None,
+    "日本の生活": None,
+    "せしかー": None,
+    "世んせし": None,
+    "様子や感想を聞くとき": None,
+    "大事な指輪がなくなった": None,
+}
+
+READING_OVERRIDES = {
+    "割引き": "わりびき",
+    "特に": "とくに",
+    "近所": "きんじょ",
+    "迷惑": "めいわく",
+    "娘(さん)": "むすめ(さん)",
+    "駐車場": "ちゅうしゃじょう",
+    "世話": "せわ",
+    "特別な": "とくべつな",
+    "行う": "おこなう",
+    "探す": "さがす",
+    "都合": "つごう",
+    "汚れる": "よごれる",
+    "続く": "つづく",
+}
+
+MEANING_OVERRIDES = {
+    ("半額", "pt"): "metade do preço",
+    ("冷凍(する)", "en"): "freezing; to freeze",
+    ("冷凍(する)", "pt"): "congelado; congelar",
+    ("今夜", "pt"): "esta noite",
+    ("用意(する)", "en"): "preparation; to prepare",
+    ("用意(する)", "pt"): "preparo; preparar",
+    ("先輩", "pt"): "colega veterano",
+    ("決める", "pt"): "decidir",
+    ("迷惑", "pt"): "incômodo",
+    ("近所", "pt"): "vizinhança",
+    ("娘(さん)", "pt"): "filha",
+    ("あいさつ(する)", "en"): "greeting; to greet",
+    ("あいさつ(する)", "pt"): "cumprimento; cumprimentar",
+    ("かまいません", "en"): "not to mind",
+    ("かまいません", "pt"): "não se importar",
+    ("特別な", "en"): "special",
+    ("行う", "pt"): "realizar; fazer",
+    ("なるべく", "pt"): "na medida do possível",
+    ("出席(する)", "en"): "attendance; to attend",
+    ("出席(する)", "pt"): "participação; participar",
+    ("遠慮(する)", "en"): "hesitation; to hesitate",
+    ("遠慮(する)", "pt"): "hesitação; hesitar",
+    ("相談(する)", "pt"): "consulta; consultar",
+    ("準備(する)", "en"): "preparation; to prepare",
+    ("準備(する)", "pt"): "preparo; preparar",
+    ("できる", "en"): "to be built; to be completed",
+    ("できる", "pt"): "ficar pronto; ser construído",
+    ("ずいぶん", "en"): "a great deal",
+    ("工場", "pt"): "fábrica",
+    ("生産(する)", "en"): "production; to produce",
+    ("生産(する)", "pt"): "produção; produzir",
+    ("輸入(する)", "en"): "importation; to import",
+    ("輸入(する)", "pt"): "importação; importar",
+    ("計画(する)", "en"): "plan; to plan",
+    ("計画(する)", "pt"): "plano; planejar",
+    ("運転(する)", "en"): "driving; to drive",
+    ("運転(する)", "pt"): "direção; dirigir",
+    ("通り", "pt"): "rua; avenida",
+    ("心配(する)", "en"): "worry; to worry",
+    ("心配(する)", "pt"): "preocupação; preocupar-se",
+    ("クラシック(な)", "en"): "classical",
+    ("開く", "pt"): "abrir; realizar",
+    ("すばらしい", "en"): "wonderful",
+    ("すばらしい", "pt"): "maravilhoso",
+    ("招待(する)", "en"): "invitation; to invite",
+    ("招待(する)", "pt"): "convite; convidar",
+    ("よろこぶ", "en"): "to be delighted",
+    ("よろこぶ", "pt"): "ficar contente",
+    ("予約(する)", "en"): "reservation; to reserve",
+    ("予約(する)", "pt"): "reserva; reservar",
+    ("動物", "en"): "animal",
+    ("美しい", "en"): "beautiful",
+    ("体験(する)", "en"): "experience; to experience",
+    ("体験(する)", "pt"): "experiência; vivenciar",
+    ("希望(する)", "en"): "wish; to wish for",
+    ("希望(する)", "pt"): "desejo; desejar",
+    ("失礼(する)", "pt"): "desculpar-se; retirar-se",
+    ("競争(する)", "en"): "competition; to compete",
+    ("競争(する)", "pt"): "competição; competir",
+    ("入院(する)", "en"): "hospitalization; to be hospitalized",
+    ("入院(する)", "pt"): "internação; internar",
+    ("退院(する)", "pt"): "alta; receber alta",
+    ("気をつける", "en"): "to be careful",
+    ("説明(する)", "en"): "explanation; to explain",
+    ("説明(する)", "pt"): "explicação; explicar",
+    ("国際", "en"): "international",
+    ("国際", "pt"): "internacional",
+    ("入学(する)", "en"): "entrance; to enter a school",
+    ("入学(する)", "pt"): "ingresso; ingressar",
+    ("大学院", "en"): "graduate school",
+    ("大学院", "pt"): "pós-graduação",
+    ("高校", "en"): "senior high school",
+    ("高校", "pt"): "ensino médio",
+    ("高校生", "en"): "high school student",
+    ("高校生", "pt"): "estudante do ensino médio",
+    ("運動(する)", "en"): "exercise; to exercise",
+    ("運動(する)", "pt"): "exercício; praticar esporte",
+    ("無理な", "pt"): "impossível; excessivo",
+    ("家内", "pt"): "minha esposa",
+    ("妻ノ家内", "pt"): "esposa / minha esposa",
+    ("久しぶり", "pt"): "muito tempo; há quanto tempo",
+    ("風邪をひく", "pt"): "ficar gripado",
+    ("なくす", "pt"): "perder",
+    ("最後", "en"): "the last",
+    ("最後", "pt"): "último",
+    ("わかす", "pt"): "esquentar; ferver",
+    ("手伝う", "pt"): "ajudar",
+    ("かぎをかける", "pt"): "trancar com chave",
+    ("おなかがすく", "pt"): "ficar com fome",
+    ("続ける", "pt"): "continuar",
+    ("確認(する)", "en"): "confirmation; to check",
+    ("確認(する)", "pt"): "confirmação; verificar",
+    ("連絡(する)", "en"): "contact; to contact",
+    ("連絡(する)", "pt"): "contato; comunicar",
+    ("失敗(する)", "en"): "mistake; failure; to fail",
+    ("失敗(する)", "pt"): "fracasso; falhar",
+    ("注意(する)", "en"): "care; to be careful",
+    ("注意(する)", "pt"): "atenção; prestar atenção",
+    ("気分", "pt"): "disposição; humor",
+    ("安心(する)", "en"): "relief; to be relieved",
+    ("安心(する)", "pt"): "alívio; sentir-se seguro",
+    ("見える", "pt"): "parecer; ser visto",
+}
+
+DEFAULT_MEANINGS = {
+    "Tシャツ": {"en": "T-shirt", "pt": "camiseta"},
+    "スカート": {"en": "skirt", "pt": "saia"},
+    "サンダル": {"en": "sandals", "pt": "sandália"},
+    "側に": {"en": "beside; on the side", "pt": "ao lado"},
+    "ばかり": {"en": "nothing but; only", "pt": "só; apenas"},
+    "～まま": {"en": "as is", "pt": "do jeito que está"},
+}
+
+DROP_EXAMPLE_TERMS = {"Tシャツ", "スカート", "サンダル"}
+
+
+def has_page_reference(text: str) -> bool:
+    return bool(re.search(r"(?:p|ｐ)\s*\d+", text, re.IGNORECASE))
+
+
+def clean_term(term: str) -> str | None:
+    term = clean_text(term).replace("一", "ー")
+    term = TERM_OVERRIDES.get(term, term)
+    if term is None:
+        return None
+    term = re.sub(r"[＊*]+$", "", term)
+    term = re.sub(r"\((?:\d|〜|~|-)+\)$", "", term)
+    term = re.sub(r"（(?:\d|〜|~|-)+）$", "", term)
+    term = term.strip()
+    if not term or term.startswith("*"):
+        return None
+    if re.search(r"[0-9]", term) and not re.fullmatch(r"\d+日(?:\(間\))?|\d+時", term):
+        return None
+    if any(marker in term for marker in ["亭", "市正", "言しい方"]):
+        return None
+    return term if has_japanese(term) else None
+
+
+def clean_reading(term: str, reading: str | None) -> str | None:
+    override = READING_OVERRIDES.get(term)
+    if override:
+        return override
+    if not reading:
+        return None
+    reading = clean_text(reading)
+    if not re.fullmatch(r"[ぁ-んァ-ンー()（）]+", reading):
+        return None
+    return reading
+
+
+def clean_japanese_example(text: str | None) -> str | None:
+    if not text:
+        return None
+    text = clean_text(text)
+    text = text.replace("ごの", "この").replace("おいしくなし", "おいしくない")
+    text = text.replace("すわつても", "すわっても")
+    text = re.sub(r"\s+", " ", text).strip()
+    if "。" in text:
+        first_sentence = text.split("。", 1)[0].strip() + "。"
+        if has_japanese(first_sentence) and not has_page_reference(first_sentence):
+            text = first_sentence
+    elif text.count(" ") >= 2:
+        return None
+    if has_page_reference(text) or any(marker in text for marker in ["糸", "氷", "*", "×", "`"]):
+        return None
+    if re.search(r"[A-Za-z]{2,}", text):
+        return None
+    if any(marker in text for marker in ["古", "忙", "札", "正丁", "市正", "し中", "よ1", "オビ", "多(", "お口"]):
+        return None
+    return text if has_japanese(text) else None
+
+
+def clean_card(card: dict) -> dict | None:
+    term = clean_term(card["term"])
+    if not term:
+        return None
+    card["term"] = term
+    reading = clean_reading(term, card.get("reading"))
+    if reading:
+        card["reading"] = reading
+    else:
+        card.pop("reading", None)
+
+    meanings = {}
+    for key, value in card.get("meanings", {}).items():
+        override = MEANING_OVERRIDES.get((term, key))
+        cleaned = override if override else (fix_pt(value) if key == "pt" else fix_latin(value))
+        if cleaned and not has_page_reference(cleaned):
+            meanings[key] = cleaned
+    if not meanings and term in DEFAULT_MEANINGS:
+        meanings = DEFAULT_MEANINGS[term]
+    card["meanings"] = meanings
+
+    example = None if term in DROP_EXAMPLE_TERMS else card.get("example") or None
+    if example:
+        ja = clean_japanese_example(example.get("ja"))
+        if ja:
+            cleaned_example = {"ja": ja}
+            if example.get("en"):
+                en = fix_latin(example["en"])
+                if en and not has_page_reference(en):
+                    cleaned_example["en"] = en
+            if example.get("pt"):
+                pt = fix_pt(example["pt"])
+                if pt and not has_page_reference(pt):
+                    cleaned_example["pt"] = pt
+            card["example"] = cleaned_example
+        else:
+            card.pop("example", None)
+
+    if not card["meanings"] and not card.get("example"):
+        return None
+    return card
 
 
 def clean_exercise_line(text: str) -> str:
@@ -1298,27 +1553,15 @@ def main() -> None:
         if chapter["id"] in UNIT_TITLE_OVERRIDES:
             chapter["title"] = UNIT_TITLE_OVERRIDES[chapter["id"]]
         chapter["pages"].sort()
-        chapter["cards"] = [
-            card
-            for card in chapter["cards"]
-            if clean_text(card["term"]) and (card["meanings"].get("pt") or card["meanings"].get("en") or card.get("example"))
-        ]
+        cleaned_cards = []
+        seen_terms = set()
         for card in chapter["cards"]:
-            if not card.get("reading") or not has_japanese(card["reading"]):
-                card.pop("reading", None)
-            if not card.get("example"):
-                card.pop("example", None)
-            else:
-                example = card["example"]
-                if example.get("en"):
-                    example["en"] = fix_latin(example["en"])
-                if example.get("pt"):
-                    example["pt"] = fix_pt(example["pt"])
-            card["meanings"] = {key: value for key, value in card["meanings"].items() if value}
-            if card["meanings"].get("en"):
-                card["meanings"]["en"] = fix_latin(card["meanings"]["en"])
-            if card["meanings"].get("pt"):
-                card["meanings"]["pt"] = fix_pt(card["meanings"]["pt"])
+            cleaned = clean_card(card)
+            if not cleaned or cleaned["term"] in seen_terms:
+                continue
+            seen_terms.add(cleaned["term"])
+            cleaned_cards.append(cleaned)
+        chapter["cards"] = cleaned_cards
 
     payload = {
         "appName": "Dango N4 - 段語 N4",

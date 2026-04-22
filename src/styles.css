@@ -606,7 +606,8 @@ rt {
   gap: 8px;
 }
 
-.emptyState {
+.emptyState,
+.completionState {
   min-height: 360px;
   margin-top: 24px;
   display: grid;
@@ -620,9 +621,25 @@ rt {
   text-align: center;
 }
 
-.emptyState p {
+.emptyState p,
+.completionState p {
   margin: 0;
   font-weight: 850;
+}
+
+.completionState strong {
+  font-size: 1.35rem;
+  color: #2f4439;
+}
+
+.completionState .primary {
+  min-height: 48px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 8px;
+  color: #ffffff;
+  background: #2f4439;
+  font-weight: 900;
 }
 
 .credit {

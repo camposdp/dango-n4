@@ -39,6 +39,12 @@ type SavedState = {
   showExamples: boolean;
   cardIndex: number;
   exerciseIndex: number;
+  cardQueueIds?: string[];
+  cardReviewIds?: string[];
+  cardComplete?: boolean;
+  exerciseQueueIds?: string[];
+  exerciseReviewIds?: string[];
+  exerciseComplete?: boolean;
   stats: { remembered: number; missed: number };
   exerciseResponses: Record<string, { answerId: string; checked: boolean; grade?: Grade }>;
 };
@@ -158,6 +164,12 @@ function toSavedState(args: {
   showExamples: boolean;
   cardIndex: number;
   exerciseIndex: number;
+  cardQueueIds: string[];
+  cardReviewIds: string[];
+  cardComplete: boolean;
+  exerciseQueueIds: string[];
+  exerciseReviewIds: string[];
+  exerciseComplete: boolean;
   stats: { remembered: number; missed: number };
   exerciseResponses: Record<string, { answerId: string; checked: boolean; grade?: Grade }>;
 }): SavedState {
@@ -179,6 +191,12 @@ export function App() {
   const [showExamples, setShowExamples] = useState(true);
   const [cardIndex, setCardIndex] = useState(0);
   const [exerciseIndex, setExerciseIndex] = useState(0);
+  const [cardQueueIds, setCardQueueIds] = useState<string[]>([]);
+  const [cardReviewIds, setCardReviewIds] = useState<string[]>([]);
+  const [cardComplete, setCardComplete] = useState(false);
+  const [exerciseQueueIds, setExerciseQueueIds] = useState<string[]>([]);
+  const [exerciseReviewIds, setExerciseReviewIds] = useState<string[]>([]);
+  const [exerciseComplete, setExerciseComplete] = useState(false);
   const [revealed, setRevealed] = useState(false);
   const [dragOffset, setDragOffset] = useState(0);
   const [stats, setStats] = useState({ remembered: 0, missed: 0 });
@@ -186,6 +204,7 @@ export function App() {
     Record<string, { answerId: string; checked: boolean; grade?: Grade }>
   >({});
   const [saveMessage, setSaveMessage] = useState("");
+  const [saveLoaded, setSaveLoaded] = useState(false);
   const dragStart = useRef<number | null>(null);
   const importRef = useRef<HTMLInputElement | null>(null);
 
@@ -210,6 +229,7 @@ export function App() {
   useEffect(() => {
     const raw = localStorage.getItem(SAVE_KEY);
     if (!raw) {
+      setSaveLoaded(true);
       return;
     }
     try {
@@ -221,11 +241,18 @@ export function App() {
       setShowExamples(state.showExamples ?? true);
       setCardIndex(state.cardIndex ?? 0);
       setExerciseIndex(state.exerciseIndex ?? 0);
+      setCardQueueIds(state.cardQueueIds ?? []);
+      setCardReviewIds(state.cardReviewIds ?? []);
+      setCardComplete(state.cardComplete ?? false);
+      setExerciseQueueIds(state.exerciseQueueIds ?? []);
+      setExerciseReviewIds(state.exerciseReviewIds ?? []);
+      setExerciseComplete(state.exerciseComplete ?? false);
       setStats(state.stats ?? { remembered: 0, missed: 0 });
       setExerciseResponses(state.exerciseResponses ?? {});
     } catch {
       localStorage.removeItem(SAVE_KEY);
     }
+    setSaveLoaded(true);
   }, []);
 
   const unitChapters = useMemo(
@@ -263,8 +290,15 @@ export function App() {
   }, [data.chapters, includeReviewExercises, selectedExerciseChapters]);
 
   const exerciseCards = useMemo(() => exerciseSets.flatMap(splitExerciseSet), [exerciseSets]);
-  const currentCard = deck[cardIndex % Math.max(deck.length, 1)];
-  const currentExercise = exerciseCards[exerciseIndex % Math.max(exerciseCards.length, 1)];
+  const deckById = useMemo(() => new Map(deck.map((card) => [card.id, card])), [deck]);
+  const exerciseById = useMemo(() => new Map(exerciseCards.map((exercise) => [exercise.id, exercise])), [exerciseCards]);
+  const activeCardQueue = useMemo(() => cardQueueIds.filter((id) => deckById.has(id)), [cardQueueIds, deckById]);
+  const activeExerciseQueue = useMemo(
+    () => exerciseQueueIds.filter((id) => exerciseById.has(id)),
+    [exerciseById, exerciseQueueIds],
+  );
+  const currentCard = cardComplete ? undefined : deckById.get(activeCardQueue[cardIndex]);
+  const currentExercise = exerciseComplete ? undefined : exerciseById.get(activeExerciseQueue[exerciseIndex]);
   const selectedCardLabel =
     selectedCardChapters.size === 0
       ? "32 capítulos"
@@ -275,6 +309,9 @@ export function App() {
       : compactCount(selectedExerciseChapters.size, "capítulo", "capítulos");
 
   useEffect(() => {
+    if (!saveLoaded) {
+      return;
+    }
     const state = toSavedState({
       selectedCardChapters,
       selectedExerciseChapters,
@@ -283,16 +320,29 @@ export function App() {
       showExamples,
       cardIndex,
       exerciseIndex,
+      cardQueueIds,
+      cardReviewIds,
+      cardComplete,
+      exerciseQueueIds,
+      exerciseReviewIds,
+      exerciseComplete,
       stats,
       exerciseResponses,
     });
     localStorage.setItem(SAVE_KEY, JSON.stringify(state));
   }, [
     cardIndex,
+    cardComplete,
+    cardQueueIds,
+    cardReviewIds,
     exerciseIndex,
+    exerciseComplete,
+    exerciseQueueIds,
+    exerciseReviewIds,
     exerciseResponses,
     includeReviewExercises,
     language,
+    saveLoaded,
     selectedCardChapters,
     selectedExerciseChapters,
     showExamples,
@@ -300,13 +350,44 @@ export function App() {
   ]);
 
   useEffect(() => {
-    setCardIndex(0);
-    setRevealed(false);
-  }, [selectedCardChapters]);
+    if (saveLoaded && deck.length > 0 && activeCardQueue.length === 0 && !cardComplete) {
+      setCardQueueIds(deck.map((card) => card.id));
+    }
+  }, [activeCardQueue.length, cardComplete, deck, saveLoaded]);
 
   useEffect(() => {
+    if (saveLoaded && exerciseCards.length > 0 && activeExerciseQueue.length === 0 && !exerciseComplete) {
+      setExerciseQueueIds(exerciseCards.map((exercise) => exercise.id));
+    }
+  }, [activeExerciseQueue.length, exerciseCards, exerciseComplete, saveLoaded]);
+
+  useEffect(() => {
+    if (cardIndex >= activeCardQueue.length && activeCardQueue.length > 0) {
+      setCardIndex(0);
+    }
+  }, [activeCardQueue.length, cardIndex]);
+
+  useEffect(() => {
+    if (exerciseIndex >= activeExerciseQueue.length && activeExerciseQueue.length > 0) {
+      setExerciseIndex(0);
+    }
+  }, [activeExerciseQueue.length, exerciseIndex]);
+
+  const restartCards = () => {
+    setCardQueueIds(deck.map((card) => card.id));
+    setCardReviewIds([]);
+    setCardComplete(false);
+    setCardIndex(0);
+    setRevealed(false);
+    setDragOffset(0);
+  };
+
+  const restartExercises = () => {
+    setExerciseQueueIds(exerciseCards.map((exercise) => exercise.id));
+    setExerciseReviewIds([]);
+    setExerciseComplete(false);
     setExerciseIndex(0);
-  }, [includeReviewExercises, selectedExerciseChapters]);
+  };
 
   const toggleChapter = (target: "cards" | "exercises", chapterId: string) => {
     const setter = target === "cards" ? setSelectedCardChapters : setSelectedExerciseChapters;
@@ -319,32 +400,115 @@ export function App() {
       }
       return next;
     });
+    if (target === "cards") {
+      setCardQueueIds([]);
+      setCardReviewIds([]);
+      setCardComplete(false);
+      setCardIndex(0);
+      setRevealed(false);
+    } else {
+      setExerciseQueueIds([]);
+      setExerciseReviewIds([]);
+      setExerciseComplete(false);
+      setExerciseIndex(0);
+    }
   };
 
   const resetSelection = (target: "cards" | "exercises") => {
     if (target === "cards") {
       setSelectedCardChapters(new Set());
+      setCardQueueIds([]);
+      setCardReviewIds([]);
+      setCardComplete(false);
+      setCardIndex(0);
+      setRevealed(false);
     } else {
       setSelectedExerciseChapters(new Set());
+      setExerciseQueueIds([]);
+      setExerciseReviewIds([]);
+      setExerciseComplete(false);
+      setExerciseIndex(0);
     }
   };
 
   const gradeCard = (grade: Grade) => {
-    if (deck.length === 0) {
+    if (!currentCard || activeCardQueue.length === 0) {
       return;
     }
+    const nextReviewIds =
+      grade === "missed" && !cardReviewIds.includes(currentCard.id)
+        ? [...cardReviewIds, currentCard.id]
+        : cardReviewIds;
     setStats((current) => ({
       remembered: current.remembered + (grade === "remembered" ? 1 : 0),
       missed: current.missed + (grade === "missed" ? 1 : 0),
     }));
-    setCardIndex((current) => (current + 1) % deck.length);
+    if (cardIndex + 1 < activeCardQueue.length) {
+      setCardReviewIds(nextReviewIds);
+      setCardIndex((current) => current + 1);
+    } else if (nextReviewIds.length > 0) {
+      setCardQueueIds(nextReviewIds);
+      setCardReviewIds([]);
+      setCardIndex(0);
+    } else {
+      setCardQueueIds([]);
+      setCardReviewIds([]);
+      setCardComplete(true);
+      setCardIndex(0);
+    }
     setRevealed(false);
     setDragOffset(0);
+  };
+
+  const advanceExercise = (grade?: Grade) => {
+    if (!currentExercise || activeExerciseQueue.length === 0) {
+      return;
+    }
+    const nextReviewIds =
+      grade === "missed" && !exerciseReviewIds.includes(currentExercise.id)
+        ? [...exerciseReviewIds, currentExercise.id]
+        : exerciseReviewIds;
+    if (grade) {
+      setExerciseResponses((current) => ({
+        ...current,
+        [currentExercise.id]: {
+          answerId: current[currentExercise.id]?.answerId ?? "",
+          checked: true,
+          grade,
+        },
+      }));
+    }
+    if (exerciseIndex + 1 < activeExerciseQueue.length) {
+      setExerciseReviewIds(nextReviewIds);
+      setExerciseIndex((current) => current + 1);
+    } else if (nextReviewIds.length > 0) {
+      setExerciseResponses((current) => {
+        const next = { ...current };
+        for (const id of nextReviewIds) {
+          next[id] = { answerId: "", checked: false };
+        }
+        return next;
+      });
+      setExerciseQueueIds(nextReviewIds);
+      setExerciseReviewIds([]);
+      setExerciseIndex(0);
+    } else {
+      setExerciseQueueIds([]);
+      setExerciseReviewIds([]);
+      setExerciseComplete(true);
+      setExerciseIndex(0);
+    }
   };
 
   const resetSession = () => {
     setCardIndex(0);
     setExerciseIndex(0);
+    setCardQueueIds(deck.map((card) => card.id));
+    setCardReviewIds([]);
+    setCardComplete(false);
+    setExerciseQueueIds(exerciseCards.map((exercise) => exercise.id));
+    setExerciseReviewIds([]);
+    setExerciseComplete(false);
     setRevealed(false);
     setStats({ remembered: 0, missed: 0 });
     setDragOffset(0);
@@ -361,6 +525,12 @@ export function App() {
       showExamples,
       cardIndex,
       exerciseIndex,
+      cardQueueIds,
+      cardReviewIds,
+      cardComplete,
+      exerciseQueueIds,
+      exerciseReviewIds,
+      exerciseComplete,
       stats,
       exerciseResponses,
     });
@@ -387,6 +557,12 @@ export function App() {
       setShowExamples(state.showExamples ?? true);
       setCardIndex(state.cardIndex ?? 0);
       setExerciseIndex(state.exerciseIndex ?? 0);
+      setCardQueueIds(state.cardQueueIds ?? []);
+      setCardReviewIds(state.cardReviewIds ?? []);
+      setCardComplete(state.cardComplete ?? false);
+      setExerciseQueueIds(state.exerciseQueueIds ?? []);
+      setExerciseReviewIds(state.exerciseReviewIds ?? []);
+      setExerciseComplete(state.exerciseComplete ?? false);
       setStats(state.stats ?? { remembered: 0, missed: 0 });
       setExerciseResponses(state.exerciseResponses ?? {});
       setSaveMessage("Progresso importado.");
@@ -516,7 +692,8 @@ export function App() {
       {activeTab === "cards" ? (
         <FlashcardPanel
           card={currentCard}
-          count={deck.length}
+          complete={cardComplete}
+          count={activeCardQueue.length}
           dataMode={dataMode}
           dragOffset={dragOffset}
           index={cardIndex}
@@ -526,6 +703,7 @@ export function App() {
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
           onReveal={() => setRevealed((value) => !value)}
+          onRestart={restartCards}
           revealed={revealed}
           showExamples={showExamples}
           stats={stats}
@@ -533,10 +711,11 @@ export function App() {
       ) : (
         <ExercisesPanel
           chapterById={chapterById}
+          complete={exerciseComplete}
           exercise={currentExercise}
           index={exerciseIndex}
           responses={exerciseResponses}
-          total={exerciseCards.length}
+          total={activeExerciseQueue.length}
           onAnswer={(exerciseId, answerId) =>
             setExerciseResponses((current) => ({
               ...current,
@@ -549,18 +728,10 @@ export function App() {
               [exerciseId]: { answerId: current[exerciseId]?.answerId ?? "", checked: true, grade: current[exerciseId]?.grade },
             }))
           }
-          onGrade={(exerciseId, grade) =>
-            setExerciseResponses((current) => ({
-              ...current,
-              [exerciseId]: { answerId: current[exerciseId]?.answerId ?? "", checked: true, grade },
-            }))
-          }
-          onNext={() => setExerciseIndex((current) => (current + 1) % Math.max(exerciseCards.length, 1))}
-          onPrevious={() =>
-            setExerciseIndex((current) =>
-              exerciseCards.length === 0 ? 0 : (current - 1 + exerciseCards.length) % exerciseCards.length,
-            )
-          }
+          onGrade={(_, grade) => advanceExercise(grade)}
+          onNext={() => advanceExercise()}
+          onPrevious={() => setExerciseIndex((current) => Math.max(0, current - 1))}
+          onRestart={restartExercises}
         />
       )}
 
@@ -622,6 +793,7 @@ function ChapterSelector({ chapters, label, mode, selected, onReset, onToggle }:
 
 type FlashcardPanelProps = {
   card?: Flashcard;
+  complete: boolean;
   count: number;
   dataMode: "generated" | "sample";
   dragOffset: number;
@@ -632,6 +804,7 @@ type FlashcardPanelProps = {
   onPointerMove: (event: React.PointerEvent<HTMLButtonElement>) => void;
   onPointerUp: () => void;
   onReveal: () => void;
+  onRestart: () => void;
   revealed: boolean;
   showExamples: boolean;
   stats: { remembered: number; missed: number };
@@ -639,6 +812,7 @@ type FlashcardPanelProps = {
 
 function FlashcardPanel({
   card,
+  complete,
   count,
   dataMode,
   dragOffset,
@@ -649,10 +823,24 @@ function FlashcardPanel({
   onPointerMove,
   onPointerUp,
   onReveal,
+  onRestart,
   revealed,
   showExamples,
   stats,
 }: FlashcardPanelProps) {
+  if (complete) {
+    return (
+      <section className="completionState">
+        <Check size={30} aria-hidden="true" />
+        <strong>Revisão completa</strong>
+        <p>Todos os cards desta seleção foram lembrados.</p>
+        <button className="primary" type="button" onClick={onRestart}>
+          Revisar novamente
+        </button>
+      </section>
+    );
+  }
+
   if (!card) {
     return (
       <section className="emptyState">
@@ -717,6 +905,7 @@ function FlashcardPanel({
 
 type ExercisesPanelProps = {
   chapterById: Map<string, Chapter>;
+  complete: boolean;
   exercise?: ExerciseCard;
   index: number;
   responses: Record<string, { answerId: string; checked: boolean; grade?: Grade }>;
@@ -726,10 +915,12 @@ type ExercisesPanelProps = {
   onGrade: (exerciseId: string, grade: Grade) => void;
   onNext: () => void;
   onPrevious: () => void;
+  onRestart: () => void;
 };
 
 function ExercisesPanel({
   chapterById,
+  complete,
   exercise,
   index,
   responses,
@@ -739,7 +930,21 @@ function ExercisesPanel({
   onGrade,
   onNext,
   onPrevious,
+  onRestart,
 }: ExercisesPanelProps) {
+  if (complete) {
+    return (
+      <section className="completionState">
+        <Check size={30} aria-hidden="true" />
+        <strong>Exercícios completos</strong>
+        <p>Todas as questões desta seleção foram acertadas.</p>
+        <button className="primary" type="button" onClick={onRestart}>
+          Revisar novamente
+        </button>
+      </section>
+    );
+  }
+
   if (!exercise) {
     return (
       <section className="emptyState">
