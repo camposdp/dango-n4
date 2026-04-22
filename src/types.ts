@@ -26,6 +26,18 @@ export type ExerciseSet = {
   page: number;
   lines: string[];
   answer?: string;
+  questions?: ExerciseQuestion[];
+};
+
+export type ExerciseQuestion = {
+  id: string;
+  prompt: string[];
+  options: Array<{
+    id: string;
+    text: string;
+  }>;
+  answerId: string;
+  answerSource?: "provided" | "suggested";
 };
 
 export type Chapter = {

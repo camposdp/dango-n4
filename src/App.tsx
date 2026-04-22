@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { sampleData } from "./data/sampleData";
-import type { Chapter, ExerciseSet, Flashcard, StudyData } from "./types";
+import type { Chapter, ExerciseQuestion, ExerciseSet, Flashcard, StudyData } from "./types";
 
 type Tab = "cards" | "exercises";
 type Grade = "remembered" | "missed";
@@ -26,7 +26,9 @@ type ExerciseCard = {
   title: string;
   page: number;
   prompt: string[];
-  answer?: string;
+  options: ExerciseQuestion["options"];
+  answerId: string;
+  answerSource?: "provided" | "suggested";
 };
 
 type SavedState = {
@@ -38,7 +40,7 @@ type SavedState = {
   cardIndex: number;
   exerciseIndex: number;
   stats: { remembered: number; missed: number };
-  exerciseResponses: Record<string, { answer: string; checked: boolean; grade?: Grade }>;
+  exerciseResponses: Record<string, { answerId: string; checked: boolean; grade?: Grade }>;
 };
 
 const DATA_URL = "/study-data.json";
@@ -118,36 +120,20 @@ function renderTextByLanguage(source: { pt?: string; en?: string }, language: La
 }
 
 function splitExerciseSet(set: ExerciseSet): ExerciseCard[] {
-  const usefulLines = set.lines
-    .map((line) => line.trim())
-    .filter((line) => line && !/^問題[IVX\d]*$/.test(line) && !/^もんだい$/.test(line));
-
-  const chunks: string[][] = [];
-  for (const line of usefulLines) {
-    const startsQuestion =
-      /^[①②③④⑤⑥⑦⑧⑨⑩]/.test(line) ||
-      (/^\d{1,2}\s/.test(line) && /[()（）]|。|ください|ですか|ますか/.test(line));
-    if (startsQuestion && chunks.length > 0) {
-      chunks.push([line]);
-    } else if (chunks.length === 0) {
-      chunks.push([line]);
-    } else {
-      chunks[chunks.length - 1].push(line);
-    }
-  }
-
-  const normalizedChunks = chunks.length > 0 ? chunks : [usefulLines];
-  return normalizedChunks
-    .filter((chunk) => chunk.length > 0)
-    .map((chunk, index) => ({
-      id: `${set.id}-q${index + 1}`,
+  if (set.questions?.length) {
+    return set.questions.map((question) => ({
+      id: question.id,
       setId: set.id,
       chapterId: set.chapterId,
       title: set.title,
       page: set.page,
-      prompt: chunk,
-      answer: set.answer,
+      prompt: question.prompt,
+      options: question.options,
+      answerId: question.answerId,
+      answerSource: question.answerSource,
     }));
+  }
+  return [];
 }
 
 function encodeSave(state: SavedState) {
@@ -173,7 +159,7 @@ function toSavedState(args: {
   cardIndex: number;
   exerciseIndex: number;
   stats: { remembered: number; missed: number };
-  exerciseResponses: Record<string, { answer: string; checked: boolean; grade?: Grade }>;
+  exerciseResponses: Record<string, { answerId: string; checked: boolean; grade?: Grade }>;
 }): SavedState {
   return {
     ...args,
@@ -197,7 +183,7 @@ export function App() {
   const [dragOffset, setDragOffset] = useState(0);
   const [stats, setStats] = useState({ remembered: 0, missed: 0 });
   const [exerciseResponses, setExerciseResponses] = useState<
-    Record<string, { answer: string; checked: boolean; grade?: Grade }>
+    Record<string, { answerId: string; checked: boolean; grade?: Grade }>
   >({});
   const [saveMessage, setSaveMessage] = useState("");
   const dragStart = useRef<number | null>(null);
@@ -551,22 +537,22 @@ export function App() {
           index={exerciseIndex}
           responses={exerciseResponses}
           total={exerciseCards.length}
-          onAnswer={(exerciseId, answer) =>
+          onAnswer={(exerciseId, answerId) =>
             setExerciseResponses((current) => ({
               ...current,
-              [exerciseId]: { answer, checked: current[exerciseId]?.checked ?? false, grade: current[exerciseId]?.grade },
+              [exerciseId]: { answerId, checked: current[exerciseId]?.checked ?? false, grade: current[exerciseId]?.grade },
             }))
           }
           onCheck={(exerciseId) =>
             setExerciseResponses((current) => ({
               ...current,
-              [exerciseId]: { answer: current[exerciseId]?.answer ?? "", checked: true, grade: current[exerciseId]?.grade },
+              [exerciseId]: { answerId: current[exerciseId]?.answerId ?? "", checked: true, grade: current[exerciseId]?.grade },
             }))
           }
           onGrade={(exerciseId, grade) =>
             setExerciseResponses((current) => ({
               ...current,
-              [exerciseId]: { answer: current[exerciseId]?.answer ?? "", checked: true, grade },
+              [exerciseId]: { answerId: current[exerciseId]?.answerId ?? "", checked: true, grade },
             }))
           }
           onNext={() => setExerciseIndex((current) => (current + 1) % Math.max(exerciseCards.length, 1))}
@@ -733,9 +719,9 @@ type ExercisesPanelProps = {
   chapterById: Map<string, Chapter>;
   exercise?: ExerciseCard;
   index: number;
-  responses: Record<string, { answer: string; checked: boolean; grade?: Grade }>;
+  responses: Record<string, { answerId: string; checked: boolean; grade?: Grade }>;
   total: number;
-  onAnswer: (exerciseId: string, answer: string) => void;
+  onAnswer: (exerciseId: string, answerId: string) => void;
   onCheck: (exerciseId: string) => void;
   onGrade: (exerciseId: string, grade: Grade) => void;
   onNext: () => void;
@@ -763,8 +749,10 @@ function ExercisesPanel({
     );
   }
 
-  const response = responses[exercise.id] ?? { answer: "", checked: false };
+  const response = responses[exercise.id] ?? { answerId: "", checked: false };
   const chapter = chapterById.get(exercise.chapterId);
+  const selectedOption = exercise.options.find((option) => option.id === response.answerId);
+  const correctOption = exercise.options.find((option) => option.id === exercise.answerId) ?? exercise.options[0];
 
   return (
     <section className="exerciseFlow">
@@ -782,29 +770,35 @@ function ExercisesPanel({
           ))}
         </div>
 
-        <label className="answerField">
-          <span>Sua resposta</span>
-          <input
-            value={response.answer}
-            type="text"
-            inputMode="text"
-            placeholder="Digite a alternativa ou resposta"
-            onChange={(event) => onAnswer(exercise.id, event.target.value)}
-          />
-        </label>
+        <div className="optionList" role="radiogroup" aria-label="Alternativas">
+          {exercise.options.map((option) => {
+            const isSelected = response.answerId === option.id;
+            const isCorrect = response.checked && option.id === correctOption?.id;
+            const isWrong = response.checked && isSelected && option.id !== correctOption?.id;
+            return (
+              <button
+                className={`${isSelected ? "selected" : ""} ${isCorrect ? "correct" : ""} ${isWrong ? "wrong" : ""}`}
+                key={option.id}
+                type="button"
+                onClick={() => onAnswer(exercise.id, option.id)}
+              >
+                <span>{option.id}</span>
+                {option.text}
+              </button>
+            );
+          })}
+        </div>
 
         {response.checked && (
           <div className="answerReveal">
             <strong>Conferência</strong>
-            {exercise.answer ? (
-              <p>Resposta esperada: {exercise.answer}</p>
-            ) : (
-              <p>
-                O gabarito não veio neste PDF/transcrição. Use este passo para comparar com o seu material e marcar
-                se acertou.
-              </p>
+            <p>
+              Resposta correta: {correctOption?.id}. {correctOption?.text}
+            </p>
+            {exercise.answerSource === "suggested" && (
+              <small>Gabarito sugerido a partir da transcrição. Revise se notar OCR estranho.</small>
             )}
-            {response.answer && <small>Sua resposta: {response.answer}</small>}
+            {selectedOption && <small>Sua resposta: {selectedOption.id}. {selectedOption.text}</small>}
           </div>
         )}
 

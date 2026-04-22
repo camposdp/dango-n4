@@ -172,6 +172,633 @@ def fix_latin(text: str | None) -> str | None:
     return re.sub(r"\s+([.,!?;:])", r"\1", text).strip()
 
 
+def clean_exercise_line(text: str) -> str:
+    text = clean_text(text)
+    replacements = {
+        "どどちら": "どちら",
+        "しどちら": "どちら",
+        "いし": "いい",
+        "メず": "必ず",
+        "Ｂ": "b",
+        "Ｄ": "b",
+        "り、": " b.",
+        "正めて": "止めて",
+        "及って": "吸って",
+        "ポヶット": "ポケット",
+        "ノーティー": "パーティー",
+        "遠恵": "遠慮",
+        "迅え": "迎え",
+        "ほなる": "になる",
+        "スーパ一": "スーパー",
+        "スー一": "スーパー",
+    }
+    for old, new in replacements.items():
+        text = text.replace(old, new)
+    text = re.sub(r"1・2・8・4", "1・2・3・4", text)
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()
+
+
+def is_probable_furigana_line(text: str) -> bool:
+    compact = re.sub(r"\s+", "", text)
+    if not compact:
+        return True
+    if len(compact) <= 10 and re.fullmatch(r"[ぁ-んァ-ンー]+", compact):
+        return True
+    return False
+
+
+def looks_like_ocr_ruby_noise(text: str) -> bool:
+    compact = re.sub(r"\s+", "", text)
+    if not compact:
+        return True
+    if len(compact) <= 14 and re.fullmatch(r"[ぁ-んァ-ンー1-9」しエ土古]+", compact):
+        return True
+    return False
+
+
+def is_exercise_instruction(text: str) -> bool:
+    return any(
+        marker in text
+        for marker in [
+            "れんしゅう",
+            "ふくしゅう問題",
+            "問題",
+            "もんだい",
+            "えらんでください",
+            "ひとつえらんでください",
+            "いちばんいいもの",
+            "だいたいおなじ",
+            "つかいかた",
+        ]
+    )
+
+
+def parse_numbered_options(line: str) -> list[dict] | None:
+    normalized = clean_exercise_line(line)
+    normalized = re.sub(r"([1-4])([ぁ-んァ-ン一-龯々ーA-Za-z])", r"\1 \2", normalized)
+    normalized = re.sub(r"([1-4])(?=\S)", r"\1 ", normalized)
+    if " 2 " in normalized and not normalized.lstrip().startswith("1 "):
+        normalized = "1 " + normalized
+    matches = list(re.finditer(r"(?:^|\s)([1-4])\s+(.+?)(?=\s+[1-4]\s+|$)", normalized))
+    options = []
+    for match in matches:
+        label = match.group(1)
+        text = clean_exercise_line(match.group(2))
+        if text:
+            options.append({"id": label, "text": text})
+    if len(options) == 3 and [option["id"] for option in options] == ["1", "2", "3"]:
+        last_words = options[-1]["text"].split()
+        if len(last_words) == 2 and all(has_japanese(word) for word in last_words):
+            options[-1]["text"] = last_words[0]
+            options.append({"id": "4", "text": last_words[1]})
+    if len(options) >= 2:
+        return options
+    return None
+
+
+def parse_inline_ab_options(line: str) -> tuple[str, list[dict]] | None:
+    normalized = clean_exercise_line(line)
+    if normalized.startswith(("A:", "A：", "B:", "B：", "B(")):
+        return None
+    if normalized.count("(a") + normalized.count("（a") > 1:
+        return None
+    match = re.search(r"[（(]\s*a[.。]?\s*(.+?)\s+b[.。]?\s*(.+?)\s*[）)]", normalized)
+    if match:
+        option_a = clean_exercise_line(match.group(1))
+        option_b = clean_exercise_line(match.group(2))
+        prompt = clean_exercise_line(normalized[: match.start()] + "(　)" + normalized[match.end() :])
+    else:
+        loose = re.search(r"[（(]\s*a[.。]?\s*(.+?)\s+b[.。]?\s*(.+)$", normalized)
+        if not loose:
+            return None
+        option_a = clean_exercise_line(loose.group(1))
+        b_and_tail = clean_exercise_line(loose.group(2))
+        tail_match = re.match(r"([ぁ-んァ-ン一-龯々ー]+?)([。をにがはでと、へでください].*)?$", b_and_tail)
+        option_b = clean_exercise_line(tail_match.group(1) if tail_match else b_and_tail)
+        tail = clean_exercise_line(tail_match.group(2) if tail_match and tail_match.group(2) else "")
+        prompt = clean_exercise_line(normalized[: loose.start()] + "(　)" + tail)
+    if (
+        not option_a
+        or not option_b
+        or len(option_a) > 18
+        or len(option_b) > 18
+        or re.search(r"[1-4]\s", option_a + option_b)
+    ):
+        return None
+    return prompt, [{"id": "a", "text": option_a}, {"id": "b", "text": option_b}]
+
+
+def clean_prompt_lines(lines: list[str]) -> list[str]:
+    cleaned = []
+    for line in lines:
+        line = clean_exercise_line(line)
+        if not line or is_exercise_instruction(line) or is_probable_furigana_line(line) or looks_like_ocr_ruby_noise(line):
+            continue
+        # Drop lonely OCR numbers that are not meaningful prompts.
+        if re.fullmatch(r"[1-4]", line):
+            continue
+        segments = [line]
+        if "/" in line:
+            segments = [clean_exercise_line(segment) for segment in line.split("/") if clean_exercise_line(segment)]
+        for segment in segments:
+            segment = re.sub(r"\s*[※氷糸X][^。]*p/?\d+.*$", "", segment).strip()
+            segment = re.sub(r"^[A-Z]:\s*", "", segment).strip()
+            if not segment or is_probable_furigana_line(segment) or looks_like_ocr_ruby_noise(segment):
+                continue
+            if segment.startswith(("X", "※", "氷", "糸")):
+                continue
+            if (
+                not has_kanji(segment)
+                and segment.count(" ") >= 2
+                and not any(mark in segment for mark in ["(", ")", "。", "、", "て", "に", "を", "が", "は"])
+            ):
+                continue
+            if len(segment) <= 18 and not any(mark in segment for mark in ["(", ")", "。", "、", "て", "に", "を", "が", "は"]):
+                continue
+            cleaned.append(segment)
+    return cleaned[-3:] or ["Escolha a melhor alternativa."]
+
+
+CURATED_QUESTION_OVERRIDES = {
+    "unit-02-exercise-p19-q2": {
+        "prompt": ["今日の映画は(　)おもしろくなかった。"],
+        "options": [
+            {"id": "1", "text": "全然"},
+            {"id": "2", "text": "とても"},
+            {"id": "3", "text": "たくさん"},
+            {"id": "4", "text": "必ず"},
+        ],
+        "answerId": "1",
+    },
+    "unit-02-exercise-p19-q4": {
+        "prompt": ["わたしは女性だけど、(　)をつけるのがあまり好きじゃない。"],
+        "options": [
+            {"id": "1", "text": "コート"},
+            {"id": "2", "text": "ぼうし"},
+            {"id": "3", "text": "スカート"},
+            {"id": "4", "text": "アクセサリー"},
+        ],
+        "answerId": "4",
+    },
+    "unit-03-exercise-p21-q1": {
+        "prompt": ["ここでたばこを吸っても(　)。"],
+        "options": [
+            {"id": "a", "text": "かまいますか"},
+            {"id": "b", "text": "かまいませんか"},
+        ],
+        "answerId": "b",
+    },
+    "unit-04-exercise-p23-q1": {
+        "prompt": ["(　)、スーパーで買い物をしました。"],
+        "options": [
+            {"id": "1", "text": "さっき"},
+            {"id": "2", "text": "すぐに"},
+            {"id": "3", "text": "いつ"},
+            {"id": "4", "text": "まだ"},
+        ],
+        "answerId": "1",
+    },
+    "unit-04-exercise-p23-q3": {
+        "prompt": ["(　)早く来てください。"],
+        "options": [
+            {"id": "1", "text": "たぶん"},
+            {"id": "2", "text": "なるべく"},
+            {"id": "3", "text": "とても"},
+            {"id": "4", "text": "あまり"},
+        ],
+        "answerId": "2",
+    },
+    "section-1-4-ふくしゅう問題-exercise-p24-q1": {
+        "prompt": ["すぐに出かけるから、(　)しなさい。"],
+        "answerId": "3",
+    },
+    "section-1-4-ふくしゅう問題-exercise-p24-q3": {
+        "prompt": ["今日は子どもの(　)をしなければなりません。"],
+        "answerId": "2",
+    },
+    "section-1-4-ふくしゅう問題-exercise-p24-q5": {
+        "prompt": ["のこったりょうりは(　)しましょう。"],
+        "answerId": "3",
+    },
+    "section-1-4-ふくしゅう問題-exercise-p24-q6": {
+        "prompt": ["みじかい(　)でしたが、ありがとうございました。"],
+        "answerId": "3",
+    },
+    "section-1-4-ふくしゅう問題-exercise-p24-q7": {
+        "prompt": ["けっこんしきは、(　)イベントです。"],
+        "answerId": "2",
+    },
+    "section-1-4-ふくしゅう問題-exercise-p24-q10": {
+        "prompt": ["車にのっていたら、(　)おとがしてきました。"],
+        "answerId": "4",
+    },
+    "unit-06-exercise-p29-q3": {
+        "prompt": ["船で外国と貿易するとき、(　)を使う。"],
+        "options": [
+            {"id": "1", "text": "郵便局"},
+            {"id": "2", "text": "建物"},
+            {"id": "3", "text": "港"},
+            {"id": "4", "text": "駅"},
+        ],
+        "answerId": "3",
+    },
+    "unit-06-exercise-p29-q4": {
+        "prompt": ["来年、新しい駅が(　)らしい。"],
+        "answerId": "4",
+    },
+    "unit-07-exercise-p31-q1": {
+        "prompt": ["次の駅で(　)。"],
+        "options": [
+            {"id": "1", "text": "変わろう"},
+            {"id": "2", "text": "進もう"},
+            {"id": "3", "text": "乗り換えよう"},
+            {"id": "4", "text": "変えよう"},
+        ],
+        "answerId": "3",
+    },
+    "unit-08-exercise-p33-q4": {
+        "prompt": ["彼と結婚したいと言ったら、両親は(　)。"],
+        "answerId": "2",
+    },
+    "unit-11-exercise-p41-q4": {
+        "prompt": ["美術館は人で(　)だった。"],
+        "answerId": "2",
+    },
+    "unit-13-exercise-p47-q2": {
+        "prompt": ["あのレストランの(　)は親切だ。"],
+        "answerId": "1",
+    },
+    "unit-18-exercise-p59-q2": {
+        "prompt": ["「今日勉強したことを(　)しなさい」と先生に言われた。"],
+        "answerId": "4",
+    },
+    "unit-18-exercise-p59-q3": {
+        "prompt": ["日本の大学に(　)したい。"],
+        "options": [
+            {"id": "1", "text": "入学"},
+            {"id": "2", "text": "卒業"},
+            {"id": "3", "text": "計画"},
+            {"id": "4", "text": "予約"},
+        ],
+        "answerId": "1",
+    },
+    "unit-21-exercise-p67-q4": {
+        "prompt": ["歯が痛くて食べ物がよく(　)。"],
+        "answerId": "4",
+    },
+    "unit-23-exercise-p71-q2": {
+        "prompt": ["郵便局の人は毎日手紙などを(　)くれる。"],
+        "answerId": "1",
+    },
+    "unit-23-exercise-p71-q4": {
+        "prompt": ["家族に(　)方法を決めておきましょう。"],
+        "answerId": "3",
+    },
+    "unit-27-exercise-p81-q1": {
+        "prompt": ["(　)をした人が病院へ運ばれた。"],
+        "answerId": "3",
+    },
+    "unit-29-exercise-p87-q1": {
+        "prompt": ["この坂を(　)ところに郵便局があります。"],
+        "options": [
+            {"id": "1", "text": "急いだ"},
+            {"id": "2", "text": "下りた"},
+            {"id": "3", "text": "走った"},
+            {"id": "4", "text": "止まった"},
+        ],
+        "answerId": "2",
+    },
+    "unit-30-exercise-p89-q3": {
+        "prompt": ["自転車の二人乗りは危険だから(　)だよ。"],
+        "answerId": "2",
+    },
+    "unit-31-exercise-p91-q4": {
+        "prompt": ["今、映画館で子どもの好きなアニメをやっているので、娘を(　)。"],
+        "answerId": "2",
+    },
+    "section-29-32-ふくしゅう問題-exercise-p102-q5": {
+        "prompt": ["入学しきに(　)新しいふくを買ってあげた。"],
+        "answerId": "1",
+    },
+}
+
+
+def normalize_question(question: dict) -> dict:
+    override = CURATED_QUESTION_OVERRIDES.get(question["id"])
+    if override:
+        question = {**question, **override}
+    question["prompt"] = clean_prompt_lines(question["prompt"])
+    question["options"] = [
+        {"id": str(option["id"]), "text": clean_exercise_line(option["text"])}
+        for option in question["options"]
+        if clean_exercise_line(option["text"])
+    ]
+    return question
+
+
+def is_usable_question(question: dict) -> bool:
+    prompt = question.get("prompt") or []
+    options = question.get("options") or []
+    option_ids = [option["id"] for option in options]
+    if not prompt or prompt == ["Escolha a melhor alternativa."]:
+        return False
+    if option_ids not in (["1", "2", "3", "4"], ["a", "b"]):
+        return False
+    if question.get("answerId") not in option_ids:
+        return False
+    prompt_text = " ".join(prompt)
+    if any(marker in prompt_text for marker in ["Escolha", "Xルール", "Answer respostas", "event evento"]):
+        return False
+    if re.search(r"[（(]\s*a[.。]?", prompt_text) or re.search(r"\s+b[.。]", prompt_text):
+        return False
+    for option in options:
+        text = option["text"]
+        if not has_japanese(text):
+            return False
+        if re.search(r"(?:^|\s)[1-4]\s", text):
+            return False
+        if len(text) > 28:
+            return False
+    return True
+
+
+def infer_answer_id(prompt: list[str], options: list[dict]) -> str:
+    joined = " ".join(prompt)
+    joined_compact = re.sub(r"\s+", "", joined)
+    option_texts = {option["id"]: option["text"] for option in options}
+
+    # Collocations and common N4 vocabulary clues recovered from the OCR text.
+    clues = [
+        ("全部好き", ["特に"]),
+        ("サッカー", ["特に"]),
+        ("100点", ["うれしい"]),
+        ("品物がたくさん", ["品物"]),
+        ("黒い", ["スーツ", "ぼうし"]),
+        ("映画", ["全然"]),
+        ("1年上", ["先輩"]),
+        ("アクセサリー", ["アクセサリー"]),
+        ("たばこを吸", ["かまいませんか"]),
+        ("家と家", ["間"]),
+        ("自転車", ["止めて"]),
+        ("車を", ["とめる", "止める"]),
+        ("子どもたち", ["さわいで"]),
+        ("車を止める", ["駐車場"]),
+        ("警官", ["交番"]),
+        ("電車が止まる", ["駅"]),
+        ("遊ぶところ", ["公園"]),
+        ("パーティー", ["出席"]),
+        ("早く来て", ["なるべく"]),
+        ("仕事のこと", ["相談"]),
+        ("荷物", ["片づける", "用意"]),
+        ("10時間", ["すごく"]),
+        ("来週の次", ["再来週"]),
+        ("駅に着いた", ["やっと"]),
+        ("広い", ["道路"]),
+        ("工場", ["生産"]),
+        ("貿易", ["港"]),
+        ("新しい駅", ["できる"]),
+        ("次の駅", ["乗り換えよう"]),
+        ("迎え", ["空港"]),
+        ("帰る", ["途中"]),
+        ("交差点", ["信号"]),
+        ("会わない間", ["しばらく"]),
+        ("町の中", ["案内した"]),
+        ("両親", ["反対した"]),
+        ("せまい道", ["とおる"]),
+        ("今日まで", ["かたづけ"]),
+        ("こうばん", ["たずねた"]),
+        ("外国", ["ゆしゅつ", "輸出"]),
+        ("明日の", ["じゅんび", "準備"]),
+        ("すぐに出かける", ["ようい"]),
+        ("のこったりょうり", ["れいとう"]),
+        ("みじかい", ["あいだ"]),
+        ("けっこんしき", ["とくべつ"]),
+        ("へんなおと", ["へんな"]),
+        ("通勤", ["こむ"]),
+        ("つうきん", ["こむ"]),
+        ("へやがせまい", ["だんち"]),
+        ("新幹線", ["のりかえる"]),
+        ("しんかんせん", ["のりかえる"]),
+        ("スポーツを", ["せんもん"]),
+        ("寝て", ["ばかり"]),
+        ("コンサート", ["チケット"]),
+        ("興味", ["興味"]),
+        ("上手に", ["なかなか"]),
+        ("旅行の", ["お土産"]),
+        ("妹の夫", ["招待"]),
+        ("手紙を書いた", ["よろこん"]),
+        ("日本の", ["季節"]),
+        ("友だちの家", ["泊まる"]),
+        ("富士山", ["景色"]),
+        ("美術館", ["いっぱい"]),
+        ("また日本", ["ぜひ"]),
+        ("動物園", ["珍しい"]),
+        ("行けなくて", ["残念"]),
+        ("一番高い建物", ["世界"]),
+        ("子どものこと", ["しんぱい"]),
+        ("りょかん", ["よやく"]),
+        ("ホテルの", ["あいて"]),
+        ("りょうしんがうち", ["とまる"]),
+        ("おみまい", ["おみまい"]),
+        ("この うみ", ["うつくしい"]),
+        ("おべんとう", ["けしき"]),
+        ("かぞくにあげる", ["おみやげ"]),
+        ("アルバイトをして", ["アルバイト"]),
+        ("レストランの", ["店員"]),
+        ("表と", ["裏"]),
+        ("面接", ["面接"]),
+        ("役に", ["立つ"]),
+        ("ポスター", ["パソコン"]),
+        ("給料", ["給料"]),
+        ("考えられない", ["アイディア"]),
+        ("別々", ["別々"]),
+        ("毎日 食べ", ["サラダ"]),
+        ("おっしゃいます", ["伺います"]),
+        ("父が", ["倒れた"]),
+        ("必ず1時", ["戻る"]),
+        ("風邪", ["治らない"]),
+        ("新しい・駅", ["できる"]),
+        ("会わない", ["しばらく"]),
+        ("今日までにこのしごと", ["かたづ"]),
+        ("人たちは、みんなでルール", ["ちいき"]),
+        ("コンサートは", ["チケット", "チヶット"]),
+        ("のないこと", ["興味"]),
+        ("よるよりひる", ["季節", "キせつ"]),
+        ("結婚して", ["別々"]),
+        ("仕事の 話", ["伺"]),
+        ("勝", ["競争"]),
+        ("今までやってきた", ["アルバイト"]),
+        ("男の子はじぶん", ["ぼく", "ほく"]),
+        ("花びん", ["かざって", "わって"]),
+        ("母が したので", ["たいいん"]),
+        ("まだ一かいも", ["かいがい"]),
+        ("ゲームに", ["かったら"]),
+        ("手で", ["さわって"]),
+        ("インターネット", ["調べる"]),
+        ("答え", ["正しい"]),
+        ("日本の学校", ["中学校"]),
+        ("自分で持って", ["大事"]),
+        ("料理が", ["得意"]),
+        ("育て", ["ほめて"]),
+        ("けっこんしきに", ["あっまった", "あつまった"]),
+        ("じゅぎょう", ["ふくしゅう", "おくしゅう"]),
+        ("休みの間", ["ふくしゅう", "おくしゅう"]),
+        ("今年高校に", ["にゅうがく", "入学"]),
+        ("行かないほう", ["きけん"]),
+        ("じしょ", ["ひいて"]),
+        ("せいせき", ["せいせき"]),
+        ("スポーツ大会", ["せいせき"]),
+        ("上手ですね", ["ほめた"]),
+        ("きようと", ["たとえば"]),
+        ("ふた", ["かたくて"]),
+        ("パスポート", ["落として"]),
+        ("落し物を", ["拾ったら"]),
+        ("携帯電話", ["見つかった"]),
+        ("駅で一番多い", ["忘れ物"]),
+        ("仕事で", ["失敗"]),
+        ("がいたい", ["のど"]),
+        ("せいかつに", ["ひつよう"]),
+        ("へやの中があつい", ["れいぼう"]),
+        ("人の もの", ["ぬすんで"]),
+        ("プレゼント", ["つつんで"]),
+        ("木にのぼったら", ["おれて"]),
+        ("声が", ["聞こえる"]),
+        ("シャワー", ["気持ちいい"]),
+        ("運動したあと", ["気持ち"]),
+        ("北と東", ["北東"]),
+        ("夢を", ["こわい"]),
+        ("雨に", ["ぬれて"]),
+        ("コップが落ちて", ["割れて"]),
+        ("まど", ["ガラス"]),
+        ("梅雨", ["つゆ"]),
+        ("雨の 日", ["つゆ"]),
+        ("ドアのカギ", ["かけなさい"]),
+        ("ねこがにわ", ["きもちよく"]),
+        ("北東にむかう", ["南西"]),
+        ("きゅうきゅうしゃ", ["聞こえました"]),
+        ("道が", ["すべり"]),
+        ("今から行けば", ["十分"]),
+        ("散歩を", ["続けている"]),
+        ("運転するのが", ["趣味"]),
+        ("深い", ["深い"]),
+        ("泳ぐ", ["深い"]),
+        ("弱い人", ["いじめる"]),
+        ("自分の意見", ["伝えない"]),
+        ("やくそく", ["すっかり"]),
+        ("ころんで", ["はずかし"]),
+        ("しごとがおわります", ["たいてい"]),
+        ("思い出せない", ["おもいだせない"]),
+        ("買わなくてはいけない", ["おもいだせない"]),
+        ("れんらくをくれるように", ["つたえて"]),
+        ("おなか", ["すきました"]),
+        ("父は", ["たまに"]),
+        ("しごとがまだ", ["のこって"]),
+        ("てんらん会", ["あんない"]),
+        ("パソコン", ["きょうみ"]),
+        ("せんもんの学校", ["きょう"]),
+        ("テレビ", ["こわれて"]),
+        ("見られません", ["こわれて"]),
+        ("えいがを見て", ["すごく"]),
+        ("しけんを", ["うけよう"]),
+        ("うんどう会", ["おこないます"]),
+        ("娘を", ["連れて"]),
+        ("あかちゃん", ["きまりました", "決まりました"]),
+        ("けっこんしきに する", ["しゅっせき"]),
+        ("子どもを に行き", ["むかえ"]),
+        ("ス一パーで", ["さっき"]),
+        ("もっを", ["はこ"]),
+        ("ちがうばしょ", ["ひっこ"]),
+        ("ちがうばしょ", ["うつる"]),
+        ("新しいいえ", ["たてて"]),
+        ("まわりの人", ["めいわく"]),
+        ("じこに気を", ["運転"]),
+        ("じこに気", ["うんてん"]),
+        ("げんきがない", ["とくに"]),
+        ("やさしくなった", ["ずいぶん"]),
+        ("やさしくなった", ["だいぶ"]),
+        ("電話ばんごうを", ["しらべた"]),
+        ("食べものはよく", ["かんで"]),
+        ("コーヒーを", ["しゅうかん"]),
+        ("コーヒーを", ["しゆうかん"]),
+    ]
+    for clue, answers in clues:
+        if clue in joined or clue in joined_compact:
+            for answer in answers:
+                for option_id, text in option_texts.items():
+                    if answer in text:
+                        return option_id
+
+    # If the prompt itself contains a term repeated in an option, that option is usually the target.
+    for option in options:
+        if option["text"] and option["text"] in joined:
+            return option["id"]
+    return options[0]["id"]
+
+
+def parse_exercise_questions(lines: list[str], exercise_id: str) -> list[dict]:
+    questions = []
+    pending_prompt: list[str] = []
+
+    for raw_line in lines:
+        line = clean_exercise_line(raw_line)
+        if not line:
+            continue
+
+        inline = parse_inline_ab_options(line)
+        if inline:
+            prompt_text, options = inline
+            prompt = clean_prompt_lines([*pending_prompt, prompt_text])
+            answer_id = infer_answer_id(prompt, options)
+            questions.append(
+                {
+                    "id": f"{exercise_id}-q{len(questions) + 1}",
+                    "prompt": prompt,
+                    "options": options,
+                    "answerId": answer_id,
+                    "answerSource": "suggested",
+                }
+            )
+            pending_prompt = []
+            continue
+
+        options = parse_numbered_options(line)
+        if options:
+            prompt = clean_prompt_lines(pending_prompt)
+            answer_id = infer_answer_id(prompt, options)
+            questions.append(
+                {
+                    "id": f"{exercise_id}-q{len(questions) + 1}",
+                    "prompt": prompt,
+                    "options": options,
+                    "answerId": answer_id,
+                    "answerSource": "suggested",
+                }
+            )
+            pending_prompt = []
+            continue
+
+        if not is_probable_furigana_line(line) and not looks_like_ocr_ruby_noise(line):
+            pending_prompt.append(line)
+
+    # Remove accidental instruction-only questions.
+    filtered = []
+    for question in questions:
+        question = normalize_question(question)
+        if len(question["options"]) < 2:
+            continue
+        question["answerId"] = infer_answer_id(question["prompt"], question["options"])
+        override = CURATED_QUESTION_OVERRIDES.get(question["id"])
+        if override and "answerId" in override:
+            question["answerId"] = override["answerId"]
+        if all(is_exercise_instruction(line) for line in question["prompt"]):
+            continue
+        if not is_usable_question(question):
+            continue
+        filtered.append(question)
+    return filtered
+
+
 def load_pages(raw_dir: pathlib.Path) -> list[dict]:
     pages = []
     for path in sorted(raw_dir.glob("page_*.json")):
@@ -518,12 +1145,14 @@ def extract_exercise(page: int, chapter: str, title: str, lines: list[Line], is_
     merged = merge_lines(exercise_lines)
     if len(merged) < 2:
         return None
+    exercise_id = f"{chapter}-exercise-p{page}"
     return {
-        "id": f"{chapter}-exercise-p{page}",
+        "id": exercise_id,
         "chapterId": chapter,
         "title": title,
         "page": page,
-        "lines": merged,
+        "lines": [clean_exercise_line(line) for line in merged],
+        "questions": parse_exercise_questions(merged, exercise_id),
     }
 
 

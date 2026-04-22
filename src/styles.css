@@ -502,6 +502,63 @@ rt {
   color: #222321;
 }
 
+.optionList {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.optionList button {
+  min-height: 52px;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border: 1px solid #ead8c4;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #242824;
+  text-align: left;
+  font-family:
+    "Yu Gothic", "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
+  font-weight: 850;
+}
+
+.optionList button span {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #fffaf4;
+  background: #7a644e;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.optionList button.selected {
+  border-color: #d95469;
+  background: #fff3f5;
+}
+
+.optionList button.correct {
+  border-color: #1f6f55;
+  background: #f2fbf1;
+}
+
+.optionList button.correct span {
+  background: #1f6f55;
+}
+
+.optionList button.wrong {
+  border-color: #d95469;
+  background: #fff3f5;
+}
+
+.optionList button.wrong span {
+  background: #d95469;
+}
+
 .answerReveal {
   margin-top: 16px;
   padding: 14px;
