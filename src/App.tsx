@@ -599,7 +599,7 @@ export function App() {
         <div>
           <div className="brandMark">
             <DangoMark />
-            <span>Dango N4 - ダン語 N4</span>
+            <span>塵も積もれば山となる</span>
           </div>
           <h1>Dango N4 - ダン語 N4</h1>
         </div>
