@@ -183,7 +183,6 @@ function toSavedState(args: {
 export function App() {
   const [data, setData] = useState<StudyData>(normalizeData(sampleData));
   const [dataMode, setDataMode] = useState<"generated" | "sample">("sample");
-  const [activeTab, setActiveTab] = useState<Tab>("cards");
   const [selectedCardChapters, setSelectedCardChapters] = useState<Set<string>>(new Set());
   const [selectedExerciseChapters, setSelectedExerciseChapters] = useState<Set<string>>(new Set());
   const [includeReviewExercises, setIncludeReviewExercises] = useState(true);
@@ -600,29 +599,10 @@ export function App() {
         <div>
           <div className="brandMark">
             <DangoMark />
-            <span>Dango N4 - 段語 N4</span>
+            <span>Dango N4 - ダン語 N4</span>
           </div>
-          <h1>Dango N4 - 段語 N4</h1>
+          <h1>Dango N4 - ダン語 N4</h1>
         </div>
-
-        <nav className="tabList" aria-label="Modo de estudo">
-          <button
-            className={activeTab === "cards" ? "active" : ""}
-            type="button"
-            onClick={() => setActiveTab("cards")}
-          >
-            <Layers size={18} aria-hidden="true" />
-            Cards
-          </button>
-          <button
-            className={activeTab === "exercises" ? "active" : ""}
-            type="button"
-            onClick={() => setActiveTab("exercises")}
-          >
-            <BookOpen size={18} aria-hidden="true" />
-            Exercícios
-          </button>
-        </nav>
       </header>
 
       <section className="controlsBand" aria-label="Controles de revisão">
@@ -669,71 +649,31 @@ export function App() {
 
       <ChapterSelector
         chapters={unitChapters}
-        label={activeTab === "cards" ? selectedCardLabel : selectedExerciseLabel}
-        mode={activeTab}
-        selected={activeTab === "cards" ? selectedCardChapters : selectedExerciseChapters}
-        onReset={() => resetSelection(activeTab)}
-        onToggle={(chapterId) => toggleChapter(activeTab, chapterId)}
+        label={selectedCardLabel}
+        mode="cards"
+        selected={selectedCardChapters}
+        onReset={() => resetSelection("cards")}
+        onToggle={(chapterId) => toggleChapter("cards", chapterId)}
       />
 
-      {activeTab === "exercises" && (
-        <section className="reviewSwitch">
-          <label>
-            <input
-              checked={includeReviewExercises}
-              type="checkbox"
-              onChange={(event) => setIncludeReviewExercises(event.target.checked)}
-            />
-            Incluir exercícios de revisão relacionados aos capítulos selecionados
-          </label>
-        </section>
-      )}
-
-      {activeTab === "cards" ? (
-        <FlashcardPanel
-          card={currentCard}
-          complete={cardComplete}
-          count={activeCardQueue.length}
-          dataMode={dataMode}
-          dragOffset={dragOffset}
-          index={cardIndex}
-          language={language}
-          onGrade={gradeCard}
-          onPointerDown={onPointerDown}
-          onPointerMove={onPointerMove}
-          onPointerUp={onPointerUp}
-          onReveal={() => setRevealed((value) => !value)}
-          onRestart={restartCards}
-          revealed={revealed}
-          showExamples={showExamples}
-          stats={stats}
-        />
-      ) : (
-        <ExercisesPanel
-          chapterById={chapterById}
-          complete={exerciseComplete}
-          exercise={currentExercise}
-          index={exerciseIndex}
-          responses={exerciseResponses}
-          total={activeExerciseQueue.length}
-          onAnswer={(exerciseId, answerId) =>
-            setExerciseResponses((current) => ({
-              ...current,
-              [exerciseId]: { answerId, checked: current[exerciseId]?.checked ?? false, grade: current[exerciseId]?.grade },
-            }))
-          }
-          onCheck={(exerciseId) =>
-            setExerciseResponses((current) => ({
-              ...current,
-              [exerciseId]: { answerId: current[exerciseId]?.answerId ?? "", checked: true, grade: current[exerciseId]?.grade },
-            }))
-          }
-          onGrade={(_, grade) => advanceExercise(grade)}
-          onNext={() => advanceExercise()}
-          onPrevious={() => setExerciseIndex((current) => Math.max(0, current - 1))}
-          onRestart={restartExercises}
-        />
-      )}
+      <FlashcardPanel
+        card={currentCard}
+        complete={cardComplete}
+        count={activeCardQueue.length}
+        dataMode={dataMode}
+        dragOffset={dragOffset}
+        index={cardIndex}
+        language={language}
+        onGrade={gradeCard}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onReveal={() => setRevealed((value) => !value)}
+        onRestart={restartCards}
+        revealed={revealed}
+        showExamples={showExamples}
+        stats={stats}
+      />
 
       <footer className="credit">
         Criado por Daniel Prado de Campos para treinar o livro Nihongo Challenge Kotoba N4.
@@ -898,7 +838,7 @@ function FlashcardPanel({
         </button>
       </div>
 
-      {dataMode === "sample" && <p className="dataNote">Base de amostra ativa.</p>}
+      {dataMode === "sample" && null}
     </section>
   );
 }

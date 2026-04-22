@@ -1,7 +1,7 @@
 import type { StudyData } from "../types";
 
 export const sampleData: StudyData = {
-  appName: "Dango N4 - 段語 N4",
+  appName: "Dango N4 - ダン語 N4",
   source: "Nihongo Challenge Kotoba N4",
   createdBy: "Daniel Prado de Campos",
   generatedAt: "sample",
