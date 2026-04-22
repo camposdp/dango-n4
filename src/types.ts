@@ -20,13 +20,17 @@ export type Flashcard = {
 export type ExerciseSet = {
   id: string;
   chapterId: string;
+  kind?: "unit" | "review" | "appendix";
+  reviewFor?: string[];
   title: string;
   page: number;
   lines: string[];
+  answer?: string;
 };
 
 export type Chapter = {
   id: string;
+  kind?: "unit" | "review" | "appendix";
   number?: number;
   title: string;
   subtitle?: string;

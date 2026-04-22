@@ -12,6 +12,7 @@ from typing import Iterable
 JP_RE = re.compile(r"[ぁ-んァ-ン一-龯々ー]")
 KANJI_RE = re.compile(r"[一-龯々]")
 ASCII_RE = re.compile(r"[A-Za-z]")
+UNIT_ID_RE = re.compile(r"^unit-(\d{2})$")
 
 UNIT_TITLE_OVERRIDES = {
     "unit-01": "1・スーパーで買い物",
@@ -83,6 +84,92 @@ def clean_text(text: str) -> str:
     text = text.replace("（", "(").replace("）", ")")
     text = re.sub(r"\s+", " ", text)
     return text.strip(" ・·")
+
+
+PT_REPLACEMENTS = [
+    (r"\bpromocao\b", "promoção"),
+    (r"\bPromocao\b", "Promoção"),
+    (r"\bpreco\b", "preço"),
+    (r"\bPreco\b", "Preço"),
+    (r"\bja\b", "já"),
+    (r"\bJa\b", "Já"),
+    (r"\bvoce\b", "você"),
+    (r"\bVoce\b", "Você"),
+    (r"\bvoces\b", "vocês"),
+    (r"\bVocês\b", "Vocês"),
+    (r"\bnao\b", "não"),
+    (r"\bNao\b", "Não"),
+    (r"\besta\b", "está"),
+    (r"\bEsta\b", "Está"),
+    (r"\bestao\b", "estão"),
+    (r"\bEstao\b", "Estão"),
+    (r"\be\b", "é"),
+    (r"\bE\b", "É"),
+    (r"\bate\b", "até"),
+    (r"\bAte\b", "Até"),
+    (r"\bmes\b", "mês"),
+    (r"\bMes\b", "Mês"),
+    (r"\btaxi\b", "táxi"),
+    (r"\bTaxi\b", "Táxi"),
+    (r"\bonibus\b", "ônibus"),
+    (r"\bOnibus\b", "Ônibus"),
+    (r"\bproximo\b", "próximo"),
+    (r"\bProximo\b", "Próximo"),
+    (r"\bultimo\b", "último"),
+    (r"\bUltimo\b", "Último"),
+    (r"\bsaude\b", "saúde"),
+    (r"\bSaude\b", "Saúde"),
+    (r"\bdificil\b", "difícil"),
+    (r"\bDificil\b", "Difícil"),
+    (r"\bfacil\b", "fácil"),
+    (r"\bFacil\b", "Fácil"),
+    (r"\bnecessario\b", "necessário"),
+    (r"\bNecessario\b", "Necessário"),
+    (r"\bpossivel\b", "possível"),
+    (r"\bPossivel\b", "Possível"),
+    (r"\bnumero\b", "número"),
+    (r"\bNumero\b", "Número"),
+    (r"\bJapones\b", "Japonês"),
+    (r"\bjapones\b", "japonês"),
+    (r"\bcerimonia\b", "cerimônia"),
+    (r"\bCerimonia\b", "Cerimônia"),
+    (r"\bconveniencia\b", "conveniência"),
+    (r"\bConveniência\b", "Conveniência"),
+    (r"\btransito\b", "trânsito"),
+    (r"\bTransito\b", "Trânsito"),
+    (r"\bpredio\b", "prédio"),
+    (r"\bPredio\b", "Prédio"),
+    (r"\bquimica\b", "química"),
+    (r"\bQuimica\b", "Química"),
+    (r"\bpolitica\b", "política"),
+    (r"\bPolitica\b", "Política"),
+]
+
+
+def fix_pt(text: str | None) -> str | None:
+    if not text:
+        return text
+    text = clean_text(text)
+    text = re.sub(r"\s+([.,!?;:])", r"\1", text)
+    english_marker = r"\b(?:I|You|We|They|This|That|There|Please|Can|The|A lot|If|At|She|He|My|Your|Let's|To)\b"
+    portuguese_starter = re.search(
+        r"\b(?:Vou|Você|Tem|Meu|Minha|Não|Nao|Dá|Da para|Este|Esta|Realmente|Se é|Palavra|Uma|Sumir|envergonhar)\b",
+        text,
+    )
+    if re.match(english_marker, text) and portuguese_starter:
+        text = text[portuguese_starter.start() :]
+    text = re.sub(rf"\s*{english_marker}[^.?!]*(?:[.?!]|$)", " ", text)
+    text = re.sub(r"\bVazio\s+(Este|Esta)\b", r"\1", text)
+    for pattern, replacement in PT_REPLACEMENTS:
+        text = re.sub(pattern, replacement, text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def fix_latin(text: str | None) -> str | None:
+    if not text:
+        return text
+    text = clean_text(text)
+    return re.sub(r"\s+([.,!?;:])", r"\1", text).strip()
 
 
 def load_pages(raw_dir: pathlib.Path) -> list[dict]:
@@ -440,12 +527,21 @@ def extract_exercise(page: int, chapter: str, title: str, lines: list[Line], is_
     }
 
 
-def ensure_chapter(chapters: list[dict], by_id: dict[str, dict], title: str, page: int, number: int | None, subtitle: str | None) -> dict:
+def ensure_chapter(
+    chapters: list[dict],
+    by_id: dict[str, dict],
+    title: str,
+    page: int,
+    number: int | None,
+    subtitle: str | None,
+    kind: str,
+) -> dict:
     cid = chapter_id(title, number, page)
     if cid in by_id:
         return by_id[cid]
     chapter = {
         "id": cid,
+        "kind": kind,
         "number": number,
         "title": title,
         "subtitle": subtitle,
@@ -456,6 +552,14 @@ def ensure_chapter(chapters: list[dict], by_id: dict[str, dict], title: str, pag
     chapters.append(chapter)
     by_id[cid] = chapter
     return chapter
+
+
+def review_for_units(title: str) -> list[str]:
+    match = re.search(r"(\d{1,2})\s*[〜~\-－]\s*(\d{1,2})", title)
+    if not match:
+        return []
+    start, end = int(match.group(1)), int(match.group(2))
+    return [f"unit-{number:02}" for number in range(start, end + 1)]
 
 
 def main() -> None:
@@ -530,24 +634,25 @@ def main() -> None:
                 page,
                 meta["number"],
                 meta.get("subtitle"),
+                "unit",
             )
         elif review_title:
             if current and ("ふく" in current["title"] or "問題" in current["title"]) and review_title == "ふくしゅう問題":
                 pass
             else:
-                current = ensure_chapter(chapters, by_id, review_title, page, None, None)
+                current = ensure_chapter(chapters, by_id, review_title, page, None, None, "review")
         elif page >= 104:
             title = detect_appendix_title(lines, footer, page)
-            current = ensure_chapter(chapters, by_id, title, page, None, None)
+            current = ensure_chapter(chapters, by_id, title, page, None, None, "appendix")
         elif current is None:
             fallback = footer or f"Página {page}"
-            current = ensure_chapter(chapters, by_id, fallback, page, None, None)
+            current = ensure_chapter(chapters, by_id, fallback, page, None, None, "review")
 
         assert current is not None
         if page not in current["pages"]:
             current["pages"].append(page)
 
-        is_review = current["id"].startswith("section-") and "ふくし" in current["title"]
+        is_review = current["kind"] == "review"
         if "ふくし" in current["title"] or "問題" in current["title"]:
             is_review = True
 
@@ -556,6 +661,8 @@ def main() -> None:
 
         exercise = extract_exercise(page, current["id"], current["title"], lines, is_review)
         if exercise:
+            exercise["kind"] = "review" if is_review else current["kind"]
+            exercise["reviewFor"] = review_for_units(current["title"]) if is_review else []
             current["exercises"].append(exercise)
 
     for chapter in chapters:
@@ -572,7 +679,17 @@ def main() -> None:
                 card.pop("reading", None)
             if not card.get("example"):
                 card.pop("example", None)
+            else:
+                example = card["example"]
+                if example.get("en"):
+                    example["en"] = fix_latin(example["en"])
+                if example.get("pt"):
+                    example["pt"] = fix_pt(example["pt"])
             card["meanings"] = {key: value for key, value in card["meanings"].items() if value}
+            if card["meanings"].get("en"):
+                card["meanings"]["en"] = fix_latin(card["meanings"]["en"])
+            if card["meanings"].get("pt"):
+                card["meanings"]["pt"] = fix_pt(card["meanings"]["pt"])
 
     payload = {
         "appName": "Dango N4 - 段語 N4",

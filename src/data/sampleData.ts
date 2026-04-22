@@ -8,6 +8,7 @@ export const sampleData: StudyData = {
   chapters: [
     {
       id: "unit-01",
+      kind: "unit",
       number: 1,
       title: "1・スーパーで買い物",
       subtitle: "Compras no Supermercado",
@@ -59,6 +60,7 @@ export const sampleData: StudyData = {
         {
           id: "sample-ex-01",
           chapterId: "unit-01",
+          kind: "unit",
           title: "1・スーパーで買い物",
           page: 17,
           lines: [

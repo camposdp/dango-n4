@@ -32,3 +32,11 @@ O projeto está pronto para Vercel com:
 - Framework: Vite
 
 Se você tiver autorização para publicar o conteúdo integral do livro, remova a regra de ignore de `public/study-data.json` ou configure esse arquivo como dado privado no seu fluxo de deploy.
+
+## Progresso
+
+O progresso é salvo automaticamente no `localStorage` do navegador. No app, os botões de exportar/importar geram e leem um arquivo `.dango`, útil para mover o estado entre celular e computador.
+
+## Organização dos capítulos
+
+O filtro principal mostra somente as 32 unidades do livro. Exercícios de revisão ficam na aba de exercícios e são incluídos automaticamente quando os capítulos correspondentes estão selecionados.
