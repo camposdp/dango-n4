@@ -1,5 +1,6 @@
 export type Example = {
   ja?: string;
+  kana?: string;
   en?: string;
   pt?: string;
 };

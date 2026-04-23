@@ -45,6 +45,8 @@ type UiCopy = {
   current: string;
   rememberedStat: string;
   reviewStat: string;
+  reviewedChapter: string;
+  pendingChapter: string;
   page: string;
   missedButton: string;
   rememberedButton: string;
@@ -77,6 +79,8 @@ const UI_COPY: Record<Language, UiCopy> = {
     current: "atual",
     rememberedStat: "lembrei",
     reviewStat: "revisar",
+    reviewedChapter: "revisado",
+    pendingChapter: "pendente",
     page: "Página",
     missedButton: "Não lembrei",
     rememberedButton: "Lembrei",
@@ -107,6 +111,8 @@ const UI_COPY: Record<Language, UiCopy> = {
     current: "current",
     rememberedStat: "remembered",
     reviewStat: "review",
+    reviewedChapter: "reviewed",
+    pendingChapter: "pending",
     page: "Page",
     missedButton: "Forgot",
     rememberedButton: "Remembered",
@@ -139,6 +145,7 @@ type SavedState = {
   exerciseQueueIds?: string[];
   exerciseReviewIds?: string[];
   exerciseComplete?: boolean;
+  rememberedKanjiCardIds?: string[];
   stats: { remembered: number; missed: number };
   exerciseResponses: Record<string, { answerId: string; checked: boolean; grade?: Grade }>;
 };
@@ -166,6 +173,10 @@ function hasSelection(selection: Set<string>, id: string) {
   return selection.size === 0 || selection.has(id);
 }
 
+function hasKanji(value: string) {
+  return /[\u4e00-\u9faf々]/.test(value);
+}
+
 function compactCount(value: number, singular: string, plural: string) {
   return `${value} ${value === 1 ? singular : plural}`;
 }
@@ -176,7 +187,7 @@ function termView(card: Flashcard) {
   }
 
   const parenthetical = card.term.match(/^(.+?)([（(].*[）)])$/);
-  if (parenthetical) {
+  if (parenthetical && !hasKanji(parenthetical[2])) {
     const reading = card.reading.replace(/[（(].*?[）)]/g, "");
     return (
       <>
@@ -296,6 +307,7 @@ function toSavedState(args: {
   exerciseQueueIds: string[];
   exerciseReviewIds: string[];
   exerciseComplete: boolean;
+  rememberedKanjiCardIds: Set<string>;
   stats: { remembered: number; missed: number };
   exerciseResponses: Record<string, { answerId: string; checked: boolean; grade?: Grade }>;
 }): SavedState {
@@ -303,6 +315,7 @@ function toSavedState(args: {
     ...args,
     selectedCardChapters: [...args.selectedCardChapters],
     selectedExerciseChapters: [...args.selectedExerciseChapters],
+    rememberedKanjiCardIds: [...args.rememberedKanjiCardIds],
   };
 }
 
@@ -321,6 +334,7 @@ export function App() {
   const [exerciseQueueIds, setExerciseQueueIds] = useState<string[]>([]);
   const [exerciseReviewIds, setExerciseReviewIds] = useState<string[]>([]);
   const [exerciseComplete, setExerciseComplete] = useState(false);
+  const [rememberedKanjiCardIds, setRememberedKanjiCardIds] = useState<Set<string>>(new Set());
   const [revealed, setRevealed] = useState(false);
   const [dragOffset, setDragOffset] = useState(0);
   const [stats, setStats] = useState({ remembered: 0, missed: 0 });
@@ -369,6 +383,7 @@ export function App() {
       setExerciseQueueIds(state.exerciseQueueIds ?? []);
       setExerciseReviewIds(state.exerciseReviewIds ?? []);
       setExerciseComplete(state.exerciseComplete ?? false);
+      setRememberedKanjiCardIds(new Set(state.rememberedKanjiCardIds ?? []));
       setStats(state.stats ?? { remembered: 0, missed: 0 });
       setExerciseResponses(state.exerciseResponses ?? {});
     } catch {
@@ -381,6 +396,25 @@ export function App() {
     () => data.chapters.filter((chapter) => chapter.kind === "unit" && chapter.number && chapter.number <= 32),
     [data.chapters],
   );
+
+  const chapterKanjiCardIds = useMemo(() => {
+    return new Map(
+      unitChapters.map((chapter) => [
+        chapter.id,
+        chapter.cards.filter((card) => hasKanji(card.term)).map((card) => card.id),
+      ]),
+    );
+  }, [unitChapters]);
+
+  const completedCardChapters = useMemo(() => {
+    const completed = new Set<string>();
+    for (const [chapterId, kanjiCardIds] of chapterKanjiCardIds) {
+      if (kanjiCardIds.length > 0 && kanjiCardIds.every((id) => rememberedKanjiCardIds.has(id))) {
+        completed.add(chapterId);
+      }
+    }
+    return completed;
+  }, [chapterKanjiCardIds, rememberedKanjiCardIds]);
 
   const chapterById = useMemo(() => new Map(data.chapters.map((chapter) => [chapter.id, chapter])), [data.chapters]);
 
@@ -449,6 +483,7 @@ export function App() {
       exerciseQueueIds,
       exerciseReviewIds,
       exerciseComplete,
+      rememberedKanjiCardIds,
       stats,
       exerciseResponses,
     });
@@ -465,6 +500,7 @@ export function App() {
     exerciseResponses,
     includeReviewExercises,
     language,
+    rememberedKanjiCardIds,
     saveLoaded,
     selectedCardChapters,
     selectedExerciseChapters,
@@ -566,6 +602,17 @@ export function App() {
       remembered: current.remembered + (grade === "remembered" ? 1 : 0),
       missed: current.missed + (grade === "missed" ? 1 : 0),
     }));
+    if (hasKanji(currentCard.term)) {
+      setRememberedKanjiCardIds((current) => {
+        const next = new Set(current);
+        if (grade === "remembered") {
+          next.add(currentCard.id);
+        } else {
+          next.delete(currentCard.id);
+        }
+        return next;
+      });
+    }
     if (cardIndex + 1 < activeCardQueue.length) {
       setCardReviewIds(nextReviewIds);
       setCardIndex((current) => current + 1);
@@ -634,6 +681,7 @@ export function App() {
     setExerciseComplete(false);
     setRevealed(false);
     setStats({ remembered: 0, missed: 0 });
+    setRememberedKanjiCardIds(new Set());
     setDragOffset(0);
     setExerciseResponses({});
     setSaveMessage(copy.sessionReset);
@@ -654,6 +702,7 @@ export function App() {
       exerciseQueueIds,
       exerciseReviewIds,
       exerciseComplete,
+      rememberedKanjiCardIds,
       stats,
       exerciseResponses,
     });
@@ -687,6 +736,7 @@ export function App() {
       setExerciseQueueIds(state.exerciseQueueIds ?? []);
       setExerciseReviewIds(state.exerciseReviewIds ?? []);
       setExerciseComplete(state.exerciseComplete ?? false);
+      setRememberedKanjiCardIds(new Set(state.rememberedKanjiCardIds ?? []));
       setStats(state.stats ?? { remembered: 0, missed: 0 });
       setExerciseResponses(state.exerciseResponses ?? {});
       setSaveMessage(UI_COPY[importedLanguage].progressImported);
@@ -778,6 +828,7 @@ export function App() {
         label={selectedCardLabel}
         mode="cards"
         selected={selectedCardChapters}
+        completed={completedCardChapters}
         onReset={() => resetSelection("cards")}
         onToggle={(chapterId) => toggleChapter("cards", chapterId)}
       />
@@ -825,11 +876,12 @@ type ChapterSelectorProps = {
   label: string;
   mode: Tab;
   selected: Set<string>;
+  completed?: Set<string>;
   onReset: () => void;
   onToggle: (chapterId: string) => void;
 };
 
-function ChapterSelector({ chapters, copy, label, mode, selected, onReset, onToggle }: ChapterSelectorProps) {
+function ChapterSelector({ chapters, completed = new Set(), copy, label, mode, selected, onReset, onToggle }: ChapterSelectorProps) {
   return (
     <section className="chapterSelector" aria-label={copy.chaptersFilter}>
       <div className="selectorHeader">
@@ -837,22 +889,39 @@ function ChapterSelector({ chapters, copy, label, mode, selected, onReset, onTog
           <span className="controlLabel">{mode === "cards" ? copy.cards : copy.exercises}</span>
           <strong>{label}</strong>
         </div>
+        {mode === "cards" && (
+          <div className="selectorLegend" aria-hidden="true">
+            <span className="legendItem reviewed">
+              <span />
+              {copy.reviewedChapter}
+            </span>
+            <span className="legendItem pending">
+              <span />
+              {copy.pendingChapter}
+            </span>
+          </div>
+        )}
         <button className={selected.size === 0 ? "active" : ""} type="button" onClick={onReset}>
           {copy.all}
         </button>
       </div>
       <div className="chapterChips">
-        {chapters.map((chapter) => (
-          <button
-            className={selected.has(chapter.id) ? "active" : ""}
-            key={chapter.id}
-            type="button"
-            onClick={() => onToggle(chapter.id)}
-            title={chapter.title}
-          >
-            {chapter.number}
-          </button>
-        ))}
+        {chapters.map((chapter) => {
+          const isCompleted = completed.has(chapter.id);
+          const stateLabel = isCompleted ? copy.reviewedChapter : copy.pendingChapter;
+          return (
+            <button
+              className={`${selected.has(chapter.id) ? "active" : ""} ${isCompleted ? "reviewed" : "pending"}`}
+              key={chapter.id}
+              type="button"
+              onClick={() => onToggle(chapter.id)}
+              title={`${chapter.title} - ${stateLabel}`}
+              aria-label={`${chapter.title} - ${stateLabel}`}
+            >
+              <span>{chapter.number}</span>
+            </button>
+          );
+        })}
       </div>
     </section>
   );
@@ -942,7 +1011,12 @@ function FlashcardPanel({
         {!revealed ? (
           <div className="cardFace">
             <div className={`jpTerm ${termDensityClass(card.term)}`}>{termView(card)}</div>
-            {showExamples && card.example?.ja && <p className="exampleJa">{exampleJaView(card)}</p>}
+            {showExamples && card.example?.ja && (
+              <div className="exampleBlock">
+                <p className="exampleJa">{exampleJaView(card)}</p>
+                {card.example.kana && <p className="exampleKana">{card.example.kana}</p>}
+              </div>
+            )}
           </div>
         ) : (
           <div className="cardFace back">

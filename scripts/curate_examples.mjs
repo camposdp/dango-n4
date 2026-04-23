@@ -245,6 +245,209 @@ const cardFixes = {
   "unit-32-p93-05": { term: "しっかり", meanings: { en: "steadily; firmly; reliably", pt: "com firmeza; firmemente; de modo confiável" } },
 };
 
+const contentFixes = {
+  "unit-03-p20-05": { meanings: { en: "to stop; to park", pt: "parar; estacionar" } },
+  "unit-05-p26-04": { meanings: { en: "to build", pt: "construir" } },
+  "unit-05-p27-04": { meanings: { en: "to throw away", pt: "jogar fora" } },
+  "unit-06-p28-05": { meanings: { en: "middle; center", pt: "meio; centro" } },
+  "unit-06-p29-03": { term: "港", reading: "みなと", meanings: { en: "port; harbor", pt: "porto" } },
+  "unit-08-p33-07": { reading: "みえる", meanings: { en: "to be visible; to be seen; to seem", pt: "parecer; ser visto" } },
+  "unit-14-p48-11": { meanings: { en: "to be useful; to be of use", pt: "servir; ser útil" } },
+  "unit-21-p66-08": { meanings: { en: "unreasonable; impossible; excessive", pt: "impossível; excessivo" } },
+  "unit-24-p72-02": { reading: "このあいだ", meanings: { en: "the other day; recently", pt: "outro dia; recentemente" } },
+  "unit-24-p72-07": { meanings: { en: "to make a mistake; to get wrong", pt: "errar; enganar-se" } },
+  "unit-25-p76-03": { meanings: { en: "surroundings; around", pt: "arredores; em volta" } },
+  "unit-25-p76-09": { meanings: { en: "pleasant; feels good", pt: "agradável; gostoso" } },
+  "unit-26-p79-loose-03": { meanings: { en: "northeast", pt: "nordeste" } },
+  "unit-26-p79-loose-04": { meanings: { en: "southeast", pt: "sudeste" } },
+  "unit-31-p90-03": { meanings: { en: "to rise; to go up", pt: "subir; aumentar" } },
+  "unit-32-p92-06": { reading: "みえる", meanings: { en: "to be visible; to be seen", pt: "parecer; ser visto" } },
+};
+
+const readingFixes = {
+  "unit-01-p17-02": "たりる",
+  "unit-02-p18-06": "きめる",
+  "unit-03-p20-05": "とめる",
+  "unit-03-p21-01": "おこる",
+  "unit-03-p21-04": "へんな",
+  "unit-04-p22-06": "しゅっせき",
+  "unit-05-p26-02": "ひっこす",
+  "unit-05-p26-04": "たてる",
+  "unit-05-p27-04": "すてる",
+  "unit-06-p28-04": "かわる",
+  "unit-06-p28-05": "まんなか",
+  "unit-06-p28-08": "とおる",
+  "unit-06-p29-01": "ゆにゅう",
+  "unit-07-p30-03": "くらす",
+  "unit-07-p30-08": "のりかえる",
+  "unit-07-p30-10": "こむ",
+  "unit-07-p30-11": "まにあう",
+  "unit-08-p33-02": "まっすぐいく",
+  "unit-08-p33-07": "みえる",
+  "unit-08-p33-08": "そばに",
+  "unit-10-p38-06": "かえり",
+  "unit-11-p40-04": "あく",
+  "unit-13-p47-01": "かざる",
+  "unit-13-p47-02": "しょうひん",
+  "unit-14-p48-10": "かんがえる",
+  "unit-14-p48-11": "やくにたつ",
+  "unit-14-p49-loose-01": "かいしゃないのかんけい",
+  "unit-14-p49-loose-02": "しゃちょう",
+  "unit-14-p49-loose-09": "どうりょう",
+  "unit-15-p50-05": "べつべつ",
+  "unit-15-p50-07": "こい",
+  "unit-16-p52-02": "しゅっちょう",
+  "unit-16-p52-09": "かつ",
+  "unit-16-p53-01": "にゅういん",
+  "unit-16-p53-02": "なおる",
+  "unit-16-p53-04": "きをつける",
+  "unit-17-p56-03": "うける",
+  "unit-17-p56-08": "きけんな",
+  "unit-18-p59-loose-01": "だいがくいん",
+  "unit-18-p59-loose-02": "こうこう",
+  "unit-18-p59-loose-03": "たんきだいがく",
+  "unit-18-p59-loose-04": "ぎむきょういく",
+  "unit-18-p59-loose-05": "せんもんがっこう",
+  "unit-18-p59-loose-06": "こうこうせい",
+  "unit-18-p59-loose-07": "だいがくせい",
+  "unit-18-p59-loose-08": "ちゅうがくせい",
+  "unit-18-p59-loose-09": "だいがくいんせい",
+  "unit-21-p66-01": "かぜをひく",
+  "unit-21-p66-07": "むり",
+  "unit-21-p66-08": "むりな",
+  "unit-21-p67-03": "おれる",
+  "unit-22-p68-02": "けいたいでんわ",
+  "unit-22-p68-06": "よる",
+  "unit-22-p68-07": "おとす",
+  "unit-22-p68-10": "みつかる",
+  "unit-22-p69-03": "にげる",
+  "unit-23-p71-01": "ひつような",
+  "unit-23-p71-05": "むかう",
+  "unit-24-p72-02": "このあいだ",
+  "unit-24-p72-06": "ふむ",
+  "unit-24-p72-09": "きづく",
+  "unit-25-p76-03": "まわり",
+  "unit-25-p76-08": "きこえる",
+  "unit-25-p76-09": "きもちいい",
+  "unit-26-p78-03": "ちかづく",
+  "unit-26-p78-07": "ふえる",
+  "unit-26-p79-loose-01": "ほうがくのいいかた",
+  "unit-26-p79-loose-02": "ほくせい",
+  "unit-26-p79-loose-03": "ほくとう",
+  "unit-26-p79-loose-04": "なんとう",
+  "unit-27-p80-01": "じこ",
+  "unit-27-p80-05": "ひく",
+  "unit-27-p80-06": "きゅうきゅうしゃ",
+  "unit-27-p81-02": "なくなる",
+  "unit-28-p82-04": "おゆ",
+  "unit-28-p83-03": "われる",
+  "unit-28-p83-04": "ゆれる",
+  "unit-29-p86-01": "おわり",
+  "unit-29-p86-02": "おりる",
+  "unit-29-p86-05": "うつ",
+  "unit-30-p88-06": "けっして",
+  "unit-30-p89-05": "よてい",
+  "unit-30-p89-06": "はずかしい",
+  "unit-31-p90-03": "あがる",
+  "unit-31-p90-05": "つる",
+  "unit-31-p90-08": "やく",
+  "unit-31-p90-09": "つれていく",
+  "unit-32-p92-06": "みえる",
+};
+
+const exampleKana = {
+  "unit-01-p16-03": "しごとはもうほとんどおわりました。",
+  "unit-01-p16-07": "あなたにあえてうれしい。",
+  "unit-01-p16-08": "とくにもんだいはない。",
+  "unit-01-p16-09": "ごはんをれいとうしておく。",
+  "unit-01-p17-01": "りょうりがたくさんのこった。",
+  "unit-02-p18-05": "このりょうりはぜんぜんおいしくない。",
+  "unit-03-p20-08": "ようじがすむ。",
+  "unit-03-p21-01": "かれのいったことがぜんぶうそだとしって、おこった。",
+  "unit-04-p22-01": "いぬのせわをする。",
+  "unit-04-p22-07": "かれのかわりに、しきにしゅっせきする。",
+  "unit-04-p23-02": "ちょっと、せんせいにそうだんがあるんですが。",
+  "unit-05-p26-02": "となりのまちにひっこす。",
+  "unit-05-p26-05": "となりのせきにうつる。",
+  "unit-05-p26-08": "〜をかたづける。",
+  "unit-05-p26-09": "きょうはすごくつかれた。",
+  "unit-05-p26-10": "さんかげつでにほんごをおぼえたの？すごいね！",
+  "unit-06-p28-06": "きょうのニュースにびっくりした。",
+  "unit-06-p28-08": "ろうかをとおってへやにいく。",
+  "unit-07-p30-06": "くるまをうんてんする。",
+  "unit-07-p30-08": "ちかてつにのりかえる。",
+  "unit-07-p30-10": "このレストランはいつもこんでいる。",
+  "unit-08-p32-03": "しばらくおやすみします。",
+  "unit-08-p32-04": "コンビニのATMをりようする。",
+  "unit-09-p36-02": "あまいものばかりたべていると、ふとりますよ。",
+  "unit-09-p36-03": "おやにしんぱいをかける。",
+  "unit-09-p36-06": "にほんのぶんかにきょうみがある。",
+  "unit-09-p37-03": "パーティーをひらく。",
+  "unit-09-p37-04": "かのじょのうたはほんとうにすばらしい。",
+  "unit-10-p38-01": "たなかさんからパーティーにしょうたいされて、おっとといっしょにでかけた。",
+  "unit-11-p40-03": "りょかんにとまる。",
+  "unit-12-p42-07": "ぜひ、あそびにきてください。",
+  "unit-12-p42-08": "あなたがこられないなんて、ひじょうにざんねんです。",
+  "unit-13-p46-02": "レストランでアルバイトをする。",
+  "unit-13-p46-04": "めんせつしけんをうける。",
+  "unit-13-p46-09": "じむしょのなかをあんないする。",
+  "unit-13-p47-01": "へやにはなをかざる。",
+  "unit-14-p48-04": "ごねんほどまえから、にほんにすんでいます。",
+  "unit-14-p48-10": "こどものなまえをかんがえる。",
+  "unit-15-p50-05": "べつのをみせてください。",
+  "unit-16-p52-01": "かいがいりょこう",
+  "unit-16-p52-03": "わたしにちょくせつでんわをください。",
+  "unit-16-p52-04": "ただいまもどりました。",
+  "unit-16-p52-07": "かぜできがたおれる。",
+  "unit-16-p52-08": "ともだちときょうそうする。",
+  "unit-16-p52-09": "しあいにかつ。",
+  "unit-17-p56-03": "めんせつしけんをうける。",
+  "unit-17-p56-05": "にほんのほうりつについてしらべる。",
+  "unit-17-p56-07": "どようびのごつごうはいかがですか。",
+  "unit-17-p56-09": "つかいかたをせつめいしてもらえますか。",
+  "unit-18-p58-05": "ことし、むすこがしょうがっこうににゅうがくする。",
+  "unit-18-p58-06": "すうがくのよしゅうをする。",
+  "unit-18-p58-10": "じかんはあまりないけれど、できるだけがんばろう。",
+  "unit-18-p58-11": "だいがくをそつぎょうしたら、こうむいんになるつもりです。",
+  "unit-20-p62-02": "けんかでともだちをなかせた。",
+  "unit-20-p62-04": "かれはとてもまじめなひとです。",
+  "unit-20-p62-06": "とくいなスポーツはありますか。",
+  "unit-21-p66-05": "そこにあるほんは、そのままにしておいてください。",
+  "unit-22-p68-04": "かのじょはじぶんのかんがえをはっきりいう。",
+  "unit-22-p68-06": "しごとのかえりにコンビニによった。",
+  "unit-22-p68-09": "えきまえでタクシーをひろう。",
+  "unit-24-p72-02": "このあいだいったレストラン、おいしかったですね。",
+  "unit-24-p72-05": "いそいでじゅんびしてください。",
+  "unit-24-p72-09": "いま、さいふがないことにはじめてきづいた。",
+  "unit-24-p72-10": "おきゃくさんにいっしょうけんめいあやまった。",
+  "unit-25-p76-02": "ダイエットをして、5キロやせた。",
+  "unit-25-p76-06": "じてんしゃのタイヤにくうきをいれる。",
+  "unit-26-p78-01": "てんきよほうによると、あしたははれるらしいよ。",
+  "unit-26-p78-08": "みちをわたるときは、くるまにちゅういしよう。",
+  "unit-27-p80-02": "いそいでかどをまがったら、ひとにぶつかった。",
+  "unit-27-p80-06": "119ばんできゅうきゅうしゃをよぶ。",
+  "unit-27-p80-07": "おおけがにならなくて、よかった。",
+  "unit-27-p81-02": "わたしのちちは10ねんまえになくなった。",
+  "unit-28-p82-05": "おふろをわかす。",
+  "unit-28-p82-07": "るすばんでんわにメッセージをいれる。",
+  "unit-29-p86-01": "これで、じゅぎょうをおわりにします。",
+  "unit-29-p86-03": "ゆきがふって、みちがすべりやすくなっている。",
+  "unit-29-p86-05": "ボールをうつ。",
+  "unit-29-p86-07": "りょうりはすっかりなくなった。",
+  "unit-29-p86-10": "もうすぐしごとがおわる。",
+  "unit-30-p88-02": "まずさいしょに、じこしょうかいをします。",
+  "unit-30-p88-03": "ここであそんではだめですよ。",
+  "unit-30-p88-06": "あなただけには、けっしてまけない。",
+  "unit-30-p88-07": "どうぞ、しごとをつづけてください。",
+  "unit-30-p88-08": "しゅっぱつまで、じゅうぶんじかんがある。",
+  "unit-31-p90-03": "がっこうのせいせきがあがる。",
+  "unit-31-p90-05": "さかなをつる。",
+  "unit-31-p90-10": "むかしのことをおもいだす。",
+  "unit-32-p92-04": "どうぶつをいじめてはいけません。",
+  "unit-32-p92-06": "ここから、ふじさんがよくみえる。",
+  "unit-32-p92-09": "きぶんはどうですか。",
+};
+
 const fixes = {
   "unit-01-p16-03": {
     ja: "仕事はもうほとんど終わりました。",
@@ -769,6 +972,33 @@ for (const [id, patch] of Object.entries(cardFixes)) {
   Object.assign(card, patch);
 }
 
+for (const [id, patch] of Object.entries(contentFixes)) {
+  const card = cards.get(id);
+  if (!card) {
+    throw new Error(`Card not found: ${id}`);
+  }
+  Object.assign(card, patch);
+}
+
+for (const [id, reading] of Object.entries(readingFixes)) {
+  const card = cards.get(id);
+  if (!card) {
+    throw new Error(`Card not found: ${id}`);
+  }
+  card.reading = reading;
+}
+
+for (const [id, kana] of Object.entries(exampleKana)) {
+  const card = cards.get(id);
+  if (!card) {
+    throw new Error(`Card not found: ${id}`);
+  }
+  if (!card.example) {
+    throw new Error(`Example not found for kana line: ${id}`);
+  }
+  card.example.kana = kana;
+}
+
 for (const chapter of data.chapters) {
   if (chapter.kind !== "unit") {
     continue;
@@ -777,7 +1007,7 @@ for (const chapter of data.chapters) {
     if (!card.example) {
       continue;
     }
-    for (const key of ["ja", "en", "pt"]) {
+    for (const key of ["ja", "kana", "en", "pt"]) {
       if (!card.example[key] || !String(card.example[key]).trim()) {
         throw new Error(`Incomplete example translation on ${card.id}: missing ${key}`);
       }
@@ -787,4 +1017,4 @@ for (const chapter of data.chapters) {
 }
 
 fs.writeFileSync(dataPath, `${JSON.stringify(data, null, 2)}\n`, "utf8");
-console.log(`Curated ${Object.keys(fixes).length} example entries.`);
+console.log(`Curated ${Object.keys(fixes).length} example entries and ${Object.keys(exampleKana).length} kana lines.`);

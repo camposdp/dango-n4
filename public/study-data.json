@@ -49,7 +49,8 @@
           "example": {
             "ja": "仕事はもうほとんど終わりました。",
             "en": "I have already finished most of my work.",
-            "pt": "Já terminei quase todo o trabalho."
+            "pt": "Já terminei quase todo o trabalho.",
+            "kana": "しごとはもうほとんどおわりました。"
           }
         },
         {
@@ -100,7 +101,8 @@
           "example": {
             "ja": "あなたに会えてうれしい。",
             "en": "I'm glad I was able to meet you.",
-            "pt": "Fico feliz por poder encontrá-lo."
+            "pt": "Fico feliz por poder encontrá-lo.",
+            "kana": "あなたにあえてうれしい。"
           }
         },
         {
@@ -116,7 +118,8 @@
           "example": {
             "ja": "特に問題はない。",
             "en": "There are no particular problems.",
-            "pt": "Nenhum problema em especial"
+            "pt": "Nenhum problema em especial",
+            "kana": "とくにもんだいはない。"
           }
         },
         {
@@ -132,7 +135,8 @@
           "example": {
             "ja": "ごはんを冷凍しておく。",
             "en": "to freeze rice",
-            "pt": "deixar o arroz congelado"
+            "pt": "deixar o arroz congelado",
+            "kana": "ごはんをれいとうしておく。"
           }
         },
         {
@@ -171,7 +175,8 @@
           "example": {
             "ja": "料理がたくさん残った。",
             "en": "A lot of food was left over.",
-            "pt": "Sobrou bastante comida."
+            "pt": "Sobrou bastante comida.",
+            "kana": "りょうりがたくさんのこった。"
           }
         },
         {
@@ -182,7 +187,8 @@
           "meanings": {
             "en": "to be enough",
             "pt": "ser suficiente"
-          }
+          },
+          "reading": "たりる"
         },
         {
           "id": "unit-01-p17-03",
@@ -388,7 +394,8 @@
           "example": {
             "ja": "この料理はぜんぜんおいしくない。",
             "en": "This food doesn't taste good at all.",
-            "pt": "Esta comida não é nem um pouco gostosa."
+            "pt": "Esta comida não é nem um pouco gostosa.",
+            "kana": "このりょうりはぜんぜんおいしくない。"
           }
         },
         {
@@ -400,7 +407,8 @@
             "en": "to decide",
             "pt": "decidir"
           },
-          "example": null
+          "example": null,
+          "reading": "きめる"
         },
         {
           "id": "unit-02-p18-07",
@@ -639,9 +647,10 @@
           "page": 20,
           "term": "止める",
           "meanings": {
-            "en": "to park, to stop",
-            "pt": "parar (t)"
-          }
+            "en": "to stop; to park",
+            "pt": "parar; estacionar"
+          },
+          "reading": "とめる"
         },
         {
           "id": "unit-03-p20-06",
@@ -677,7 +686,8 @@
           "example": {
             "ja": "用事がすむ。",
             "en": "My errand is finished.",
-            "pt": "Terminei o que tinha para fazer."
+            "pt": "Terminei o que tinha para fazer.",
+            "kana": "ようじがすむ。"
           }
         },
         {
@@ -692,8 +702,10 @@
           "example": {
             "ja": "彼の言ったことが全部うそだと知って、怒った。",
             "en": "I was upset when I learned that what he said was all lies.",
-            "pt": "Fiquei bravo porque soube que tudo o que ele disse era mentira."
-          }
+            "pt": "Fiquei bravo porque soube que tudo o que ele disse era mentira.",
+            "kana": "かれのいったことがぜんぶうそだとしって、おこった。"
+          },
+          "reading": "おこる"
         },
         {
           "id": "unit-03-p21-02",
@@ -722,7 +734,7 @@
           "chapterId": "unit-03",
           "page": 21,
           "term": "変な",
-          "reading": "へん",
+          "reading": "へんな",
           "meanings": {
             "en": "strange; eccentric",
             "pt": "estranho"
@@ -807,7 +819,8 @@
           "example": {
             "ja": "犬の世話をする。",
             "en": "to look after the dog",
-            "pt": "cuidar do cachorro"
+            "pt": "cuidar do cachorro",
+            "kana": "いぬのせわをする。"
           }
         },
         {
@@ -864,7 +877,8 @@
             "en": "attendance; to attend",
             "pt": "participação; participar"
           },
-          "example": null
+          "example": null,
+          "reading": "しゅっせき"
         },
         {
           "id": "unit-04-p22-07",
@@ -878,7 +892,8 @@
           "example": {
             "ja": "彼のかわりに、式に出席する。",
             "en": "I will attend the ceremony in his place.",
-            "pt": "Irei participar da cerimônia no lugar dele."
+            "pt": "Irei participar da cerimônia no lugar dele.",
+            "kana": "かれのかわりに、しきにしゅっせきする。"
           }
         },
         {
@@ -906,7 +921,8 @@
           "example": {
             "ja": "ちょっと、先生に相談があるんですが。",
             "en": "Excuse me, there is something I'd like to talk to you about.",
-            "pt": "Por favor, quero me consultar com o professor."
+            "pt": "Por favor, quero me consultar com o professor.",
+            "kana": "ちょっと、せんせいにそうだんがあるんですが。"
           }
         }
       ],
@@ -1472,8 +1488,10 @@
           "example": {
             "ja": "となりの町に引っ越す。",
             "en": "to move to a neighboring town",
-            "pt": "mudar para a cidade vizinha"
-          }
+            "pt": "mudar para a cidade vizinha",
+            "kana": "となりのまちにひっこす。"
+          },
+          "reading": "ひっこす"
         },
         {
           "id": "unit-05-p26-03",
@@ -1492,8 +1510,9 @@
           "term": "建てる",
           "meanings": {
             "en": "to build",
-            "pt": "Construir"
-          }
+            "pt": "construir"
+          },
+          "reading": "たてる"
         },
         {
           "id": "unit-05-p26-05",
@@ -1508,7 +1527,8 @@
           "example": {
             "ja": "となりの席に移る。",
             "en": "to move to the next seat",
-            "pt": "mudar para o assento ao lado"
+            "pt": "mudar para o assento ao lado",
+            "kana": "となりのせきにうつる。"
           }
         },
         {
@@ -1548,7 +1568,8 @@
           "example": {
             "ja": "〜を片づける。",
             "en": "to tidy up",
-            "pt": "arrumar; limpar"
+            "pt": "arrumar; limpar",
+            "kana": "〜をかたづける。"
           }
         },
         {
@@ -1563,7 +1584,8 @@
           "example": {
             "ja": "今日はすごく疲れた。",
             "en": "Today I'm really tired.",
-            "pt": "Hoje me cansei muito."
+            "pt": "Hoje me cansei muito.",
+            "kana": "きょうはすごくつかれた。"
           }
         },
         {
@@ -1578,7 +1600,8 @@
           "example": {
             "ja": "三か月で日本語を覚えたの？すごいね！",
             "en": "You learned Japanese in three months? That's amazing!",
-            "pt": "Você aprendeu japonês em três meses? Que incrível!"
+            "pt": "Você aprendeu japonês em três meses? Que incrível!",
+            "kana": "さんかげつでにほんごをおぼえたの？すごいね！"
           }
         },
         {
@@ -1610,10 +1633,11 @@
           "page": 27,
           "term": "捨てる",
           "meanings": {
-            "en": "throw away",
-            "pt": "jogar"
+            "en": "to throw away",
+            "pt": "jogar fora"
           },
-          "example": null
+          "example": null,
+          "reading": "すてる"
         }
       ],
       "exercises": [
@@ -1811,7 +1835,8 @@
           "meanings": {
             "en": "to change",
             "pt": "mudar; transformar-se"
-          }
+          },
+          "reading": "かわる"
         },
         {
           "id": "unit-06-p28-05",
@@ -1820,8 +1845,8 @@
           "term": "真ん中",
           "reading": "まんなか",
           "meanings": {
-            "en": "Center",
-            "pt": "no meio"
+            "en": "middle; center",
+            "pt": "meio; centro"
           },
           "example": null
         },
@@ -1837,7 +1862,8 @@
           "example": {
             "ja": "今日のニュースにびっくりした。",
             "en": "I was surprised at today's news.",
-            "pt": "Fiquei surpreso com a notícia de hoje."
+            "pt": "Fiquei surpreso com a notícia de hoje.",
+            "kana": "きょうのニュースにびっくりした。"
           }
         },
         {
@@ -1865,7 +1891,8 @@
           "example": {
             "ja": "ろうかを通って部屋に行く。",
             "en": "to pass through a corridor to get to a room",
-            "pt": "ir ao quarto passando pelo corredor"
+            "pt": "ir ao quarto passando pelo corredor",
+            "kana": "ろうかをとおってへやにいく。"
           }
         },
         {
@@ -1911,7 +1938,8 @@
           "meanings": {
             "en": "importation; to import",
             "pt": "importação; importar"
-          }
+          },
+          "reading": "ゆにゅう"
         },
         {
           "id": "unit-06-p29-02",
@@ -1929,11 +1957,13 @@
           "id": "unit-06-p29-03",
           "chapterId": "unit-06",
           "page": 29,
-          "term": "みなと",
+          "term": "港",
           "meanings": {
-            "en": "porto"
+            "en": "port; harbor",
+            "pt": "porto"
           },
-          "example": null
+          "example": null,
+          "reading": "みなと"
         },
         {
           "id": "unit-06-p29-04",
@@ -2149,7 +2179,8 @@
             "en": "to live",
             "pt": "morar"
           },
-          "example": null
+          "example": null,
+          "reading": "くらす"
         },
         {
           "id": "unit-07-p30-04",
@@ -2187,7 +2218,8 @@
           "example": {
             "ja": "車を運転する。",
             "en": "to drive a car",
-            "pt": "dirigir um carro"
+            "pt": "dirigir um carro",
+            "kana": "くるまをうんてんする。"
           }
         },
         {
@@ -2213,8 +2245,10 @@
           "example": {
             "ja": "地下鉄に乗り換える。",
             "en": "to transfer to the subway",
-            "pt": "fazer baldeação para o metrô"
-          }
+            "pt": "fazer baldeação para o metrô",
+            "kana": "ちかてつにのりかえる。"
+          },
+          "reading": "のりかえる"
         },
         {
           "id": "unit-07-p30-10",
@@ -2228,8 +2262,10 @@
           "example": {
             "ja": "このレストランはいつも混んでいる。",
             "en": "This restaurant is always crowded.",
-            "pt": "Este restaurante está sempre cheio."
-          }
+            "pt": "Este restaurante está sempre cheio.",
+            "kana": "このレストランはいつもこんでいる。"
+          },
+          "reading": "こむ"
         },
         {
           "id": "unit-07-p30-11",
@@ -2239,7 +2275,8 @@
           "meanings": {
             "en": "to be on time",
             "pt": "dar tempo"
-          }
+          },
+          "reading": "まにあう"
         },
         {
           "id": "unit-07-p31-01",
@@ -2395,7 +2432,8 @@
           "example": {
             "ja": "しばらくお休みします。",
             "en": "We will be closed for a while.",
-            "pt": "Ficaremos fechados por um tempo."
+            "pt": "Ficaremos fechados por um tempo.",
+            "kana": "しばらくおやすみします。"
           }
         },
         {
@@ -2410,7 +2448,8 @@
           "example": {
             "ja": "コンビニのATMを利用する。",
             "en": "to use the ATM at a convenience store",
-            "pt": "usar o caixa eletrônico da loja de conveniência"
+            "pt": "usar o caixa eletrônico da loja de conveniência",
+            "kana": "コンビニのATMをりようする。"
           }
         },
         {
@@ -2432,7 +2471,8 @@
           "meanings": {
             "en": "to go straight",
             "pt": "ir em frente"
-          }
+          },
+          "reading": "まっすぐいく"
         },
         {
           "id": "unit-08-p33-03",
@@ -2484,9 +2524,11 @@
           "page": 33,
           "term": "見える",
           "meanings": {
+            "en": "to be visible; to be seen; to seem",
             "pt": "parecer; ser visto"
           },
-          "example": null
+          "example": null,
+          "reading": "みえる"
         },
         {
           "id": "unit-08-p33-08",
@@ -2497,7 +2539,8 @@
             "en": "beside; on the side",
             "pt": "ao lado"
           },
-          "example": null
+          "example": null,
+          "reading": "そばに"
         },
         {
           "id": "unit-08-p33-10",
@@ -3034,7 +3077,8 @@
           "example": {
             "ja": "甘いものばかり食べていると、太りますよ。",
             "en": "You will get fat if you eat nothing but sweets.",
-            "pt": "Se você ficar comendo só doces, vai engordar."
+            "pt": "Se você ficar comendo só doces, vai engordar.",
+            "kana": "あまいものばかりたべていると、ふとりますよ。"
           }
         },
         {
@@ -3049,7 +3093,8 @@
           "example": {
             "ja": "親に心配をかける。",
             "en": "to make one's parents worry",
-            "pt": "preocupar os pais"
+            "pt": "preocupar os pais",
+            "kana": "おやにしんぱいをかける。"
           }
         },
         {
@@ -3087,7 +3132,8 @@
           "example": {
             "ja": "日本の文化に興味がある。",
             "en": "I am interested in Japanese culture.",
-            "pt": "Tenho interesse pela cultura japonesa."
+            "pt": "Tenho interesse pela cultura japonesa.",
+            "kana": "にほんのぶんかにきょうみがある。"
           }
         },
         {
@@ -3127,7 +3173,8 @@
           "example": {
             "ja": "パーティーを開く。",
             "en": "to hold a party",
-            "pt": "realizar uma festa"
+            "pt": "realizar uma festa",
+            "kana": "パーティーをひらく。"
           }
         },
         {
@@ -3142,7 +3189,8 @@
           "example": {
             "ja": "彼女の歌は本当にすばらしい。",
             "en": "Her song is really wonderful.",
-            "pt": "A música dela é realmente maravilhosa."
+            "pt": "A música dela é realmente maravilhosa.",
+            "kana": "かのじょのうたはほんとうにすばらしい。"
           }
         }
       ],
@@ -3333,7 +3381,8 @@
           "example": {
             "ja": "田中さんからパーティーに招待されて、夫といっしょに出かけた。",
             "en": "I was invited to a party by Mr. Tanaka and went out with my husband.",
-            "pt": "Fui convidada pelo Sr. Tanaka para uma festa e saí com meu marido."
+            "pt": "Fui convidada pelo Sr. Tanaka para uma festa e saí com meu marido.",
+            "kana": "たなかさんからパーティーにしょうたいされて、おっとといっしょにでかけた。"
           }
         },
         {
@@ -3386,7 +3435,7 @@
           "chapterId": "unit-10",
           "page": 38,
           "term": "帰り",
-          "reading": "かえ",
+          "reading": "かえり",
           "meanings": {
             "en": "return; the way home",
             "pt": "volta; caminho de volta"
@@ -3619,7 +3668,8 @@
           "example": {
             "ja": "旅館に泊まる。",
             "en": "to stay at a Japanese-style inn",
-            "pt": "hospedar-se em uma pousada japonesa"
+            "pt": "hospedar-se em uma pousada japonesa",
+            "kana": "りょかんにとまる。"
           },
           "reading": "とまる"
         },
@@ -3631,7 +3681,8 @@
           "meanings": {
             "en": "to be free",
             "pt": "vago"
-          }
+          },
+          "reading": "あく"
         },
         {
           "id": "unit-11-p40-05",
@@ -3914,7 +3965,8 @@
           "example": {
             "ja": "ぜひ、遊びに来てください。",
             "en": "By all means, come visit.",
-            "pt": "Venha nos visitar, sem falta."
+            "pt": "Venha nos visitar, sem falta.",
+            "kana": "ぜひ、あそびにきてください。"
           }
         },
         {
@@ -3930,7 +3982,8 @@
           "example": {
             "ja": "あなたが来られないなんて、非常に残念です。",
             "en": "It's a real pity that you cannot come.",
-            "pt": "É realmente uma pena que você não possa vir."
+            "pt": "É realmente uma pena que você não possa vir.",
+            "kana": "あなたがこられないなんて、ひじょうにざんねんです。"
           }
         },
         {
@@ -4449,7 +4502,8 @@
           "example": {
             "ja": "レストランでアルバイトをする。",
             "en": "to work part-time at a restaurant",
-            "pt": "fazer bico em um restaurante"
+            "pt": "fazer bico em um restaurante",
+            "kana": "レストランでアルバイトをする。"
           }
         },
         {
@@ -4477,7 +4531,8 @@
           "example": {
             "ja": "面接試験を受ける。",
             "en": "to take an interview",
-            "pt": "fazer uma entrevista"
+            "pt": "fazer uma entrevista",
+            "kana": "めんせつしけんをうける。"
           }
         },
         {
@@ -4539,7 +4594,8 @@
           "example": {
             "ja": "事務所の中を案内する。",
             "en": "to show someone around an office",
-            "pt": "mostrar o escritório para alguém"
+            "pt": "mostrar o escritório para alguém",
+            "kana": "じむしょのなかをあんないする。"
           }
         },
         {
@@ -4547,7 +4603,7 @@
           "chapterId": "unit-13",
           "page": 47,
           "term": "飾る",
-          "reading": "かざ",
+          "reading": "かざる",
           "meanings": {
             "en": "to display; to decorate",
             "pt": "enfeitar; decorar"
@@ -4555,7 +4611,8 @@
           "example": {
             "ja": "部屋に花をかざる。",
             "en": "to decorate a room with flowers",
-            "pt": "enfeitar o quarto com flores"
+            "pt": "enfeitar o quarto com flores",
+            "kana": "へやにはなをかざる。"
           }
         },
         {
@@ -4567,7 +4624,8 @@
             "en": "product",
             "pt": "produto"
           },
-          "example": null
+          "example": null,
+          "reading": "しょうひん"
         },
         {
           "id": "unit-13-p47-03",
@@ -4772,7 +4830,8 @@
           "example": {
             "ja": "五年ほど前から、日本に住んでいます。",
             "en": "I have been living in Japan since about five years ago.",
-            "pt": "Moro no Japão há uns cinco anos."
+            "pt": "Moro no Japão há uns cinco anos.",
+            "kana": "ごねんほどまえから、にほんにすんでいます。"
           }
         },
         {
@@ -4839,7 +4898,7 @@
           "chapterId": "unit-14",
           "page": 48,
           "term": "考える",
-          "reading": "かんが",
+          "reading": "かんがえる",
           "meanings": {
             "en": "to think",
             "pt": "pensar"
@@ -4847,7 +4906,8 @@
           "example": {
             "ja": "子どもの名前を考える。",
             "en": "to think of a name for a child",
-            "pt": "pensar no nome da criança"
+            "pt": "pensar no nome da criança",
+            "kana": "こどものなまえをかんがえる。"
           }
         },
         {
@@ -4856,9 +4916,10 @@
           "page": 48,
           "term": "役に立つ",
           "meanings": {
-            "en": "to be of use",
-            "pt": "Servir"
-          }
+            "en": "to be useful; to be of use",
+            "pt": "servir; ser útil"
+          },
+          "reading": "やくにたつ"
         },
         {
           "id": "unit-14-p49-loose-01",
@@ -4869,7 +4930,8 @@
             "en": "Relations within the company",
             "pt": "Relacionamento dentro da companhia"
           },
-          "example": null
+          "example": null,
+          "reading": "かいしゃないのかんけい"
         },
         {
           "id": "unit-14-p49-loose-02",
@@ -4880,7 +4942,8 @@
             "en": "president",
             "pt": "presidente"
           },
-          "example": null
+          "example": null,
+          "reading": "しゃちょう"
         },
         {
           "id": "unit-14-p49-loose-09",
@@ -4891,7 +4954,8 @@
             "en": "colleague",
             "pt": "colega de trabalho"
           },
-          "example": null
+          "example": null,
+          "reading": "どうりょう"
         }
       ],
       "exercises": [
@@ -5049,8 +5113,10 @@
           "example": {
             "ja": "別のを見せてください。",
             "en": "Please show me a different one.",
-            "pt": "Mostre-me outro, por favor."
-          }
+            "pt": "Mostre-me outro, por favor.",
+            "kana": "べつのをみせてください。"
+          },
+          "reading": "べつべつ"
         },
         {
           "id": "unit-15-p50-06",
@@ -5073,7 +5139,8 @@
             "en": "strong",
             "pt": "forte"
           },
-          "example": null
+          "example": null,
+          "reading": "こい"
         },
         {
           "id": "unit-15-p51-01",
@@ -5236,7 +5303,8 @@
           "example": {
             "ja": "海外旅行",
             "en": "overseas trip",
-            "pt": "viagem ao exterior"
+            "pt": "viagem ao exterior",
+            "kana": "かいがいりょこう"
           }
         },
         {
@@ -5247,7 +5315,8 @@
           "meanings": {
             "en": "business trip; to go on a business trip",
             "pt": "viagem de negócios; viajar a negócios"
-          }
+          },
+          "reading": "しゅっちょう"
         },
         {
           "id": "unit-16-p52-03",
@@ -5262,7 +5331,8 @@
           "example": {
             "ja": "私に直接電話をください。",
             "en": "Please call me directly.",
-            "pt": "Ligue diretamente para mim."
+            "pt": "Ligue diretamente para mim.",
+            "kana": "わたしにちょくせつでんわをください。"
           }
         },
         {
@@ -5278,7 +5348,8 @@
           "example": {
             "ja": "ただ今戻りました。",
             "en": "I'm back.",
-            "pt": "Voltei agora."
+            "pt": "Voltei agora.",
+            "kana": "ただいまもどりました。"
           }
         },
         {
@@ -5317,7 +5388,8 @@
           "example": {
             "ja": "風で木が倒れる。",
             "en": "The tree falls because of the wind.",
-            "pt": "A árvore cai por causa do vento."
+            "pt": "A árvore cai por causa do vento.",
+            "kana": "かぜできがたおれる。"
           }
         },
         {
@@ -5333,7 +5405,8 @@
           "example": {
             "ja": "友だちと競争する。",
             "en": "to compete with friends",
-            "pt": "competir com os amigos"
+            "pt": "competir com os amigos",
+            "kana": "ともだちときょうそうする。"
           }
         },
         {
@@ -5348,8 +5421,10 @@
           "example": {
             "ja": "試合に勝つ。",
             "en": "to win a match",
-            "pt": "vencer uma partida"
-          }
+            "pt": "vencer uma partida",
+            "kana": "しあいにかつ。"
+          },
+          "reading": "かつ"
         },
         {
           "id": "unit-16-p52-10",
@@ -5370,7 +5445,8 @@
             "en": "hospitalization; to be hospitalized",
             "pt": "internação; internar"
           },
-          "example": null
+          "example": null,
+          "reading": "にゅういん"
         },
         {
           "id": "unit-16-p53-02",
@@ -5381,7 +5457,8 @@
             "en": "to recover",
             "pt": "melhorar; recuperar-se"
           },
-          "example": null
+          "example": null,
+          "reading": "なおる"
         },
         {
           "id": "unit-16-p53-03",
@@ -5402,7 +5479,8 @@
           "meanings": {
             "en": "to be careful",
             "pt": "tomar cuidado"
-          }
+          },
+          "reading": "きをつける"
         }
       ],
       "exercises": [
@@ -5915,8 +5993,10 @@
           "example": {
             "ja": "面接試験を受ける。",
             "en": "to take an interview",
-            "pt": "fazer uma entrevista"
-          }
+            "pt": "fazer uma entrevista",
+            "kana": "めんせつしけんをうける。"
+          },
+          "reading": "うける"
         },
         {
           "id": "unit-17-p56-04",
@@ -5942,7 +6022,8 @@
           "example": {
             "ja": "日本の法律について調べる。",
             "en": "to do research on Japanese law",
-            "pt": "pesquisar sobre a legislação japonesa"
+            "pt": "pesquisar sobre a legislação japonesa",
+            "kana": "にほんのほうりつについてしらべる。"
           }
         },
         {
@@ -5970,7 +6051,8 @@
           "example": {
             "ja": "土曜日のご都合はいかがですか。",
             "en": "Would Saturday be convenient for you?",
-            "pt": "Sábado seria conveniente para você?"
+            "pt": "Sábado seria conveniente para você?",
+            "kana": "どようびのごつごうはいかがですか。"
           }
         },
         {
@@ -5978,7 +6060,7 @@
           "chapterId": "unit-17",
           "page": 56,
           "term": "危険な",
-          "reading": "きけん",
+          "reading": "きけんな",
           "meanings": {
             "en": "dangerous",
             "pt": "perigoso"
@@ -5998,7 +6080,8 @@
           "example": {
             "ja": "使い方を説明してもらえますか。",
             "en": "Could you explain how to use this?",
-            "pt": "Você poderia me explicar como usar?"
+            "pt": "Você poderia me explicar como usar?",
+            "kana": "つかいかたをせつめいしてもらえますか。"
           }
         },
         {
@@ -6218,7 +6301,8 @@
           "example": {
             "ja": "今年、息子が小学校に入学する。",
             "en": "This year my son will enter primary school.",
-            "pt": "Este ano, meu filho vai entrar na escola primária."
+            "pt": "Este ano, meu filho vai entrar na escola primária.",
+            "kana": "ことし、むすこがしょうがっこうににゅうがくする。"
           }
         },
         {
@@ -6233,7 +6317,8 @@
           "example": {
             "ja": "数学の予習をする。",
             "en": "to prepare for math class",
-            "pt": "estudar matemática com antecedência"
+            "pt": "estudar matemática com antecedência",
+            "kana": "すうがくのよしゅうをする。"
           },
           "reading": "よしゅう"
         },
@@ -6272,7 +6357,8 @@
           "example": {
             "ja": "時間はあまりないけれど、できるだけがんばろう。",
             "en": "I don't have much time, but I will do my best.",
-            "pt": "Não tenho muito tempo, mas vou me esforçar ao máximo."
+            "pt": "Não tenho muito tempo, mas vou me esforçar ao máximo.",
+            "kana": "じかんはあまりないけれど、できるだけがんばろう。"
           }
         },
         {
@@ -6287,7 +6373,8 @@
           "example": {
             "ja": "大学を卒業したら、公務員になるつもりです。",
             "en": "After I graduate from university, I intend to become a civil servant.",
-            "pt": "Depois de me formar na universidade, pretendo ser funcionário público."
+            "pt": "Depois de me formar na universidade, pretendo ser funcionário público.",
+            "kana": "だいがくをそつぎょうしたら、こうむいんになるつもりです。"
           }
         },
         {
@@ -6310,7 +6397,8 @@
             "en": "graduate school",
             "pt": "pós-graduação"
           },
-          "example": null
+          "example": null,
+          "reading": "だいがくいん"
         },
         {
           "id": "unit-18-p59-loose-02",
@@ -6321,7 +6409,8 @@
             "en": "senior high school",
             "pt": "ensino médio"
           },
-          "example": null
+          "example": null,
+          "reading": "こうこう"
         },
         {
           "id": "unit-18-p59-loose-03",
@@ -6332,7 +6421,8 @@
             "en": "junior college",
             "pt": "faculdade de curta duração"
           },
-          "example": null
+          "example": null,
+          "reading": "たんきだいがく"
         },
         {
           "id": "unit-18-p59-loose-04",
@@ -6343,7 +6433,8 @@
             "en": "compulsory education",
             "pt": "educação obrigatória"
           },
-          "example": null
+          "example": null,
+          "reading": "ぎむきょういく"
         },
         {
           "id": "unit-18-p59-loose-05",
@@ -6354,7 +6445,8 @@
             "en": "technical college",
             "pt": "escola técnica"
           },
-          "example": null
+          "example": null,
+          "reading": "せんもんがっこう"
         },
         {
           "id": "unit-18-p59-loose-06",
@@ -6365,7 +6457,8 @@
             "en": "high school student",
             "pt": "estudante do ensino médio"
           },
-          "example": null
+          "example": null,
+          "reading": "こうこうせい"
         },
         {
           "id": "unit-18-p59-loose-07",
@@ -6376,7 +6469,8 @@
             "en": "university student",
             "pt": "estudante universitário"
           },
-          "example": null
+          "example": null,
+          "reading": "だいがくせい"
         },
         {
           "id": "unit-18-p59-loose-08",
@@ -6387,7 +6481,8 @@
             "en": "junior high school student",
             "pt": "estudante do ensino fundamental II"
           },
-          "example": null
+          "example": null,
+          "reading": "ちゅうがくせい"
         },
         {
           "id": "unit-18-p59-loose-09",
@@ -6398,7 +6493,8 @@
             "en": "graduate student",
             "pt": "pós-graduando"
           },
-          "example": null
+          "example": null,
+          "reading": "だいがくいんせい"
         }
       ],
       "exercises": [
@@ -6735,7 +6831,8 @@
           "example": {
             "ja": "けんかで友だちを泣かせた。",
             "en": "I fought with my friend and made them cry.",
-            "pt": "Briguei com meu amigo e o fiz chorar."
+            "pt": "Briguei com meu amigo e o fiz chorar.",
+            "kana": "けんかでともだちをなかせた。"
           }
         },
         {
@@ -6762,7 +6859,8 @@
           "example": {
             "ja": "彼はとてもまじめな人です。",
             "en": "He is a very serious person.",
-            "pt": "Ele é uma pessoa muito séria."
+            "pt": "Ele é uma pessoa muito séria.",
+            "kana": "かれはとてもまじめなひとです。"
           }
         },
         {
@@ -6790,7 +6888,8 @@
           "example": {
             "ja": "得意なスポーツはありますか。",
             "en": "Is there any sport you are good at?",
-            "pt": "Há algum esporte em que você é bom?"
+            "pt": "Há algum esporte em que você é bom?",
+            "kana": "とくいなスポーツはありますか。"
           }
         },
         {
@@ -7344,7 +7443,8 @@
             "en": "to catch a cold",
             "pt": "ficar gripado"
           },
-          "example": null
+          "example": null,
+          "reading": "かぜをひく"
         },
         {
           "id": "unit-21-p66-02",
@@ -7392,7 +7492,8 @@
           "example": {
             "ja": "そこにある本は、そのままにしておいてください。",
             "en": "Please leave the books over there as they are.",
-            "pt": "Deixe os livros aí como estão."
+            "pt": "Deixe os livros aí como estão.",
+            "kana": "そこにあるほんは、そのままにしておいてください。"
           }
         },
         {
@@ -7416,7 +7517,8 @@
             "en": "to overexert oneself",
             "pt": "se esforçar demais"
           },
-          "example": null
+          "example": null,
+          "reading": "むり"
         },
         {
           "id": "unit-21-p66-08",
@@ -7424,9 +7526,10 @@
           "page": 66,
           "term": "無理な",
           "meanings": {
-            "en": "Unreasonable;",
+            "en": "unreasonable; impossible; excessive",
             "pt": "impossível; excessivo"
-          }
+          },
+          "reading": "むりな"
         },
         {
           "id": "unit-21-p67-01",
@@ -7458,7 +7561,8 @@
           "meanings": {
             "en": "to break",
             "pt": "quebrar-se"
-          }
+          },
+          "reading": "おれる"
         },
         {
           "id": "unit-21-p67-04",
@@ -7622,7 +7726,8 @@
             "en": "mobile phone",
             "pt": "celular"
           },
-          "example": null
+          "example": null,
+          "reading": "けいたいでんわ"
         },
         {
           "id": "unit-22-p68-03",
@@ -7646,7 +7751,8 @@
           "example": {
             "ja": "彼女は自分の考えをはっきり言う。",
             "en": "She says what she thinks in a straightforward manner.",
-            "pt": "Ela fala claramente o que pensa."
+            "pt": "Ela fala claramente o que pensa.",
+            "kana": "かのじょはじぶんのかんがえをはっきりいう。"
           }
         },
         {
@@ -7673,8 +7779,10 @@
           "example": {
             "ja": "仕事の帰りにコンビニに寄った。",
             "en": "I stopped by a convenience store on the way home from work.",
-            "pt": "Passei em uma loja de conveniência na volta do trabalho."
-          }
+            "pt": "Passei em uma loja de conveniência na volta do trabalho.",
+            "kana": "しごとのかえりにコンビニによった。"
+          },
+          "reading": "よる"
         },
         {
           "id": "unit-22-p68-07",
@@ -7685,7 +7793,8 @@
             "en": "to drop",
             "pt": "deixar cair"
           },
-          "example": null
+          "example": null,
+          "reading": "おとす"
         },
         {
           "id": "unit-22-p68-08",
@@ -7712,7 +7821,8 @@
           "example": {
             "ja": "駅前でタクシーを拾う。",
             "en": "to pick up a taxi in front of the station",
-            "pt": "pegar um táxi em frente à estação"
+            "pt": "pegar um táxi em frente à estação",
+            "kana": "えきまえでタクシーをひろう。"
           }
         },
         {
@@ -7724,7 +7834,8 @@
             "en": "to be found",
             "pt": "ser encontrado"
           },
-          "example": null
+          "example": null,
+          "reading": "みつかる"
         },
         {
           "id": "unit-22-p69-01",
@@ -7758,7 +7869,8 @@
             "en": "to run away",
             "pt": "fugir"
           },
-          "example": null
+          "example": null,
+          "reading": "にげる"
         },
         {
           "id": "unit-22-p69-04",
@@ -8013,7 +8125,7 @@
           "chapterId": "unit-23",
           "page": 71,
           "term": "必要な",
-          "reading": "ひつよう",
+          "reading": "ひつような",
           "meanings": {
             "en": "needed",
             "pt": "necessário"
@@ -8064,7 +8176,8 @@
             "en": "to head for",
             "pt": "seguir para; dirigir-se a"
           },
-          "example": null
+          "example": null,
+          "reading": "むかう"
         }
       ],
       "exercises": [
@@ -8214,13 +8327,16 @@
           "page": 72,
           "term": "この間",
           "meanings": {
-            "pt": "recently"
+            "en": "the other day; recently",
+            "pt": "outro dia; recentemente"
           },
           "example": {
             "ja": "この間行ったレストラン、おいしかったですね。",
             "en": "The restaurant we went to the other day was good, wasn't it?",
-            "pt": "Aquele restaurante a que fomos outro dia estava bom, não estava?"
-          }
+            "pt": "Aquele restaurante a que fomos outro dia estava bom, não estava?",
+            "kana": "このあいだいったレストラン、おいしかったですね。"
+          },
+          "reading": "このあいだ"
         },
         {
           "id": "unit-24-p72-03",
@@ -8258,7 +8374,8 @@
           "example": {
             "ja": "急いで準備してください。",
             "en": "Please prepare quickly.",
-            "pt": "Apresse-se com os preparativos."
+            "pt": "Apresse-se com os preparativos.",
+            "kana": "いそいでじゅんびしてください。"
           }
         },
         {
@@ -8270,7 +8387,8 @@
             "en": "to step on",
             "pt": "pisar"
           },
-          "example": null
+          "example": null,
+          "reading": "ふむ"
         },
         {
           "id": "unit-24-p72-07",
@@ -8279,8 +8397,8 @@
           "term": "間違える",
           "reading": "まちがえる",
           "meanings": {
-            "en": "to get  wrong",
-            "pt": "errar"
+            "en": "to make a mistake; to get wrong",
+            "pt": "errar; enganar-se"
           },
           "example": null
         },
@@ -8307,8 +8425,10 @@
           "example": {
             "ja": "今、財布がないことにはじめて気づいた。",
             "en": "Only now did I notice that I don't have my wallet.",
-            "pt": "Só agora percebi que estou sem a carteira."
-          }
+            "pt": "Só agora percebi que estou sem a carteira.",
+            "kana": "いま、さいふがないことにはじめてきづいた。"
+          },
+          "reading": "きづく"
         },
         {
           "id": "unit-24-p72-10",
@@ -8322,7 +8442,8 @@
           "example": {
             "ja": "お客さんに一生懸命あやまった。",
             "en": "I apologized to the customer as sincerely as I could.",
-            "pt": "Pedi desculpas ao cliente com todo o empenho."
+            "pt": "Pedi desculpas ao cliente com todo o empenho.",
+            "kana": "おきゃくさんにいっしょうけんめいあやまった。"
           }
         },
         {
@@ -8889,7 +9010,8 @@
           "example": {
             "ja": "ダイエットをして、5キロやせた。",
             "en": "I went on a diet and lost 5 kilos.",
-            "pt": "Fiz dieta e emagreci 5 quilos."
+            "pt": "Fiz dieta e emagreci 5 quilos.",
+            "kana": "ダイエットをして、5キロやせた。"
           }
         },
         {
@@ -8898,10 +9020,11 @@
           "page": 76,
           "term": "周り",
           "meanings": {
-            "en": "Surroundings",
-            "pt": "em volta"
+            "en": "surroundings; around",
+            "pt": "arredores; em volta"
           },
-          "example": null
+          "example": null,
+          "reading": "まわり"
         },
         {
           "id": "unit-25-p76-04",
@@ -8928,7 +9051,8 @@
           "example": {
             "ja": "自転車のタイヤに空気を入れる。",
             "en": "to inflate the tires of a bicycle",
-            "pt": "colocar ar no pneu da bicicleta"
+            "pt": "colocar ar no pneu da bicicleta",
+            "kana": "じてんしゃのタイヤにくうきをいれる。"
           }
         },
         {
@@ -8951,7 +9075,8 @@
           "meanings": {
             "en": "to be heard",
             "pt": "escutar"
-          }
+          },
+          "reading": "きこえる"
         },
         {
           "id": "unit-25-p76-09",
@@ -8959,10 +9084,11 @@
           "page": 76,
           "term": "気持ちいい",
           "meanings": {
-            "en": "to feel good",
-            "pt": "Ser gostoso"
+            "en": "pleasant; feels good",
+            "pt": "agradável; gostoso"
           },
-          "example": null
+          "example": null,
+          "reading": "きもちいい"
         },
         {
           "id": "unit-25-p77-01",
@@ -9154,7 +9280,8 @@
           "example": {
             "ja": "天気予報によると、明日は晴れるらしいよ。",
             "en": "According to the weather forecast, tomorrow the weather will be fine.",
-            "pt": "Segundo a previsão do tempo, parece que amanhã vai fazer sol."
+            "pt": "Segundo a previsão do tempo, parece que amanhã vai fazer sol.",
+            "kana": "てんきよほうによると、あしたははれるらしいよ。"
           }
         },
         {
@@ -9177,7 +9304,8 @@
           "meanings": {
             "en": "to approach",
             "pt": "aproximar"
-          }
+          },
+          "reading": "ちかづく"
         },
         {
           "id": "unit-26-p78-04",
@@ -9222,7 +9350,8 @@
             "en": "to increase",
             "pt": "aumentar"
           },
-          "example": null
+          "example": null,
+          "reading": "ふえる"
         },
         {
           "id": "unit-26-p78-08",
@@ -9237,7 +9366,8 @@
           "example": {
             "ja": "道を渡るときは、車に注意しよう。",
             "en": "Be careful of cars when crossing the road.",
-            "pt": "Preste atenção aos carros ao atravessar a rua."
+            "pt": "Preste atenção aos carros ao atravessar a rua.",
+            "kana": "みちをわたるときは、くるまにちゅういしよう。"
           }
         },
         {
@@ -9249,7 +9379,8 @@
             "en": "Expressions of direction",
             "pt": "expressões de direção"
           },
-          "example": null
+          "example": null,
+          "reading": "ほうがくのいいかた"
         },
         {
           "id": "unit-26-p79-loose-02",
@@ -9260,7 +9391,8 @@
             "en": "north-west",
             "pt": "noroeste"
           },
-          "example": null
+          "example": null,
+          "reading": "ほくせい"
         },
         {
           "id": "unit-26-p79-loose-03",
@@ -9268,10 +9400,11 @@
           "page": 79,
           "term": "北東",
           "meanings": {
-            "en": "north-east",
+            "en": "northeast",
             "pt": "nordeste"
           },
-          "example": null
+          "example": null,
+          "reading": "ほくとう"
         },
         {
           "id": "unit-26-p79-loose-04",
@@ -9279,10 +9412,11 @@
           "page": 79,
           "term": "南東",
           "meanings": {
-            "en": "South-east",
-            "pt": "Sudeste"
+            "en": "southeast",
+            "pt": "sudeste"
           },
-          "example": null
+          "example": null,
+          "reading": "なんとう"
         }
       ],
       "exercises": [
@@ -9399,7 +9533,8 @@
             "en": "accident",
             "pt": "acidente"
           },
-          "example": null
+          "example": null,
+          "reading": "じこ"
         },
         {
           "id": "unit-27-p80-02",
@@ -9413,7 +9548,8 @@
           "example": {
             "ja": "急いで角を曲がったら、人にぶつかった。",
             "en": "I turned the corner in a hurry and bumped into someone.",
-            "pt": "Virei a esquina às pressas e esbarrei em alguém."
+            "pt": "Virei a esquina às pressas e esbarrei em alguém.",
+            "kana": "いそいでかどをまがったら、ひとにぶつかった。"
           }
         },
         {
@@ -9449,7 +9585,8 @@
             "en": "to draw",
             "pt": "traçar; puxar"
           },
-          "example": null
+          "example": null,
+          "reading": "ひく"
         },
         {
           "id": "unit-27-p80-06",
@@ -9463,8 +9600,10 @@
           "example": {
             "ja": "119番で救急車を呼ぶ。",
             "en": "to call 119 for an ambulance",
-            "pt": "chamar uma ambulância ligando para 119"
-          }
+            "pt": "chamar uma ambulância ligando para 119",
+            "kana": "119ばんできゅうきゅうしゃをよぶ。"
+          },
+          "reading": "きゅうきゅうしゃ"
         },
         {
           "id": "unit-27-p80-07",
@@ -9478,7 +9617,8 @@
           "example": {
             "ja": "大けがにならなくて、よかった。",
             "en": "Thank goodness it wasn't a serious injury.",
-            "pt": "Ainda bem que não foi um ferimento grave."
+            "pt": "Ainda bem que não foi um ferimento grave.",
+            "kana": "おおけがにならなくて、よかった。"
           }
         },
         {
@@ -9504,8 +9644,10 @@
           "example": {
             "ja": "私の父は10年前に亡くなった。",
             "en": "My father died ten years ago.",
-            "pt": "Meu pai faleceu há dez anos."
-          }
+            "pt": "Meu pai faleceu há dez anos.",
+            "kana": "わたしのちちは10ねんまえになくなった。"
+          },
+          "reading": "なくなる"
         }
       ],
       "exercises": [
@@ -9684,7 +9826,8 @@
             "en": "hot water",
             "pt": "água quente"
           },
-          "example": null
+          "example": null,
+          "reading": "おゆ"
         },
         {
           "id": "unit-28-p82-05",
@@ -9698,7 +9841,8 @@
           "example": {
             "ja": "お風呂をわかす。",
             "en": "to prepare a bath",
-            "pt": "esquentar a água da banheira"
+            "pt": "esquentar a água da banheira",
+            "kana": "おふろをわかす。"
           }
         },
         {
@@ -9725,7 +9869,8 @@
           "example": {
             "ja": "留守番電話にメッセージを入れる。",
             "en": "to leave a message on the answering machine",
-            "pt": "deixar uma mensagem na secretária eletrônica"
+            "pt": "deixar uma mensagem na secretária eletrônica",
+            "kana": "るすばんでんわにメッセージをいれる。"
           }
         },
         {
@@ -9779,7 +9924,8 @@
           "meanings": {
             "en": "to break",
             "pt": "quebrar-se"
-          }
+          },
+          "reading": "われる"
         },
         {
           "id": "unit-28-p83-04",
@@ -9790,7 +9936,8 @@
             "en": "to shake",
             "pt": "balançar"
           },
-          "example": null
+          "example": null,
+          "reading": "ゆれる"
         },
         {
           "id": "unit-28-p83-05",
@@ -10293,8 +10440,10 @@
           "example": {
             "ja": "これで、授業を終わりにします。",
             "en": "This brings us to the end of today's class.",
-            "pt": "Vamos encerrar a aula por aqui."
-          }
+            "pt": "Vamos encerrar a aula por aqui.",
+            "kana": "これで、じゅぎょうをおわりにします。"
+          },
+          "reading": "おわり"
         },
         {
           "id": "unit-29-p86-02",
@@ -10305,7 +10454,8 @@
             "en": "to go down",
             "pt": "descer"
           },
-          "example": null
+          "example": null,
+          "reading": "おりる"
         },
         {
           "id": "unit-29-p86-03",
@@ -10319,7 +10469,8 @@
           "example": {
             "ja": "雪が降って、道がすべりやすくなっている。",
             "en": "It snowed, so the road has become slippery.",
-            "pt": "Nevou e a pista está escorregadia."
+            "pt": "Nevou e a pista está escorregadia.",
+            "kana": "ゆきがふって、みちがすべりやすくなっている。"
           }
         },
         {
@@ -10346,8 +10497,10 @@
           "example": {
             "ja": "ボールを打つ。",
             "en": "to hit a ball",
-            "pt": "bater na bola"
-          }
+            "pt": "bater na bola",
+            "kana": "ボールをうつ。"
+          },
+          "reading": "うつ"
         },
         {
           "id": "unit-29-p86-06",
@@ -10373,7 +10526,8 @@
           "example": {
             "ja": "料理はすっかりなくなった。",
             "en": "There isn't even a bit of food left.",
-            "pt": "A comida acabou completamente."
+            "pt": "A comida acabou completamente.",
+            "kana": "りょうりはすっかりなくなった。"
           }
         },
         {
@@ -10410,7 +10564,8 @@
           "example": {
             "ja": "もうすぐ仕事が終わる。",
             "en": "I'm getting off work soon.",
-            "pt": "O trabalho vai terminar em breve."
+            "pt": "O trabalho vai terminar em breve.",
+            "kana": "もうすぐしごとがおわる。"
           }
         },
         {
@@ -10614,7 +10769,8 @@
           "example": {
             "ja": "まず最初に、自己紹介をします。",
             "en": "First, let me introduce myself.",
-            "pt": "Primeiro, vou me apresentar."
+            "pt": "Primeiro, vou me apresentar.",
+            "kana": "まずさいしょに、じこしょうかいをします。"
           }
         },
         {
@@ -10629,7 +10785,8 @@
           "example": {
             "ja": "ここで遊んではだめですよ。",
             "en": "You should not play here.",
-            "pt": "Não pode brincar aqui."
+            "pt": "Não pode brincar aqui.",
+            "kana": "ここであそんではだめですよ。"
           }
         },
         {
@@ -10666,8 +10823,10 @@
           "example": {
             "ja": "あなただけには、決して負けない。",
             "en": "I'm never going to lose to you.",
-            "pt": "Jamais vou perder para você."
-          }
+            "pt": "Jamais vou perder para você.",
+            "kana": "あなただけには、けっしてまけない。"
+          },
+          "reading": "けっして"
         },
         {
           "id": "unit-30-p88-07",
@@ -10682,7 +10841,8 @@
           "example": {
             "ja": "どうぞ、仕事を続けてください。",
             "en": "Please continue working.",
-            "pt": "Continue o trabalho, por favor."
+            "pt": "Continue o trabalho, por favor.",
+            "kana": "どうぞ、しごとをつづけてください。"
           }
         },
         {
@@ -10698,7 +10858,8 @@
           "example": {
             "ja": "出発まで、十分時間がある。",
             "en": "We have enough time before departure.",
-            "pt": "Há tempo suficiente até a partida."
+            "pt": "Há tempo suficiente até a partida.",
+            "kana": "しゅっぱつまで、じゅうぶんじかんがある。"
           }
         },
         {
@@ -10756,7 +10917,8 @@
             "en": "schedule; plan",
             "pt": "programação; plano"
           },
-          "example": null
+          "example": null,
+          "reading": "よてい"
         },
         {
           "id": "unit-30-p89-06",
@@ -10767,7 +10929,8 @@
             "en": "embarrassing; ashamed",
             "pt": "vergonhoso; envergonhado"
           },
-          "example": null
+          "example": null,
+          "reading": "はずかしい"
         }
       ],
       "exercises": [
@@ -10926,14 +11089,16 @@
           "page": 90,
           "term": "上がる",
           "meanings": {
-            "en": "to rise",
-            "pt": "aumentar"
+            "en": "to rise; to go up",
+            "pt": "subir; aumentar"
           },
           "example": {
             "ja": "学校の成績が上がる。",
             "en": "A student's marks at school rise.",
-            "pt": "As notas da escola sobem."
-          }
+            "pt": "As notas da escola sobem.",
+            "kana": "がっこうのせいせきがあがる。"
+          },
+          "reading": "あがる"
         },
         {
           "id": "unit-31-p90-04",
@@ -10958,8 +11123,10 @@
           "example": {
             "ja": "魚を釣る。",
             "en": "to catch fish",
-            "pt": "pescar peixe"
-          }
+            "pt": "pescar peixe",
+            "kana": "さかなをつる。"
+          },
+          "reading": "つる"
         },
         {
           "id": "unit-31-p90-06",
@@ -10992,7 +11159,8 @@
             "en": "to roast",
             "pt": "grelhar"
           },
-          "example": null
+          "example": null,
+          "reading": "やく"
         },
         {
           "id": "unit-31-p90-09",
@@ -11002,7 +11170,8 @@
           "meanings": {
             "en": "to take along",
             "pt": "levar junto"
-          }
+          },
+          "reading": "つれていく"
         },
         {
           "id": "unit-31-p90-10",
@@ -11017,7 +11186,8 @@
           "example": {
             "ja": "昔のことを思い出す。",
             "en": "to recall the past",
-            "pt": "lembrar-se de coisas antigas"
+            "pt": "lembrar-se de coisas antigas",
+            "kana": "むかしのことをおもいだす。"
           }
         },
         {
@@ -11250,7 +11420,8 @@
           "example": {
             "ja": "動物をいじめてはいけません。",
             "en": "Do not be cruel to animals.",
-            "pt": "Não maltrate os animais."
+            "pt": "Não maltrate os animais.",
+            "kana": "どうぶつをいじめてはいけません。"
           }
         },
         {
@@ -11270,14 +11441,16 @@
           "page": 92,
           "term": "見える",
           "meanings": {
-            "en": "to look (sad)",
+            "en": "to be visible; to be seen",
             "pt": "parecer; ser visto"
           },
           "example": {
             "ja": "ここから、富士山がよく見える。",
             "en": "From here, you can see Mt. Fuji clearly.",
-            "pt": "Daqui, dá para ver bem o Monte Fuji."
-          }
+            "pt": "Daqui, dá para ver bem o Monte Fuji.",
+            "kana": "ここから、ふじさんがよくみえる。"
+          },
+          "reading": "みえる"
         },
         {
           "id": "unit-32-p92-07",
@@ -11304,7 +11477,8 @@
           "example": {
             "ja": "気分はどうですか。",
             "en": "How do you feel?",
-            "pt": "Como você está se sentindo?"
+            "pt": "Como você está se sentindo?",
+            "kana": "きぶんはどうですか。"
           }
         },
         {
