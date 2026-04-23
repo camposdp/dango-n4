@@ -175,6 +175,20 @@ function termView(card: Flashcard) {
     return <span>{card.term}</span>;
   }
 
+  const parenthetical = card.term.match(/^(.+?)([（(].*[）)])$/);
+  if (parenthetical) {
+    const reading = card.reading.replace(/[（(].*?[）)]/g, "");
+    return (
+      <>
+        <ruby>
+          {parenthetical[1]}
+          <rt>{reading}</rt>
+        </ruby>
+        {parenthetical[2]}
+      </>
+    );
+  }
+
   return (
     <ruby>
       {card.term}
@@ -201,6 +215,20 @@ function renderTextByLanguage(source: { pt?: string; en?: string }, language: La
 
 function exampleTermTarget(term: string) {
   return term.replace(/[（(].*?[）)]/g, "").trim();
+}
+
+function termDensityClass(term: string) {
+  const visibleLength = [...term.replace(/[（）()]/g, "")].length;
+  if (visibleLength >= 9) {
+    return "ultraCompact";
+  }
+  if (visibleLength >= 7) {
+    return "extraCompact";
+  }
+  if (visibleLength >= 5) {
+    return "compact";
+  }
+  return "";
 }
 
 function exampleJaView(card: Flashcard) {
@@ -913,7 +941,7 @@ function FlashcardPanel({
         <span className="chapterPill">{copy.page} {card.page}</span>
         {!revealed ? (
           <div className="cardFace">
-            <div className="jpTerm">{termView(card)}</div>
+            <div className={`jpTerm ${termDensityClass(card.term)}`}>{termView(card)}</div>
             {showExamples && card.example?.ja && <p className="exampleJa">{exampleJaView(card)}</p>}
           </div>
         ) : (

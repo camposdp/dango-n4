@@ -361,9 +361,30 @@ h1 {
   color: #191b19;
   font-family:
     "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", "Times New Roman", serif;
-  font-size: clamp(3.2rem, 11vw, 6.8rem);
+  font-size: 5.8rem;
   line-height: 1.22;
-  overflow-wrap: anywhere;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overflow-wrap: normal;
+  scrollbar-width: none;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+
+.jpTerm::-webkit-scrollbar {
+  display: none;
+}
+
+.jpTerm.compact {
+  font-size: 4.7rem;
+}
+
+.jpTerm.extraCompact {
+  font-size: 3.75rem;
+}
+
+.jpTerm.ultraCompact {
+  font-size: 3rem;
 }
 
 ruby {
@@ -720,6 +741,22 @@ rt {
   .flashcard {
     min-height: 360px;
     padding: 28px 18px;
+  }
+
+  .jpTerm {
+    font-size: 3.45rem;
+  }
+
+  .jpTerm.compact {
+    font-size: 2.75rem;
+  }
+
+  .jpTerm.extraCompact {
+    font-size: 2.25rem;
+  }
+
+  .jpTerm.ultraCompact {
+    font-size: 1.9rem;
   }
 
   .cardFace {

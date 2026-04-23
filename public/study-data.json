@@ -43,7 +43,7 @@
           "page": 16,
           "term": "ほとんど",
           "meanings": {
-            "en": "most lof)",
+            "en": "most; almost all",
             "pt": "quase tudo"
           },
           "example": {
@@ -140,7 +140,7 @@
           "chapterId": "unit-01",
           "page": 16,
           "term": "食品",
-          "reading": "しよくひん",
+          "reading": "しょくひん",
           "meanings": {
             "en": "food",
             "pt": "alimento"
@@ -151,11 +151,11 @@
           "id": "unit-01-p16-11",
           "chapterId": "unit-01",
           "page": 16,
-          "term": "必す",
-          "reading": "かなら",
+          "term": "必ず",
+          "reading": "かならず",
           "meanings": {
-            "en": "to be sure to",
-            "pt": "Sem falta"
+            "en": "always; without fail",
+            "pt": "sem falta"
           }
         },
         {
@@ -163,10 +163,10 @@
           "chapterId": "unit-01",
           "page": 17,
           "term": "残る",
-          "reading": "のこ",
+          "reading": "のこる",
           "meanings": {
             "en": "to be left",
-            "pt": "Sobrar"
+            "pt": "sobrar"
           },
           "example": {
             "ja": "料理がたくさん残った。",
@@ -181,7 +181,7 @@
           "term": "足りる",
           "meanings": {
             "en": "to be enough",
-            "pt": "Ser suficiente 5,ooo yen will be enough 5,000 ienes é suficiente"
+            "pt": "ser suficiente"
           }
         },
         {
@@ -189,7 +189,7 @@
           "chapterId": "unit-01",
           "page": 17,
           "term": "今夜",
-          "reading": "こんゃ",
+          "reading": "こんや",
           "meanings": {
             "en": "tonight",
             "pt": "esta noite"
@@ -201,7 +201,7 @@
           "chapterId": "unit-01",
           "page": 17,
           "term": "用意(する)",
-          "reading": "ようし",
+          "reading": "ようい",
           "meanings": {
             "en": "preparation; to prepare",
             "pt": "preparo; preparar"
@@ -724,8 +724,8 @@
           "term": "変な",
           "reading": "へん",
           "meanings": {
-            "en": "Strange, eccentric",
-            "pt": "estranho Escuto um som estranho do quarto vizinho."
+            "en": "strange; eccentric",
+            "pt": "estranho"
           },
           "example": null
         }
@@ -817,7 +817,7 @@
           "term": "さっき",
           "meanings": {
             "en": "just now",
-            "pt": "agora ha pouco"
+            "pt": "agora há pouco"
           },
           "example": null
         },
@@ -898,9 +898,9 @@
           "chapterId": "unit-04",
           "page": 23,
           "term": "相談(する)",
-          "reading": "そっだん",
+          "reading": "そうだん",
           "meanings": {
-            "en": "Consultation!",
+            "en": "consultation; to consult",
             "pt": "consulta; consultar"
           },
           "example": {
@@ -908,16 +908,6 @@
             "en": "Excuse me, there is something I'd like to talk to you about.",
             "pt": "Por favor, quero me consultar com o professor."
           }
-        },
-        {
-          "id": "unit-04-p23-loose-01",
-          "chapterId": "unit-04",
-          "page": 23,
-          "term": "れんしゅう",
-          "meanings": {
-            "en": "1"
-          },
-          "example": null
         }
       ],
       "exercises": [
@@ -1466,7 +1456,7 @@
           "reading": "さらいしゅう",
           "meanings": {
             "en": "the week after next",
-            "pt": "daqui a duas Semanas"
+            "pt": "daqui a duas semanas"
           },
           "example": null
         },
@@ -1477,7 +1467,7 @@
           "term": "引っ越す",
           "meanings": {
             "en": "to move",
-            "pt": "mudar finally"
+            "pt": "mudar-se"
           },
           "example": {
             "ja": "となりの町に引っ越す。",
@@ -1492,7 +1482,7 @@
           "term": "やっと",
           "meanings": {
             "en": "finally",
-            "pt": "finalmente to build"
+            "pt": "finalmente"
           }
         },
         {
@@ -1510,7 +1500,7 @@
           "chapterId": "unit-05",
           "page": 26,
           "term": "移る",
-          "reading": "ラつ",
+          "reading": "うつる",
           "meanings": {
             "en": "to move",
             "pt": "mudar"
@@ -1528,8 +1518,8 @@
           "term": "専門",
           "reading": "せんもん",
           "meanings": {
-            "en": "Specialty",
-            "pt": "especializacao"
+            "en": "specialty",
+            "pt": "especialização"
           },
           "example": null
         },
@@ -1550,7 +1540,7 @@
           "chapterId": "unit-05",
           "page": 26,
           "term": "片づけ",
-          "reading": "かた",
+          "reading": "かたづけ",
           "meanings": {
             "en": "tidying up",
             "pt": "limpeza"
@@ -1597,19 +1587,11 @@
           "page": 27,
           "term": "地域",
           "meanings": {
-            "pt": "Are0"
+            "en": "region; area",
+            "pt": "região; área"
           },
-          "example": null
-        },
-        {
-          "id": "unit-05-p27-02",
-          "chapterId": "unit-05",
-          "page": 27,
-          "term": "ちいき",
-          "meanings": {
-            "pt": "regizo"
-          },
-          "example": null
+          "example": null,
+          "reading": "ちいき"
         },
         {
           "id": "unit-05-p27-03",
@@ -1618,7 +1600,7 @@
           "term": "ごみ",
           "meanings": {
             "en": "garbage",
-            "pt": "lixo throw away"
+            "pt": "lixo"
           },
           "example": null
         },
@@ -1796,7 +1778,7 @@
           "reading": "こうぎょうだんち",
           "meanings": {
             "en": "industrial complex",
-            "pt": "Complexo industria]"
+            "pt": "complexo industrial"
           },
           "example": null
         },
@@ -1827,8 +1809,8 @@
           "page": 28,
           "term": "変わる",
           "meanings": {
-            "en": "to change (i.",
-            "pt": "tornar"
+            "en": "to change",
+            "pt": "mudar; transformar-se"
           }
         },
         {
@@ -1836,7 +1818,7 @@
           "chapterId": "unit-06",
           "page": 28,
           "term": "真ん中",
-          "reading": "なか",
+          "reading": "まんなか",
           "meanings": {
             "en": "Center",
             "pt": "no meio"
@@ -1863,10 +1845,10 @@
           "chapterId": "unit-06",
           "page": 28,
           "term": "道路",
-          "reading": "どっろ",
+          "reading": "どうろ",
           "meanings": {
-            "en": "Toad",
-            "pt": "estrada"
+            "en": "road",
+            "pt": "estrada; rua"
           },
           "example": null
         },
@@ -1875,7 +1857,7 @@
           "chapterId": "unit-06",
           "page": 28,
           "term": "通る",
-          "reading": "とお",
+          "reading": "とおる",
           "meanings": {
             "en": "to pass",
             "pt": "passar"
@@ -1903,7 +1885,7 @@
           "chapterId": "unit-06",
           "page": 28,
           "term": "生産(する)",
-          "reading": "せしさん",
+          "reading": "せいさん",
           "meanings": {
             "en": "production; to produce",
             "pt": "produção; produzir"
@@ -1915,7 +1897,7 @@
           "chapterId": "unit-06",
           "page": 28,
           "term": "運ぶ",
-          "reading": "はこ",
+          "reading": "はこぶ",
           "meanings": {
             "en": "to carry",
             "pt": "levar"
@@ -1939,7 +1921,7 @@
           "reading": "ほうえき",
           "meanings": {
             "en": "trade",
-            "pt": "Comercio externo harbor"
+            "pt": "comércio exterior"
           },
           "example": null
         },
@@ -1970,10 +1952,10 @@
           "chapterId": "unit-06",
           "page": 29,
           "term": "進む",
-          "reading": "すす",
+          "reading": "すすむ",
           "meanings": {
-            "en": "to advance",
-            "pt": "avancar"
+            "en": "to advance; to proceed",
+            "pt": "avançar; progredir"
           },
           "example": null
         }
@@ -2174,7 +2156,7 @@
           "chapterId": "unit-07",
           "page": 30,
           "term": "空港",
-          "reading": "くラこう",
+          "reading": "くうこう",
           "meanings": {
             "en": "airport",
             "pt": "aeroporto"
@@ -2186,7 +2168,7 @@
           "chapterId": "unit-07",
           "page": 30,
           "term": "迎える",
-          "reading": "むか",
+          "reading": "むかえる",
           "meanings": {
             "en": "to pick up",
             "pt": "buscar"
@@ -2225,7 +2207,8 @@
           "page": 30,
           "term": "乗り換える",
           "meanings": {
-            "pt": "to change lines;"
+            "en": "to transfer; to change lines",
+            "pt": "fazer baldeação; trocar de linha"
           },
           "example": {
             "ja": "地下鉄に乗り換える。",
@@ -2264,8 +2247,8 @@
           "page": 31,
           "term": "オートバイ",
           "meanings": {
-            "en": "bicycle",
-            "pt": "bicicleta"
+            "en": "motorcycle",
+            "pt": "motocicleta"
           }
         },
         {
@@ -2273,10 +2256,10 @@
           "chapterId": "unit-07",
           "page": 31,
           "term": "飛行機",
-          "reading": "ひこっき",
+          "reading": "ひこうき",
           "meanings": {
-            "en": "Ship",
-            "pt": "navio"
+            "en": "airplane",
+            "pt": "avião"
           }
         }
       ],
@@ -2384,8 +2367,8 @@
           "page": 32,
           "term": "たずねる",
           "meanings": {
-            "en": "to ask",
-            "pt": "perguntar to visit Visitar Corner esquina"
+            "en": "to ask; to visit",
+            "pt": "perguntar; visitar"
           }
         },
         {
@@ -2393,7 +2376,7 @@
           "chapterId": "unit-08",
           "page": 32,
           "term": "通り",
-          "reading": "とお",
+          "reading": "とおり",
           "meanings": {
             "en": "street",
             "pt": "rua; avenida"
@@ -2421,8 +2404,8 @@
           "page": 32,
           "term": "コンビニ",
           "meanings": {
-            "en": "Convenierce store",
-            "pt": "loja de Conveniencias"
+            "en": "convenience store",
+            "pt": "loja de conveniência"
           },
           "example": {
             "ja": "コンビニのATMを利用する。",
@@ -2434,17 +2417,20 @@
           "id": "unit-08-p33-01",
           "chapterId": "unit-08",
           "page": 33,
-          "term": "道形通",
+          "term": "通り",
           "meanings": {
-            "pt": "to go straight down"
-          }
+            "en": "street; avenue",
+            "pt": "rua; avenida"
+          },
+          "reading": "とおり"
         },
         {
           "id": "unit-08-p33-02",
           "chapterId": "unit-08",
           "page": 33,
-          "term": "をまつすぐ行く",
+          "term": "まっすぐ行く",
           "meanings": {
+            "en": "to go straight",
             "pt": "ir em frente"
           }
         },
@@ -2453,30 +2439,32 @@
           "chapterId": "unit-08",
           "page": 33,
           "term": "交差点",
-          "reading": "こう",
+          "reading": "こうさてん",
           "meanings": {
-            "en": "right",
-            "pt": "to turn virar a"
+            "en": "intersection",
+            "pt": "cruzamento"
           }
         },
         {
           "id": "unit-08-p33-04",
           "chapterId": "unit-08",
           "page": 33,
-          "term": "心だ",
+          "term": "曲がる",
           "meanings": {
-            "en": "virar a",
-            "pt": "to cross"
-          }
+            "en": "to turn",
+            "pt": "virar"
+          },
+          "reading": "まがる"
         },
         {
           "id": "unit-08-p33-05",
           "chapterId": "unit-08",
           "page": 33,
-          "term": "を渡る",
-          "reading": "わた",
+          "term": "渡る",
+          "reading": "わたる",
           "meanings": {
-            "pt": "passar"
+            "en": "to cross",
+            "pt": "atravessar"
           }
         },
         {
@@ -2485,8 +2473,10 @@
           "page": 33,
           "term": "左右",
           "meanings": {
-            "pt": "to be seen -"
-          }
+            "en": "left and right",
+            "pt": "esquerda e direita"
+          },
+          "reading": "さゆう"
         },
         {
           "id": "unit-08-p33-07",
@@ -2510,24 +2500,14 @@
           "example": null
         },
         {
-          "id": "unit-08-p33-09",
-          "chapterId": "unit-08",
-          "page": 33,
-          "term": "ある",
-          "reading": "がわ",
-          "meanings": {
-            "pt": "Ter"
-          }
-        },
-        {
           "id": "unit-08-p33-10",
           "chapterId": "unit-08",
           "page": 33,
           "term": "反対",
           "reading": "はんたい",
           "meanings": {
-            "en": "Ter",
-            "pt": "Estar"
+            "en": "opposite",
+            "pt": "oposto; contrário"
           }
         }
       ],
@@ -3079,7 +3059,7 @@
           "term": "クラシック(な)",
           "meanings": {
             "en": "classical",
-            "pt": "clissico"
+            "pt": "clássico"
           },
           "example": null
         },
@@ -3102,7 +3082,7 @@
           "reading": "きょうみ",
           "meanings": {
             "en": "interest",
-            "pt": "interesse Seldom:"
+            "pt": "interesse"
           },
           "example": {
             "ja": "日本の文化に興味がある。",
@@ -3115,7 +3095,7 @@
           "chapterId": "unit-09",
           "page": 37,
           "term": "美術館",
-          "reading": "びじゆつかん",
+          "reading": "びじゅつかん",
           "meanings": {
             "en": "art museum",
             "pt": "museu de artes"
@@ -3127,7 +3107,7 @@
           "chapterId": "unit-09",
           "page": 37,
           "term": "展覧会",
-          "reading": "とんちんかい",
+          "reading": "てんらんかい",
           "meanings": {
             "en": "exhibition",
             "pt": "mostra"
@@ -3139,7 +3119,7 @@
           "chapterId": "unit-09",
           "page": 37,
           "term": "開く",
-          "reading": "ひら",
+          "reading": "ひらく",
           "meanings": {
             "en": "to hold",
             "pt": "abrir; realizar"
@@ -3360,12 +3340,13 @@
           "id": "unit-10-p38-02",
           "chapterId": "unit-10",
           "page": 38,
-          "term": "おっと",
+          "term": "夫",
           "meanings": {
-            "en": "marido",
-            "pt": "gif"
+            "en": "husband",
+            "pt": "marido"
           },
-          "example": null
+          "example": null,
+          "reading": "おっと"
         },
         {
           "id": "unit-10-p38-03",
@@ -3374,8 +3355,8 @@
           "term": "お土産",
           "reading": "みやげ",
           "meanings": {
-            "en": "gif",
-            "pt": "lembranca"
+            "en": "gift; souvenir",
+            "pt": "lembrança; presente"
           },
           "example": null
         },
@@ -3407,8 +3388,8 @@
           "term": "帰り",
           "reading": "かえ",
           "meanings": {
-            "en": "return, the way",
-            "pt": "home volta"
+            "en": "return; the way home",
+            "pt": "volta; caminho de volta"
           },
           "example": null
         },
@@ -3440,8 +3421,8 @@
           "term": "食事",
           "reading": "しょくじ",
           "meanings": {
-            "en": "uma refeicao",
-            "pt": "A concert"
+            "en": "meal",
+            "pt": "refeição"
           }
         },
         {
@@ -3450,8 +3431,8 @@
           "page": 39,
           "term": "コンサート",
           "meanings": {
-            "en": "um concerto",
-            "pt": "a marriage"
+            "en": "concert",
+            "pt": "concerto"
           },
           "example": null
         },
@@ -3462,8 +3443,8 @@
           "term": "結婚式",
           "reading": "けっこんしき",
           "meanings": {
-            "en": "Um casamento",
-            "pt": "an exhibition"
+            "en": "wedding ceremony",
+            "pt": "casamento; cerimônia de casamento"
           },
           "example": null
         },
@@ -3472,9 +3453,10 @@
           "chapterId": "unit-10",
           "page": 39,
           "term": "展覧会",
-          "reading": "てんらんかし",
+          "reading": "てんらんかい",
           "meanings": {
-            "pt": "uma mostra"
+            "en": "exhibition",
+            "pt": "mostra; exposição"
           }
         }
       ],
@@ -3607,10 +3589,10 @@
           "chapterId": "unit-11",
           "page": 40,
           "term": "店員",
-          "reading": "とんいん",
+          "reading": "てんいん",
           "meanings": {
             "en": "clerk",
-            "pt": "lojista Customer cliente"
+            "pt": "atendente; lojista"
           }
         },
         {
@@ -3618,7 +3600,7 @@
           "chapterId": "unit-11",
           "page": 40,
           "term": "予約(する)",
-          "reading": "よや",
+          "reading": "よやく",
           "meanings": {
             "en": "reservation; to reserve",
             "pt": "reserva; reservar"
@@ -3632,13 +3614,14 @@
           "term": "泊まる",
           "meanings": {
             "en": "to stay",
-            "pt": "estadia nights of stay pernoites"
+            "pt": "hospedar-se"
           },
           "example": {
             "ja": "旅館に泊まる。",
             "en": "to stay at a Japanese-style inn",
             "pt": "hospedar-se em uma pousada japonesa"
-          }
+          },
+          "reading": "とまる"
         },
         {
           "id": "unit-11-p40-04",
@@ -3655,7 +3638,7 @@
           "chapterId": "unit-11",
           "page": 40,
           "term": "申し訳ありません",
-          "reading": "もう",
+          "reading": "もうしわけありません",
           "meanings": {
             "en": "I'm terribly sorry",
             "pt": "Sinto muito"
@@ -3665,8 +3648,9 @@
           "id": "unit-11-p40-06",
           "chapterId": "unit-11",
           "page": 40,
-          "term": "いつぱい",
+          "term": "いっぱい",
           "meanings": {
+            "en": "full",
             "pt": "cheio"
           }
         },
@@ -3685,10 +3669,10 @@
           "chapterId": "unit-11",
           "page": 41,
           "term": "季節",
-          "reading": "チせら",
+          "reading": "きせつ",
           "meanings": {
-            "en": "Se0son",
-            "pt": "estacao"
+            "en": "season",
+            "pt": "estação"
           },
           "example": null
         },
@@ -3712,7 +3696,7 @@
           "reading": "おんせん",
           "meanings": {
             "en": "hot spring",
-            "pt": "fonte terma] mind, heart coracao"
+            "pt": "fonte termal"
           }
         },
         {
@@ -3864,10 +3848,10 @@
           "chapterId": "unit-12",
           "page": 42,
           "term": "歴史",
-          "reading": "れまし",
+          "reading": "れきし",
           "meanings": {
             "en": "history",
-            "pt": "historia temple templo budista"
+            "pt": "história"
           },
           "example": null
         },
@@ -3877,19 +3861,11 @@
           "page": 42,
           "term": "神社",
           "meanings": {
-            "pt": "Shrine"
+            "en": "shrine",
+            "pt": "santuário xintoísta"
           },
-          "example": null
-        },
-        {
-          "id": "unit-12-p42-03",
-          "chapterId": "unit-12",
-          "page": 42,
-          "term": "じんじゃ",
-          "meanings": {
-            "pt": "Santuario xintoista"
-          },
-          "example": null
+          "example": null,
+          "reading": "じんじゃ"
         },
         {
           "id": "unit-12-p42-04",
@@ -3897,19 +3873,20 @@
           "page": 42,
           "term": "大仏",
           "meanings": {
-            "en": "large statue of the",
-            "pt": "Buddha Grande Buda"
+            "en": "large statue of Buddha",
+            "pt": "grande estátua de Buda"
           },
-          "example": null
+          "example": null,
+          "reading": "だいぶつ"
         },
         {
           "id": "unit-12-p42-05",
           "chapterId": "unit-12",
           "page": 42,
           "term": "世界",
-          "reading": "せかしい",
+          "reading": "せかい",
           "meanings": {
-            "en": "World",
+            "en": "world",
             "pt": "mundo"
           }
         },
@@ -3918,10 +3895,10 @@
           "chapterId": "unit-12",
           "page": 42,
           "term": "残念な",
-          "reading": "さんねん",
+          "reading": "ざんねんな",
           "meanings": {
-            "en": "pity",
-            "pt": "uma pena"
+            "en": "regrettable; disappointing",
+            "pt": "lamentável; uma pena"
           },
           "example": null
         },
@@ -3931,8 +3908,8 @@
           "page": 42,
           "term": "ぜひ",
           "meanings": {
-            "en": "definitely:",
-            "pt": "by all means Sem falta"
+            "en": "definitely; by all means",
+            "pt": "sem falta; de todo modo"
           },
           "example": {
             "ja": "ぜひ、遊びに来てください。",
@@ -3947,8 +3924,8 @@
           "term": "非常に",
           "reading": "ひじょう",
           "meanings": {
-            "en": "Treally",
-            "pt": "realmente"
+            "en": "very; extremely",
+            "pt": "muito; extremamente"
           },
           "example": {
             "ja": "あなたが来られないなんて、非常に残念です。",
@@ -3961,7 +3938,7 @@
           "chapterId": "unit-12",
           "page": 43,
           "term": "珍しい",
-          "reading": "ゆすら",
+          "reading": "めずらしい",
           "meanings": {
             "en": "rare",
             "pt": "incomum"
@@ -3985,10 +3962,10 @@
           "chapterId": "unit-12",
           "page": 43,
           "term": "美しい",
-          "reading": "ラつく",
+          "reading": "うつくしい",
           "meanings": {
             "en": "beautiful",
-            "pt": "lindo experience!"
+            "pt": "lindo; belo"
           },
           "example": null
         },
@@ -3997,7 +3974,7 @@
           "chapterId": "unit-12",
           "page": 43,
           "term": "体験(する)",
-          "reading": "たしけん",
+          "reading": "たいけん",
           "meanings": {
             "en": "experience; to experience",
             "pt": "experiência; vivenciar"
@@ -4508,7 +4485,7 @@
           "chapterId": "unit-13",
           "page": 46,
           "term": "伺う",
-          "reading": "ラかが",
+          "reading": "うかがう",
           "meanings": {
             "en": "to call on/at",
             "pt": "ir/ vir"
@@ -4519,7 +4496,7 @@
           "chapterId": "unit-13",
           "page": 46,
           "term": "失礼(する)",
-          "reading": "しうれい",
+          "reading": "しつれい",
           "meanings": {
             "en": "to be sorry",
             "pt": "desculpar-se; retirar-se"
@@ -4531,10 +4508,10 @@
           "chapterId": "unit-13",
           "page": 46,
           "term": "申す",
-          "reading": "もう",
+          "reading": "もうす",
           "meanings": {
-            "en": "Ipolite form of",
-            "pt": "falar"
+            "en": "to say (humble)",
+            "pt": "dizer; falar (forma humilde)"
           }
         },
         {
@@ -4542,10 +4519,10 @@
           "chapterId": "unit-13",
           "page": 46,
           "term": "履歴書",
-          "reading": "りれきしよ",
+          "reading": "りれきしょ",
           "meanings": {
-            "en": "Tesume",
-            "pt": "Curriculum vitae"
+            "en": "resume; curriculum vitae",
+            "pt": "currículo"
           },
           "example": null
         },
@@ -4557,7 +4534,7 @@
           "reading": "じむしょ",
           "meanings": {
             "en": "office",
-            "pt": "escritorio back Verso"
+            "pt": "escritório"
           },
           "example": {
             "ja": "事務所の中を案内する。",
@@ -4572,8 +4549,8 @@
           "term": "飾る",
           "reading": "かざ",
           "meanings": {
-            "en": "to display:",
-            "pt": "to decorate to decorate a room with flowers enfeitar enfeitar flores no quarto"
+            "en": "to display; to decorate",
+            "pt": "enfeitar; decorar"
           },
           "example": {
             "ja": "部屋に花をかざる。",
@@ -4588,7 +4565,7 @@
           "term": "商品",
           "meanings": {
             "en": "product",
-            "pt": "produto to break i."
+            "pt": "produto"
           },
           "example": null
         },
@@ -4597,10 +4574,10 @@
           "chapterId": "unit-13",
           "page": 47,
           "term": "壊れる",
-          "reading": "ごわ",
+          "reading": "こわれる",
           "meanings": {
-            "en": "to break i.",
-            "pt": "Se quebrar"
+            "en": "to break",
+            "pt": "quebrar-se"
           },
           "example": null
         },
@@ -4609,7 +4586,7 @@
           "chapterId": "unit-13",
           "page": 47,
           "term": "触る",
-          "reading": "さわ",
+          "reading": "さわる",
           "meanings": {
             "en": "to touch",
             "pt": "tocar"
@@ -4767,7 +4744,7 @@
           "term": "ゲーム",
           "meanings": {
             "en": "game",
-            "pt": "j0g0"
+            "pt": "jogo"
           },
           "example": null
         },
@@ -4815,7 +4792,7 @@
           "chapterId": "unit-14",
           "page": 48,
           "term": "課長",
-          "reading": "がちょ",
+          "reading": "かちょう",
           "meanings": {
             "en": "Section manager",
             "pt": "chefe de departamento"
@@ -4829,8 +4806,8 @@
           "term": "給料",
           "reading": "きゅうりょう",
           "meanings": {
-            "en": "Salary",
-            "pt": "Salario"
+            "en": "salary",
+            "pt": "salário"
           },
           "example": null
         },
@@ -4849,11 +4826,11 @@
           "id": "unit-14-p48-09",
           "chapterId": "unit-14",
           "page": 48,
-          "term": "ー生懸命",
-          "reading": "しっしょうけんゆし",
+          "term": "一生懸命",
+          "reading": "いっしょうけんめい",
           "meanings": {
-            "en": "as much as one can",
-            "pt": "com afinco"
+            "en": "as hard as one can",
+            "pt": "com afinco; com todo o empenho"
           },
           "example": null
         },
@@ -4906,46 +4883,13 @@
           "example": null
         },
         {
-          "id": "unit-14-p49-loose-03",
-          "chapterId": "unit-14",
-          "page": 49,
-          "term": "しゃちょ",
-          "meanings": {
-            "en": "president",
-            "pt": "presidente"
-          },
-          "example": null
-        },
-        {
-          "id": "unit-14-p49-loose-05",
-          "chapterId": "unit-14",
-          "page": 49,
-          "term": "ぶちょ",
-          "meanings": {
-            "en": "general manager",
-            "pt": "Chefe de setor"
-          },
-          "example": null
-        },
-        {
-          "id": "unit-14-p49-loose-08",
-          "chapterId": "unit-14",
-          "page": 49,
-          "term": "がちょ",
-          "meanings": {
-            "en": "Section manager",
-            "pt": "chefe de departamento"
-          },
-          "example": null
-        },
-        {
           "id": "unit-14-p49-loose-09",
           "chapterId": "unit-14",
           "page": 49,
           "term": "同僚",
           "meanings": {
             "en": "colleague",
-            "pt": "Colega de trabalh."
+            "pt": "colega de trabalho"
           },
           "example": null
         }
@@ -5055,7 +4999,8 @@
           "page": 50,
           "term": "ぼく",
           "meanings": {
-            "en": "él"
+            "en": "I; me",
+            "pt": "eu"
           },
           "example": null
         },
@@ -5065,8 +5010,8 @@
           "page": 50,
           "term": "ハンバーグ",
           "meanings": {
-            "en": "hamburger",
-            "pt": "bife de carne moida"
+            "en": "hamburger steak",
+            "pt": "hambúrguer; bife de carne moída"
           },
           "example": null
         },
@@ -5086,7 +5031,7 @@
           "chapterId": "unit-15",
           "page": 50,
           "term": "伺う",
-          "reading": "うかが",
+          "reading": "うかがう",
           "meanings": {
             "en": "to ask",
             "pt": "Ouvir"
@@ -5098,8 +5043,8 @@
           "page": 50,
           "term": "別々(に)",
           "meanings": {
-            "en": "Separately",
-            "pt": "Separado Separate, different Outro"
+            "en": "separately; different",
+            "pt": "separadamente; diferente"
           },
           "example": {
             "ja": "別のを見せてください。",
@@ -5112,10 +5057,10 @@
           "chapterId": "unit-15",
           "page": 50,
           "term": "払う",
-          "reading": "はら",
+          "reading": "はらう",
           "meanings": {
-            "en": "t pay",
-            "pt": "pagar taste Sabor"
+            "en": "to pay",
+            "pt": "pagar"
           },
           "example": null
         },
@@ -5134,9 +5079,10 @@
           "id": "unit-15-p51-01",
           "chapterId": "unit-15",
           "page": 51,
-          "term": "つすすめるとき",
+          "term": "すすめる",
           "meanings": {
-            "pt": "Making a suggestionQuando for oferecer"
+            "en": "to recommend; to suggest",
+            "pt": "recomendar; sugerir"
           },
           "example": null
         },
@@ -5147,8 +5093,8 @@
           "term": "仕事",
           "reading": "しごと",
           "meanings": {
-            "en": "--o sabor",
-            "pt": "Que tal a vida no Japao O trabalho"
+            "en": "work; job",
+            "pt": "trabalho"
           },
           "example": null
         }
@@ -5282,10 +5228,10 @@
           "chapterId": "unit-16",
           "page": 52,
           "term": "海外",
-          "reading": "かしいがい",
+          "reading": "かいがい",
           "meanings": {
-            "en": "Overseqs",
-            "pt": "exterior"
+            "en": "overseas",
+            "pt": "exterior; ultramar"
           },
           "example": {
             "ja": "海外旅行",
@@ -5299,8 +5245,8 @@
           "page": 52,
           "term": "出張(する)",
           "meanings": {
-            "en": "to go on a business trip",
-            "pt": "Viagem de negocios Viajar a negocios"
+            "en": "business trip; to go on a business trip",
+            "pt": "viagem de negócios; viajar a negócios"
           }
         },
         {
@@ -5324,7 +5270,7 @@
           "chapterId": "unit-16",
           "page": 52,
           "term": "戻る",
-          "reading": "もど",
+          "reading": "もどる",
           "meanings": {
             "en": "to return",
             "pt": "voltar"
@@ -5342,8 +5288,8 @@
           "term": "会議",
           "reading": "かいぎ",
           "meanings": {
-            "en": "conference",
-            "pt": "reuniao"
+            "en": "meeting; conference",
+            "pt": "reunião"
           },
           "example": null
         },
@@ -5353,8 +5299,8 @@
           "page": 52,
           "term": "ひま",
           "meanings": {
-            "en": "Ifreeltime",
-            "pt": "folga"
+            "en": "free time",
+            "pt": "tempo livre; folga"
           },
           "example": null
         },
@@ -5363,9 +5309,9 @@
           "chapterId": "unit-16",
           "page": 52,
           "term": "倒れる",
-          "reading": "たお",
+          "reading": "たおれる",
           "meanings": {
-            "en": "to fall il)",
+            "en": "to fall down",
             "pt": "cair"
           },
           "example": {
@@ -5379,7 +5325,7 @@
           "chapterId": "unit-16",
           "page": 52,
           "term": "競争(する)",
-          "reading": "きょうそラ",
+          "reading": "きょうそう",
           "meanings": {
             "en": "competition; to compete",
             "pt": "competição; competir"
@@ -5412,7 +5358,7 @@
           "term": "しかたがない",
           "meanings": {
             "en": "cannot be helped",
-            "pt": "não ter outro jeitc"
+            "pt": "não tem jeito; não há alternativa"
           }
         },
         {
@@ -5433,7 +5379,7 @@
           "term": "治る",
           "meanings": {
             "en": "to recover",
-            "pt": "melhorar to recover from an illness melhorar da doenca"
+            "pt": "melhorar; recuperar-se"
           },
           "example": null
         },
@@ -5988,10 +5934,10 @@
           "chapterId": "unit-17",
           "page": 56,
           "term": "調べる",
-          "reading": "しら",
+          "reading": "しらべる",
           "meanings": {
-            "en": "to look up;",
-            "pt": "to do research on pesquisar"
+            "en": "to look up; to research",
+            "pt": "pesquisar; investigar"
           },
           "example": {
             "ja": "日本の法律について調べる。",
@@ -6004,7 +5950,7 @@
           "chapterId": "unit-17",
           "page": 56,
           "term": "例えば",
-          "reading": "たと",
+          "reading": "たとえば",
           "meanings": {
             "en": "for example",
             "pt": "por exemplo"
@@ -6018,8 +5964,8 @@
           "term": "都合",
           "reading": "つごう",
           "meanings": {
-            "en": "Convenience",
-            "pt": "situacao"
+            "en": "convenience; circumstances",
+            "pt": "conveniência; situação"
           },
           "example": {
             "ja": "土曜日のご都合はいかがですか。",
@@ -6060,7 +6006,7 @@
           "chapterId": "unit-17",
           "page": 56,
           "term": "正しい",
-          "reading": "ただ",
+          "reading": "ただしい",
           "meanings": {
             "en": "correct",
             "pt": "Correto"
@@ -6254,25 +6200,17 @@
           "page": 58,
           "term": "学部",
           "meanings": {
-            "pt": "department"
-          }
-        },
-        {
-          "id": "unit-18-p58-04",
-          "chapterId": "unit-18",
-          "page": 58,
-          "term": "がくぶ",
-          "meanings": {
-            "pt": "departamento"
+            "en": "faculty; department",
+            "pt": "faculdade; departamento"
           },
-          "example": null
+          "reading": "がくぶ"
         },
         {
           "id": "unit-18-p58-05",
           "chapterId": "unit-18",
           "page": 58,
           "term": "入学(する)",
-          "reading": "ビゆラがく",
+          "reading": "にゅうがく",
           "meanings": {
             "en": "entrance; to enter a school",
             "pt": "ingresso; ingressar"
@@ -6289,24 +6227,15 @@
           "page": 58,
           "term": "予習",
           "meanings": {
-            "pt": "preparation"
+            "en": "preparation for class",
+            "pt": "preparação para a aula; estudo prévio"
           },
           "example": {
             "ja": "数学の予習をする。",
             "en": "to prepare for math class",
             "pt": "estudar matemática com antecedência"
-          }
-        },
-        {
-          "id": "unit-18-p58-07",
-          "chapterId": "unit-18",
-          "page": 58,
-          "term": "よしゅう",
-          "meanings": {
-            "en": "for classes",
-            "pt": "estudar com antecedencia"
           },
-          "example": null
+          "reading": "よしゅう"
         },
         {
           "id": "unit-18-p58-08",
@@ -6315,8 +6244,8 @@
           "term": "復習",
           "reading": "ふくしゅう",
           "meanings": {
-            "en": "revision",
-            "pt": "revisao"
+            "en": "review",
+            "pt": "revisão"
           },
           "example": null
         },
@@ -6325,10 +6254,10 @@
           "chapterId": "unit-18",
           "page": 58,
           "term": "楽しむ",
-          "reading": "たの",
+          "reading": "たのしむ",
           "meanings": {
-            "en": "to enioy",
-            "pt": "Se divertir"
+            "en": "to enjoy",
+            "pt": "divertir-se; aproveitar"
           }
         },
         {
@@ -6337,8 +6266,8 @@
           "page": 58,
           "term": "がんばる",
           "meanings": {
-            "en": "to work hard",
-            "pt": "esforcar"
+            "en": "to work hard; to do one's best",
+            "pt": "esforçar-se"
           },
           "example": {
             "ja": "時間はあまりないけれど、できるだけがんばろう。",
@@ -6353,7 +6282,7 @@
           "term": "つもり",
           "meanings": {
             "en": "intention",
-            "pt": "pretensao"
+            "pt": "intenção; pretensão"
           },
           "example": {
             "ja": "大学を卒業したら、公務員になるつもりです。",
@@ -6365,11 +6294,11 @@
           "id": "unit-18-p59-01",
           "chapterId": "unit-18",
           "page": 59,
-          "term": "幼稚園児ー小学生",
-          "reading": "しようがくせい",
+          "term": "幼稚園児・小学生",
+          "reading": "ようちえんじ・しょうがくせい",
           "meanings": {
-            "en": "junior high",
-            "pt": "School students aluno do ginasio"
+            "en": "kindergarteners and elementary school students",
+            "pt": "crianças do jardim de infância e alunos do primário"
           }
         },
         {
@@ -6401,7 +6330,7 @@
           "term": "短期大学",
           "meanings": {
             "en": "junior college",
-            "pt": "faculdade de curta duracad"
+            "pt": "faculdade de curta duração"
           },
           "example": null
         },
@@ -6412,7 +6341,7 @@
           "term": "義務教育",
           "meanings": {
             "en": "compulsory education",
-            "pt": "educacao obrigatorig"
+            "pt": "educação obrigatória"
           },
           "example": null
         },
@@ -6423,7 +6352,7 @@
           "term": "専門学校",
           "meanings": {
             "en": "technical college",
-            "pt": "escola tecnica"
+            "pt": "escola técnica"
           },
           "example": null
         },
@@ -6444,8 +6373,8 @@
           "page": 59,
           "term": "大学生",
           "meanings": {
-            "en": "University",
-            "pt": "Students"
+            "en": "university student",
+            "pt": "estudante universitário"
           },
           "example": null
         },
@@ -6455,8 +6384,8 @@
           "page": 59,
           "term": "中学生",
           "meanings": {
-            "en": "junior high",
-            "pt": "School students"
+            "en": "junior high school student",
+            "pt": "estudante do ensino fundamental II"
           },
           "example": null
         },
@@ -6466,8 +6395,8 @@
           "page": 59,
           "term": "大学院生",
           "meanings": {
-            "en": "graduate students",
-            "pt": "pos-graduando"
+            "en": "graduate student",
+            "pt": "pós-graduando"
           },
           "example": null
         }
@@ -6620,9 +6549,10 @@
           "chapterId": "unit-19",
           "page": 61,
           "term": "叱る",
-          "reading": "しか",
+          "reading": "しかる",
           "meanings": {
-            "pt": "to scold"
+            "en": "to scold",
+            "pt": "repreender; dar bronca"
           },
           "example": null
         },
@@ -6632,8 +6562,8 @@
           "page": 61,
           "term": "わざと",
           "meanings": {
-            "en": "On purpose",
-            "pt": "de proposito"
+            "en": "on purpose",
+            "pt": "de propósito"
           },
           "example": null
         }
@@ -6789,8 +6719,8 @@
           "term": "時代",
           "reading": "じだい",
           "meanings": {
-            "en": "period",
-            "pt": "periodo"
+            "en": "period; era",
+            "pt": "período; época"
           }
         },
         {
@@ -6826,8 +6756,8 @@
           "page": 62,
           "term": "まじめな",
           "meanings": {
-            "en": "Serious",
-            "pt": "Serio"
+            "en": "serious; diligent",
+            "pt": "sério; dedicado"
           },
           "example": {
             "ja": "彼はとてもまじめな人です。",
@@ -6840,7 +6770,7 @@
           "chapterId": "unit-20",
           "page": 62,
           "term": "運動(する)",
-          "reading": "ラんどう",
+          "reading": "うんどう",
           "meanings": {
             "en": "exercise; to exercise",
             "pt": "exercício; praticar esporte"
@@ -6852,7 +6782,7 @@
           "chapterId": "unit-20",
           "page": 62,
           "term": "得意な",
-          "reading": "とてし",
+          "reading": "とくいな",
           "meanings": {
             "en": "be good at",
             "pt": "o forte"
@@ -6868,10 +6798,10 @@
           "chapterId": "unit-20",
           "page": 62,
           "term": "大会",
-          "reading": "たしかし",
+          "reading": "たいかい",
           "meanings": {
-            "en": "contest",
-            "pt": "competicao"
+            "en": "contest; tournament",
+            "pt": "competição; torneio"
           },
           "example": null
         },
@@ -6902,7 +6832,7 @@
           "chapterId": "unit-20",
           "page": 63,
           "term": "久しぶり",
-          "reading": "ひさ",
+          "reading": "ひさしぶり",
           "meanings": {
             "en": "a long time",
             "pt": "muito tempo; há quanto tempo"
@@ -6926,18 +6856,8 @@
           "page": 63,
           "term": "さびしい",
           "meanings": {
-            "en": "Sad, lonely",
-            "pt": "Saudades Vamos ficar com saudades quando você for embora"
-          },
-          "example": null
-        },
-        {
-          "id": "unit-20-p63-loose-02",
-          "chapterId": "unit-20",
-          "page": 63,
-          "term": "れんしゅう",
-          "meanings": {
-            "en": "1("
+            "en": "sad; lonely",
+            "pt": "triste; solitário; com saudades"
           },
           "example": null
         }
@@ -7421,7 +7341,7 @@
           "page": 66,
           "term": "風邪をひく",
           "meanings": {
-            "en": "to catch la cold)",
+            "en": "to catch a cold",
             "pt": "ficar gripado"
           },
           "example": null
@@ -7444,7 +7364,7 @@
           "term": "せき",
           "meanings": {
             "en": "cough",
-            "pt": "tosse fever febre"
+            "pt": "tosse"
           },
           "example": null
         },
@@ -7453,7 +7373,7 @@
           "chapterId": "unit-21",
           "page": 66,
           "term": "冷房",
-          "reading": "れしぼう",
+          "reading": "れいぼう",
           "meanings": {
             "en": "air conditioning",
             "pt": "ar condicionado"
@@ -7480,7 +7400,7 @@
           "chapterId": "unit-21",
           "page": 66,
           "term": "眠る",
-          "reading": "ねむ",
+          "reading": "ねむる",
           "meanings": {
             "en": "to sleep",
             "pt": "dormir"
@@ -7493,8 +7413,8 @@
           "page": 66,
           "term": "無理(する)",
           "meanings": {
-            "en": "to exert oneself too",
-            "pt": "much Se esforcar demais"
+            "en": "to overexert oneself",
+            "pt": "se esforçar demais"
           },
           "example": null
         },
@@ -7526,7 +7446,7 @@
           "term": "かむ",
           "meanings": {
             "en": "to bite",
-            "pt": "morder A dog bit my leg. Meu pe foi mordido por um cachorro."
+            "pt": "morder"
           },
           "example": null
         },
@@ -7536,8 +7456,8 @@
           "page": 67,
           "term": "折れる",
           "meanings": {
-            "en": "to break i.)",
-            "pt": "quebrar i"
+            "en": "to break",
+            "pt": "quebrar-se"
           }
         },
         {
@@ -7687,7 +7607,7 @@
           "chapterId": "unit-22",
           "page": 68,
           "term": "実は",
-          "reading": "しつ",
+          "reading": "じつは",
           "meanings": {
             "en": "actually",
             "pt": "na realidade"
@@ -7710,7 +7630,7 @@
           "page": 68,
           "term": "なくす",
           "meanings": {
-            "en": "to lose 1t.]",
+            "en": "to lose",
             "pt": "perder"
           }
         },
@@ -7720,8 +7640,8 @@
           "page": 68,
           "term": "はっきり",
           "meanings": {
-            "en": "clearly;",
-            "pt": "in a straightforward manner claramente"
+            "en": "clearly; frankly",
+            "pt": "claramente; francamente"
           },
           "example": {
             "ja": "彼女は自分の考えをはっきり言う。",
@@ -7762,7 +7682,7 @@
           "page": 68,
           "term": "落とす",
           "meanings": {
-            "en": "to drop t.]",
+            "en": "to drop",
             "pt": "deixar cair"
           },
           "example": null
@@ -7775,7 +7695,7 @@
           "reading": "けいさつ",
           "meanings": {
             "en": "police",
-            "pt": "policia"
+            "pt": "polícia"
           },
           "example": null
         },
@@ -7784,10 +7704,10 @@
           "chapterId": "unit-22",
           "page": 68,
           "term": "拾う",
-          "reading": "ひろ",
+          "reading": "ひろう",
           "meanings": {
             "en": "to pick up",
-            "pt": "tomar"
+            "pt": "pegar; recolher"
           },
           "example": {
             "ja": "駅前でタクシーを拾う。",
@@ -7802,7 +7722,7 @@
           "term": "見つかる",
           "meanings": {
             "en": "to be found",
-            "pt": "achar Gi"
+            "pt": "ser encontrado"
           },
           "example": null
         },
@@ -7822,10 +7742,10 @@
           "chapterId": "unit-22",
           "page": 69,
           "term": "盗む",
-          "reading": "ぬす",
+          "reading": "ぬすむ",
           "meanings": {
             "en": "to steal",
-            "pt": "roubar A hundred million yen was stolen from the bank. Foram roubados 1o0 milhoes de ienes do banco."
+            "pt": "roubar"
           },
           "example": null
         },
@@ -8014,10 +7934,10 @@
           "chapterId": "unit-23",
           "page": 70,
           "term": "駅員",
-          "reading": "えきしいん",
+          "reading": "えきいん",
           "meanings": {
-            "en": "Station employee",
-            "pt": "funcionario da estacao"
+            "en": "station employee",
+            "pt": "funcionário da estação"
           }
         },
         {
@@ -8025,10 +7945,10 @@
           "chapterId": "unit-23",
           "page": 70,
           "term": "忘れ物",
-          "reading": "わす",
+          "reading": "わすれもの",
           "meanings": {
             "en": "forgotten item",
-            "pt": "Objetos esquecidos"
+            "pt": "objeto esquecido"
           }
         },
         {
@@ -8036,10 +7956,10 @@
           "chapterId": "unit-23",
           "page": 70,
           "term": "確か",
-          "reading": "たし",
+          "reading": "たしか",
           "meanings": {
-            "en": "reliable",
-            "pt": "ter certeza definitely realmente"
+            "en": "reliable; probably",
+            "pt": "seguro; provavelmente"
           }
         },
         {
@@ -8047,10 +7967,10 @@
           "chapterId": "unit-23",
           "page": 70,
           "term": "車両",
-          "reading": "しやりょう",
+          "reading": "しゃりょう",
           "meanings": {
-            "en": "çar",
-            "pt": "Vagao"
+            "en": "train car; vehicle",
+            "pt": "vagão; veículo"
           },
           "example": null
         },
@@ -8105,7 +8025,7 @@
           "chapterId": "unit-23",
           "page": 71,
           "term": "書類",
-          "reading": "しよるい",
+          "reading": "しょるい",
           "meanings": {
             "en": "documents",
             "pt": "documento"
@@ -8117,7 +8037,7 @@
           "chapterId": "unit-23",
           "page": 71,
           "term": "届ける",
-          "reading": "とと",
+          "reading": "とどける",
           "meanings": {
             "en": "to bring; to deliver",
             "pt": "entregar"
@@ -8128,7 +8048,7 @@
           "chapterId": "unit-23",
           "page": 71,
           "term": "急に",
-          "reading": "きゅう",
+          "reading": "きゅうに",
           "meanings": {
             "en": "Suddenly",
             "pt": "de repente"
@@ -8141,8 +8061,8 @@
           "page": 71,
           "term": "向かう",
           "meanings": {
-            "en": "to leave for;",
-            "pt": "to head Tomorrow Seguir Amanha parto de Tokyo é sigo para Londres."
+            "en": "to head for",
+            "pt": "seguir para; dirigir-se a"
           },
           "example": null
         }
@@ -8306,11 +8226,13 @@
           "id": "unit-24-p72-03",
           "chapterId": "unit-24",
           "page": 72,
-          "term": "あいた",
+          "term": "空いた",
           "meanings": {
-            "pt": "Uns dias atras"
+            "en": "became empty; opened up",
+            "pt": "ficou vago; abriu"
           },
-          "example": null
+          "example": null,
+          "reading": "あいた"
         },
         {
           "id": "unit-24-p72-04",
@@ -8328,7 +8250,7 @@
           "chapterId": "unit-24",
           "page": 72,
           "term": "急ぐ",
-          "reading": "いモ",
+          "reading": "いそぐ",
           "meanings": {
             "en": "to hurry",
             "pt": "apressar"
@@ -8355,7 +8277,7 @@
           "chapterId": "unit-24",
           "page": 72,
           "term": "間違える",
-          "reading": "まちが",
+          "reading": "まちがえる",
           "meanings": {
             "en": "to get  wrong",
             "pt": "errar"
@@ -8368,8 +8290,8 @@
           "page": 72,
           "term": "しかた",
           "meanings": {
-            "en": "Way of doing",
-            "pt": "modo"
+            "en": "way of doing",
+            "pt": "modo; jeito"
           },
           "example": null
         },
@@ -8395,7 +8317,7 @@
           "term": "あやまる",
           "meanings": {
             "en": "to apologize",
-            "pt": "Se desculpar"
+            "pt": "desculpar-se; pedir desculpas"
           },
           "example": {
             "ja": "お客さんに一生懸命あやまった。",
@@ -8408,9 +8330,10 @@
           "chapterId": "unit-24",
           "page": 73,
           "term": "やり方",
-          "reading": "かた",
+          "reading": "やりかた",
           "meanings": {
-            "pt": "meio de fazer"
+            "en": "way of doing",
+            "pt": "modo de fazer"
           }
         },
         {
@@ -8418,9 +8341,10 @@
           "chapterId": "unit-24",
           "page": 73,
           "term": "作り方",
-          "reading": "つくかた",
+          "reading": "つくりかた",
           "meanings": {
-            "pt": "meio de produzir"
+            "en": "way of making",
+            "pt": "modo de produzir; modo de fazer"
           },
           "example": null
         },
@@ -8429,9 +8353,10 @@
           "chapterId": "unit-24",
           "page": 73,
           "term": "行き方",
-          "reading": "かた",
+          "reading": "いきかた",
           "meanings": {
-            "pt": "meio de ir"
+            "en": "how to go",
+            "pt": "modo de ir; caminho"
           },
           "example": null
         },
@@ -8440,21 +8365,21 @@
           "chapterId": "unit-24",
           "page": 73,
           "term": "直す",
-          "reading": "なお",
+          "reading": "なおす",
           "meanings": {
-            "en": "to repair, to correct",
-            "pt": "Consertar t."
+            "en": "to repair; to correct",
+            "pt": "consertar; corrigir"
           }
         },
         {
           "id": "unit-24-p73-05",
           "chapterId": "unit-24",
           "page": 73,
-          "term": "貧てる",
-          "reading": "そだ",
+          "term": "育てる",
+          "reading": "そだてる",
           "meanings": {
-            "en": "to grow, to educate",
-            "pt": "Criar"
+            "en": "to raise; to educate",
+            "pt": "criar; educar"
           },
           "example": null
         },
@@ -8463,7 +8388,7 @@
           "chapterId": "unit-24",
           "page": 73,
           "term": "包む",
-          "reading": "コつ",
+          "reading": "つつむ",
           "meanings": {
             "en": "to wrap",
             "pt": "embrulhar"
@@ -8945,7 +8870,7 @@
           "chapterId": "unit-25",
           "page": 76,
           "term": "最近",
-          "reading": "さいまん",
+          "reading": "さいきん",
           "meanings": {
             "en": "recently",
             "pt": "ultimamente"
@@ -8984,28 +8909,20 @@
           "page": 76,
           "term": "季節",
           "meanings": {
-            "pt": "Seuson"
+            "en": "season",
+            "pt": "estação do ano"
           },
-          "example": null
-        },
-        {
-          "id": "unit-25-p76-05",
-          "chapterId": "unit-25",
-          "page": 76,
-          "term": "世つ",
-          "meanings": {
-            "pt": "estacao do ang"
-          },
-          "example": null
+          "example": null,
+          "reading": "きせつ"
         },
         {
           "id": "unit-25-p76-06",
           "chapterId": "unit-25",
           "page": 76,
           "term": "空気",
-          "reading": "くっき",
+          "reading": "くうき",
           "meanings": {
-            "en": "âir",
+            "en": "air",
             "pt": "ar"
           },
           "example": {
@@ -9021,7 +8938,7 @@
           "term": "小鳥",
           "reading": "ことり",
           "meanings": {
-            "en": "Ilittle bird",
+            "en": "little bird",
             "pt": "passarinho"
           },
           "example": null
@@ -9051,11 +8968,11 @@
           "id": "unit-25-p77-01",
           "chapterId": "unit-25",
           "page": 77,
-          "term": "暖かしい",
-          "reading": "あたた",
+          "term": "暖かい",
+          "reading": "あたたかい",
           "meanings": {
-            "en": "hanami",
-            "pt": "Icherry blossom viewing] apreciar flores da cereieira"
+            "en": "warm",
+            "pt": "quente; agradável"
           },
           "example": null
         },
@@ -9064,10 +8981,10 @@
           "chapterId": "unit-25",
           "page": 77,
           "term": "暑い",
-          "reading": "あつ",
+          "reading": "あつい",
           "meanings": {
-            "en": "rainy seasonIfestival fireworks",
-            "pt": "periodo das chuvas festival de fogos de artificio"
+            "en": "hot",
+            "pt": "quente; calor"
           },
           "example": null
         },
@@ -9076,10 +8993,10 @@
           "chapterId": "unit-25",
           "page": 77,
           "term": "涼しい",
-          "reading": "あき",
+          "reading": "すずしい",
           "meanings": {
-            "en": "red leaves",
-            "pt": "Coloracao das folhas"
+            "en": "cool",
+            "pt": "fresco"
           }
         },
         {
@@ -9087,10 +9004,10 @@
           "chapterId": "unit-25",
           "page": 77,
           "term": "寒い",
-          "reading": "さむ",
+          "reading": "さむい",
           "meanings": {
-            "en": "Christmas INew Year's",
-            "pt": "Natal!Ano Novo"
+            "en": "cold",
+            "pt": "frio"
           }
         }
       ],
@@ -9229,10 +9146,10 @@
           "chapterId": "unit-26",
           "page": 78,
           "term": "天気予報",
-          "reading": "こんきよほ",
+          "reading": "てんきよほう",
           "meanings": {
-            "en": "Weather forecast",
-            "pt": "previsao de temp."
+            "en": "weather forecast",
+            "pt": "previsão do tempo"
           },
           "example": {
             "ja": "天気予報によると、明日は晴れるらしいよ。",
@@ -9248,7 +9165,7 @@
           "reading": "たいふう",
           "meanings": {
             "en": "typhoon",
-            "pt": "tufao"
+            "pt": "tufão"
           },
           "example": null
         },
@@ -9270,7 +9187,7 @@
           "reading": "ちほう",
           "meanings": {
             "en": "region",
-            "pt": "regiao"
+            "pt": "região"
           }
         },
         {
@@ -9280,8 +9197,8 @@
           "term": "南西",
           "reading": "なんせい",
           "meanings": {
-            "en": "South-west",
-            "pt": "Sudoeste cloud nuvem"
+            "en": "southwest",
+            "pt": "sudoeste"
           },
           "example": null
         },
@@ -9312,7 +9229,7 @@
           "chapterId": "unit-26",
           "page": 78,
           "term": "注意(する)",
-          "reading": "ちゅい",
+          "reading": "ちゅうい",
           "meanings": {
             "en": "care; to be careful",
             "pt": "atenção; prestar atenção"
@@ -9329,8 +9246,8 @@
           "page": 79,
           "term": "方角の言い方",
           "meanings": {
-            "en": "Expressions of directior",
-            "pt": "Expressoes para direcoes"
+            "en": "Expressions of direction",
+            "pt": "expressões de direção"
           },
           "example": null
         },
@@ -9364,16 +9281,6 @@
           "meanings": {
             "en": "South-east",
             "pt": "Sudeste"
-          },
-          "example": null
-        },
-        {
-          "id": "unit-26-p79-loose-06",
-          "chapterId": "unit-26",
-          "page": 79,
-          "term": "れんしゅう",
-          "meanings": {
-            "en": "1("
           },
           "example": null
         }
@@ -9500,8 +9407,8 @@
           "page": 80,
           "term": "ぶつかる",
           "meanings": {
-            "en": "to crash;",
-            "pt": "to bump into trombar"
+            "en": "to crash; to bump into",
+            "pt": "trombar; esbarrar"
           },
           "example": {
             "ja": "急いで角を曲がったら、人にぶつかった。",
@@ -9528,8 +9435,8 @@
           "term": "警官",
           "reading": "けいかん",
           "meanings": {
-            "en": "policeman",
-            "pt": "policial line linha"
+            "en": "police officer",
+            "pt": "policial"
           },
           "example": null
         },
@@ -9540,7 +9447,7 @@
           "term": "引く",
           "meanings": {
             "en": "to draw",
-            "pt": "tracar"
+            "pt": "traçar; puxar"
           },
           "example": null
         },
@@ -9551,7 +9458,7 @@
           "term": "救急車",
           "meanings": {
             "en": "ambulance",
-            "pt": "ambulancia"
+            "pt": "ambulância"
           },
           "example": {
             "ja": "119番で救急車を呼ぶ。",
@@ -9579,10 +9486,10 @@
           "chapterId": "unit-27",
           "page": 81,
           "term": "場所",
-          "reading": "ばしよ",
+          "reading": "ばしょ",
           "meanings": {
-            "en": "to look up the location of the inn on the map",
-            "pt": "procurar o local do hotel japonês no mapa"
+            "en": "place; location",
+            "pt": "lugar; local"
           }
         },
         {
@@ -9591,24 +9498,14 @@
           "page": 81,
           "term": "亡くなる",
           "meanings": {
-            "en": "My father died ten years ago.",
-            "pt": "Meu pai faleceu ha 1o anos."
+            "en": "to die; to pass away",
+            "pt": "falecer"
           },
           "example": {
             "ja": "私の父は10年前に亡くなった。",
             "en": "My father died ten years ago.",
             "pt": "Meu pai faleceu há dez anos."
           }
-        },
-        {
-          "id": "unit-27-p81-loose-01",
-          "chapterId": "unit-27",
-          "page": 81,
-          "term": "れんしゅう",
-          "meanings": {
-            "en": "1("
-          },
-          "example": null
         }
       ],
       "exercises": [
@@ -9752,7 +9649,7 @@
           "reading": "かじ",
           "meanings": {
             "en": "fire",
-            "pt": "incendio"
+            "pt": "incêndio"
           },
           "example": null
         },
@@ -9764,7 +9661,7 @@
           "reading": "しょうぼうしゃ",
           "meanings": {
             "en": "fire engine",
-            "pt": "Carro de bombeiros"
+            "pt": "carro de bombeiros"
           },
           "example": null
         },
@@ -9795,7 +9692,7 @@
           "page": 82,
           "term": "わかす",
           "meanings": {
-            "en": "to boil (t.]",
+            "en": "to boil; to heat",
             "pt": "esquentar; ferver"
           },
           "example": {
@@ -9811,7 +9708,7 @@
           "term": "ガス",
           "meanings": {
             "en": "gas",
-            "pt": "gá$"
+            "pt": "gás"
           },
           "example": null
         },
@@ -9823,7 +9720,7 @@
           "reading": "るす",
           "meanings": {
             "en": "absence",
-            "pt": "não estar no loca]"
+            "pt": "ausência; não estar em casa"
           },
           "example": {
             "ja": "留守番電話にメッセージを入れる。",
@@ -9847,8 +9744,8 @@
           "page": 82,
           "term": "もちろん",
           "meanings": {
-            "en": "needless to say;",
-            "pt": "of course claro"
+            "en": "of course",
+            "pt": "claro; evidentemente"
           }
         },
         {
@@ -9856,10 +9753,10 @@
           "chapterId": "unit-28",
           "page": 83,
           "term": "地震",
-          "reading": "ししん",
+          "reading": "じしん",
           "meanings": {
             "en": "earthquake",
-            "pt": "terremoto shelf estante"
+            "pt": "terremoto"
           },
           "example": null
         },
@@ -9880,8 +9777,8 @@
           "page": 83,
           "term": "割れる",
           "meanings": {
-            "en": "to break li.)",
-            "pt": "ficar quebrado"
+            "en": "to break",
+            "pt": "quebrar-se"
           }
         },
         {
@@ -9891,7 +9788,7 @@
           "term": "揺れる",
           "meanings": {
             "en": "to shake",
-            "pt": "balancar Leaves on the trees are shaking in the wind. As folhas da arvore balancam com o vento."
+            "pt": "balançar"
           },
           "example": null
         },
@@ -9900,10 +9797,10 @@
           "chapterId": "unit-28",
           "page": 83,
           "term": "怖い",
-          "reading": "こわ",
+          "reading": "こわい",
           "meanings": {
-            "en": "Scary",
-            "pt": "medo Não gosto de filmes de terror."
+            "en": "scary; frightening",
+            "pt": "assustador; medo"
           },
           "example": null
         }
@@ -10444,7 +10341,7 @@
           "term": "打つ",
           "meanings": {
             "en": "to hit",
-            "pt": "bater bone 0sš0"
+            "pt": "bater"
           },
           "example": {
             "ja": "ボールを打つ。",
@@ -10459,8 +10356,8 @@
           "term": "続く",
           "reading": "つづく",
           "meanings": {
-            "en": "to continue li.]",
-            "pt": "Continuar"
+            "en": "to continue",
+            "pt": "continuar"
           },
           "example": null
         },
@@ -10484,9 +10381,9 @@
           "chapterId": "unit-29",
           "page": 86,
           "term": "届く",
-          "reading": "とと",
+          "reading": "とどく",
           "meanings": {
-            "en": "to arrive",
+            "en": "to arrive; to reach",
             "pt": "chegar"
           },
           "example": null
@@ -10521,10 +10418,10 @@
           "chapterId": "unit-29",
           "page": 87,
           "term": "動く",
-          "reading": "うご",
+          "reading": "うごく",
           "meanings": {
-            "en": "to move;",
-            "pt": "to be active"
+            "en": "to move; to work",
+            "pt": "mover-se; funcionar"
           },
           "example": null
         },
@@ -10556,8 +10453,8 @@
           "page": 87,
           "term": "つらい",
           "meanings": {
-            "en": "tough",
-            "pt": "11 trabalhoso His iob seems very tough O servico dele parece ser muito trabalhoso."
+            "en": "tough; painful",
+            "pt": "difícil; doloroso"
           },
           "example": null
         }
@@ -10712,7 +10609,7 @@
           "term": "まず",
           "meanings": {
             "en": "first of all",
-            "pt": "em primeiro lugar fat óle0"
+            "pt": "em primeiro lugar"
           },
           "example": {
             "ja": "まず最初に、自己紹介をします。",
@@ -10741,8 +10638,8 @@
           "page": 88,
           "term": "ジョギング",
           "meanings": {
-            "en": "iogging",
-            "pt": "Cooper"
+            "en": "jogging",
+            "pt": "cooper; corrida leve"
           },
           "example": null
         },
@@ -10753,8 +10650,8 @@
           "term": "以上",
           "reading": "いじょう",
           "meanings": {
-            "en": "Over",
-            "pt": "mais de habit habito"
+            "en": "more than; over",
+            "pt": "mais de; acima de"
           }
         },
         {
@@ -10777,7 +10674,7 @@
           "chapterId": "unit-30",
           "page": 88,
           "term": "続ける",
-          "reading": "つつ",
+          "reading": "つづける",
           "meanings": {
             "en": "to continue",
             "pt": "continuar"
@@ -10793,10 +10690,10 @@
           "chapterId": "unit-30",
           "page": 88,
           "term": "十分",
-          "reading": "じばうぶん",
+          "reading": "じゅうぶん",
           "meanings": {
-            "en": "enough",
-            "pt": "Suficiente"
+            "en": "enough; sufficient",
+            "pt": "suficiente"
           },
           "example": {
             "ja": "出発まで、十分時間がある。",
@@ -10809,10 +10706,10 @@
           "chapterId": "unit-30",
           "page": 89,
           "term": "誘う",
-          "reading": "ミそ",
+          "reading": "さそう",
           "meanings": {
             "en": "to invite",
-            "pt": "Convidar Quero convida-la para ir ao cinema, mas não sei como dizer"
+            "pt": "convidar"
           },
           "example": null
         },
@@ -10821,10 +10718,10 @@
           "chapterId": "unit-30",
           "page": 89,
           "term": "始める",
-          "reading": "はじ",
+          "reading": "はじめる",
           "meanings": {
             "en": "to start",
-            "pt": "comecar"
+            "pt": "começar"
           },
           "example": null
         },
@@ -10856,8 +10753,8 @@
           "page": 89,
           "term": "予定",
           "meanings": {
-            "en": "Schedule",
-            "pt": "plano Verificar os planos no calendario."
+            "en": "schedule; plan",
+            "pt": "programação; plano"
           },
           "example": null
         },
@@ -10865,10 +10762,10 @@
           "id": "unit-30-p89-06",
           "chapterId": "unit-30",
           "page": 89,
-          "term": "恥すかしい",
+          "term": "恥ずかしい",
           "meanings": {
-            "en": "to be embarrassed",
-            "pt": "envergonhar Não posso cantar na frente de todos porque tenho vergonha"
+            "en": "embarrassing; ashamed",
+            "pt": "vergonhoso; envergonhado"
           },
           "example": null
         }
@@ -11004,7 +10901,7 @@
           "chapterId": "unit-31",
           "page": 90,
           "term": "趣味",
-          "reading": "しゆみ",
+          "reading": "しゅみ",
           "meanings": {
             "en": "hobby",
             "pt": "hobby"
@@ -11018,8 +10915,8 @@
           "term": "太陽",
           "reading": "たいよう",
           "meanings": {
-            "en": "Sun",
-            "pt": "Soı"
+            "en": "sun",
+            "pt": "sol"
           },
           "example": null
         },
@@ -11043,10 +10940,10 @@
           "chapterId": "unit-31",
           "page": 90,
           "term": "深い",
-          "reading": "ふか",
+          "reading": "ふかい",
           "meanings": {
             "en": "deep",
-            "pt": "fundo"
+            "pt": "profundo"
           }
         },
         {
@@ -11103,8 +11000,8 @@
           "page": 90,
           "term": "連れていく",
           "meanings": {
-            "en": "to take - to",
-            "pt": "levar in the past Antigamente"
+            "en": "to take along",
+            "pt": "levar junto"
           }
         },
         {
@@ -11112,7 +11009,7 @@
           "chapterId": "unit-31",
           "page": 90,
           "term": "思い出す",
-          "reading": "おも",
+          "reading": "おもいだす",
           "meanings": {
             "en": "to recall",
             "pt": "lembrar"
@@ -11139,20 +11036,10 @@
           "chapterId": "unit-31",
           "page": 91,
           "term": "手伝う",
-          "reading": "てった",
+          "reading": "てつだう",
           "meanings": {
             "en": "to help",
             "pt": "ajudar"
-          },
-          "example": null
-        },
-        {
-          "id": "unit-31-p91-loose-01",
-          "chapterId": "unit-31",
-          "page": 91,
-          "term": "れんしゅう",
-          "meanings": {
-            "en": "1("
           },
           "example": null
         }
@@ -11332,10 +11219,10 @@
           "id": "unit-32-p92-02",
           "chapterId": "unit-32",
           "page": 92,
-          "term": "憂子",
-          "reading": "むす",
+          "term": "息子",
+          "reading": "むすこ",
           "meanings": {
-            "en": "Son",
+            "en": "son",
             "pt": "filho"
           }
         },
@@ -11346,9 +11233,10 @@
           "term": "(お)子(さん)",
           "meanings": {
             "en": "child",
-            "pt": "crianca"
+            "pt": "criança"
           },
-          "example": null
+          "example": null,
+          "reading": "(お)こ(さん)"
         },
         {
           "id": "unit-32-p92-04",
@@ -11356,8 +11244,8 @@
           "page": 92,
           "term": "いじめる",
           "meanings": {
-            "en": "to bully;",
-            "pt": "to be cruel to judiar"
+            "en": "to bully; to be cruel to",
+            "pt": "maltratar; judiar"
           },
           "example": {
             "ja": "動物をいじめてはいけません。",
@@ -11370,7 +11258,7 @@
           "chapterId": "unit-32",
           "page": 92,
           "term": "悲しい",
-          "reading": "かな",
+          "reading": "かなしい",
           "meanings": {
             "en": "Upset, sad",
             "pt": "triste"
@@ -11397,20 +11285,11 @@
           "page": 92,
           "term": "お宅",
           "meanings": {
-            "pt": "you house"
+            "en": "your house; your home",
+            "pt": "sua casa"
           },
-          "example": null
-        },
-        {
-          "id": "unit-32-p92-08",
-          "chapterId": "unit-32",
-          "page": 92,
-          "term": "たく",
-          "meanings": {
-            "en": "Sua casa",
-            "pt": "feeling"
-          },
-          "example": null
+          "example": null,
+          "reading": "おたく"
         },
         {
           "id": "unit-32-p92-09",
@@ -11445,7 +11324,7 @@
           "chapterId": "unit-32",
           "page": 92,
           "term": "伝える",
-          "reading": "らた",
+          "reading": "つたえる",
           "meanings": {
             "en": "to communicate",
             "pt": "passar"
@@ -11456,7 +11335,7 @@
           "chapterId": "unit-32",
           "page": 93,
           "term": "親切な",
-          "reading": "しんせう",
+          "reading": "しんせつな",
           "meanings": {
             "en": "kind",
             "pt": "prestativo"
@@ -11469,8 +11348,8 @@
           "page": 93,
           "term": "やさしい",
           "meanings": {
-            "en": "good-natured;",
-            "pt": "kind-hearted gentil Gosto de homens gentis"
+            "en": "gentle; kind",
+            "pt": "gentil; bondoso"
           },
           "example": null
         },
@@ -11489,10 +11368,10 @@
           "id": "unit-32-p93-05",
           "chapterId": "unit-32",
           "page": 93,
-          "term": "しつかり",
+          "term": "しっかり",
           "meanings": {
-            "en": "attentively, hard;",
-            "pt": "reliable Since you are getting paid for it, you should work hard firme Se é para ganha dinheiro, temos que tabalhar firme."
+            "en": "steadily; firmly; reliably",
+            "pt": "com firmeza; firmemente; de modo confiável"
           },
           "example": null
         }
