@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "ocr": "python scripts/ocr_pdf.py --pages 16-120 --scale 3",
-    "build:data": "python scripts/build_study_data.py"
+    "build:data": "python scripts/build_study_data.py",
+    "curate:examples": "node scripts/curate_examples.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",
