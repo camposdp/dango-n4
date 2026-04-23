@@ -310,9 +310,7 @@ h1 {
   border: 1px solid #ead8c4;
   border-radius: 8px;
   color: #202320;
-  background:
-    radial-gradient(circle at 18% 12%, rgba(246, 185, 201, 0.28), transparent 27%),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 251, 243, 0.98));
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.99), rgba(255, 251, 243, 0.99));
   box-shadow: 0 26px 80px rgba(111, 57, 37, 0.16);
 }
 
@@ -329,12 +327,12 @@ h1 {
 
 .flashcard.left {
   border-color: #d95469;
-  background: linear-gradient(145deg, #fff2f4, #ffffff);
+  background: linear-gradient(145deg, #ffffff, #fffaf4);
 }
 
 .flashcard.right {
   border-color: #1f6f55;
-  background: linear-gradient(145deg, #f3fbf1, #ffffff);
+  background: linear-gradient(145deg, #ffffff, #fffaf4);
 }
 
 .chapterPill {
@@ -364,11 +362,12 @@ h1 {
   font-family:
     "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", "Times New Roman", serif;
   font-size: clamp(3.2rem, 11vw, 6.8rem);
-  line-height: 1.08;
+  line-height: 1.22;
   overflow-wrap: anywhere;
 }
 
 ruby {
+  display: inline-ruby;
   ruby-position: over;
 }
 
@@ -376,9 +375,15 @@ rt {
   color: #1f6f55;
   font-family:
     "Yu Gothic", "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
-  font-size: 0.28em;
+  font-size: 0.25em;
   font-weight: 800;
   letter-spacing: 0;
+  line-height: 1;
+  text-align: center;
+}
+
+.jpTerm rt {
+  font-size: 0.22em;
 }
 
 .exampleJa {
@@ -389,6 +394,10 @@ rt {
     "Yu Gothic", "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
   font-size: clamp(1.12rem, 3vw, 1.5rem);
   line-height: 1.7;
+}
+
+.exampleJa rt {
+  font-size: 0.52em;
 }
 
 .cardFace.back {
@@ -426,13 +435,15 @@ rt {
 
 .swipeActions {
   width: min(720px, 100%);
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 
 .swipeActions button,
 .gradeButtons button {
   flex: 1;
+  min-width: 0;
   min-height: 54px;
   padding: 0 18px;
   color: #ffffff;
@@ -720,7 +731,6 @@ rt {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .swipeActions,
   .exerciseNav {
     flex-direction: column;
   }
@@ -729,6 +739,14 @@ rt {
   .exerciseNav > button,
   .gradeButtons {
     width: 100%;
+  }
+
+  .swipeActions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .swipeActions button {
+    padding: 0 10px;
   }
 
   .gradeButtons {

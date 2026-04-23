@@ -11,13 +11,107 @@ import {
   Upload,
   X,
 } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import { sampleData } from "./data/sampleData";
 import type { Chapter, ExerciseQuestion, ExerciseSet, Flashcard, StudyData } from "./types";
 
 type Tab = "cards" | "exercises";
 type Grade = "remembered" | "missed";
-type Language = "pt" | "en" | "both";
+type Language = "pt" | "en";
+
+type UiCopy = {
+  reviewControls: string;
+  language: string;
+  translationLanguage: string;
+  examples: string;
+  exportProgress: string;
+  importProgress: string;
+  resetSession: string;
+  chaptersFilter: string;
+  cards: string;
+  exercises: string;
+  all: string;
+  chapterSingular: string;
+  chapterPlural: string;
+  sessionReset: string;
+  progressExported: string;
+  progressImported: string;
+  progressImportFailed: string;
+  credit: string;
+  completionTitle: string;
+  completionBody: string;
+  restart: string;
+  noCards: string;
+  current: string;
+  rememberedStat: string;
+  reviewStat: string;
+  page: string;
+  missedButton: string;
+  rememberedButton: string;
+};
+
+const UI_COPY: Record<Language, UiCopy> = {
+  pt: {
+    reviewControls: "Controles de revisão",
+    language: "Idioma",
+    translationLanguage: "Idioma da tradução",
+    examples: "Frases",
+    exportProgress: "Exportar progresso",
+    importProgress: "Importar progresso",
+    resetSession: "Reiniciar sessão",
+    chaptersFilter: "Filtro de capítulos",
+    cards: "Cards",
+    exercises: "Exercícios",
+    all: "Todos",
+    chapterSingular: "capítulo",
+    chapterPlural: "capítulos",
+    sessionReset: "Sessão reiniciada.",
+    progressExported: "Progresso exportado.",
+    progressImported: "Progresso importado.",
+    progressImportFailed: "Não foi possível importar o progresso.",
+    credit: "Criado por Daniel Prado de Campos para treinar o livro Nihongo Challenge Kotoba N4.",
+    completionTitle: "Revisão completa",
+    completionBody: "Todos os cards desta seleção foram lembrados.",
+    restart: "Revisar novamente",
+    noCards: "Nenhum card encontrado para a seleção atual.",
+    current: "atual",
+    rememberedStat: "lembrei",
+    reviewStat: "revisar",
+    page: "Página",
+    missedButton: "Não lembrei",
+    rememberedButton: "Lembrei",
+  },
+  en: {
+    reviewControls: "Review controls",
+    language: "Language",
+    translationLanguage: "Translation language",
+    examples: "Examples",
+    exportProgress: "Export progress",
+    importProgress: "Import progress",
+    resetSession: "Restart session",
+    chaptersFilter: "Chapter filter",
+    cards: "Cards",
+    exercises: "Exercises",
+    all: "All",
+    chapterSingular: "chapter",
+    chapterPlural: "chapters",
+    sessionReset: "Session restarted.",
+    progressExported: "Progress exported.",
+    progressImported: "Progress imported.",
+    progressImportFailed: "Could not import progress.",
+    credit: "Created by Daniel Prado de Campos to practice Nihongo Challenge Kotoba N4.",
+    completionTitle: "Review complete",
+    completionBody: "All cards in this selection were remembered.",
+    restart: "Review again",
+    noCards: "No cards found for the current selection.",
+    current: "current",
+    rememberedStat: "remembered",
+    reviewStat: "review",
+    page: "Page",
+    missedButton: "Forgot",
+    rememberedButton: "Remembered",
+  },
+};
 
 type ExerciseCard = {
   id: string;
@@ -89,39 +183,43 @@ function termView(card: Flashcard) {
   );
 }
 
-function languageLabels(language: Language) {
-  if (language === "pt") {
-    return ["pt"] as const;
-  }
-  if (language === "en") {
-    return ["en"] as const;
-  }
-  return ["pt", "en"] as const;
+function normalizeLanguage(value: unknown): Language {
+  return value === "en" ? "en" : "pt";
 }
 
 function choiceLabel(language: Language) {
   if (language === "pt") {
     return "Português";
   }
-  if (language === "en") {
-    return "English";
-  }
-  return "PT + EN";
+  return "English";
 }
 
-function renderTextByLanguage(source: { pt?: string; en?: string }, language: Language, empty = "Sem tradução") {
-  const fields = languageLabels(language)
-    .map((key) => ({ key, value: source[key] }))
-    .filter((item) => item.value);
+function renderTextByLanguage(source: { pt?: string; en?: string }, language: Language) {
+  const value = source[language];
+  return value ? <p>{value}</p> : null;
+}
 
-  if (fields.length === 0) {
-    return <p>{empty}</p>;
+function exampleTermTarget(term: string) {
+  return term.replace(/[（(].*?[）)]/g, "").trim();
+}
+
+function exampleJaView(card: Flashcard) {
+  const text = card.example?.ja;
+  const target = exampleTermTarget(card.term);
+  if (!text || !card.reading || !target || !text.includes(target)) {
+    return text;
   }
 
-  return fields.map((item) => (
-    <p key={item.key} className={item.key === "en" ? "secondaryText" : ""}>
-      {item.value}
-    </p>
+  return text.split(target).map((part, index) => (
+    <Fragment key={`${card.id}-example-${index}`}>
+      {index > 0 && (
+        <ruby>
+          {target}
+          <rt>{card.reading}</rt>
+        </ruby>
+      )}
+      {part}
+    </Fragment>
   ));
 }
 
@@ -151,7 +249,7 @@ function decodeSave(buffer: ArrayBuffer): SavedState {
   const decoded = new TextDecoder().decode(buffer);
   const payload = JSON.parse(decoded) as { app?: string; state?: SavedState };
   if (payload.app !== "dango-n4" || !payload.state) {
-    throw new Error("Arquivo de progresso inválido.");
+    throw new Error("Invalid progress file.");
   }
   return payload.state;
 }
@@ -182,7 +280,6 @@ function toSavedState(args: {
 
 export function App() {
   const [data, setData] = useState<StudyData>(normalizeData(sampleData));
-  const [dataMode, setDataMode] = useState<"generated" | "sample">("sample");
   const [selectedCardChapters, setSelectedCardChapters] = useState<Set<string>>(new Set());
   const [selectedExerciseChapters, setSelectedExerciseChapters] = useState<Set<string>>(new Set());
   const [includeReviewExercises, setIncludeReviewExercises] = useState(true);
@@ -217,11 +314,9 @@ export function App() {
       })
       .then((payload) => {
         setData(normalizeData(payload));
-        setDataMode("generated");
       })
       .catch(() => {
         setData(normalizeData(sampleData));
-        setDataMode("sample");
       });
   }, []);
 
@@ -236,7 +331,7 @@ export function App() {
       setSelectedCardChapters(new Set(state.selectedCardChapters ?? []));
       setSelectedExerciseChapters(new Set(state.selectedExerciseChapters ?? []));
       setIncludeReviewExercises(state.includeReviewExercises ?? true);
-      setLanguage(state.language ?? "pt");
+      setLanguage(normalizeLanguage(state.language));
       setShowExamples(state.showExamples ?? true);
       setCardIndex(state.cardIndex ?? 0);
       setExerciseIndex(state.exerciseIndex ?? 0);
@@ -298,14 +393,15 @@ export function App() {
   );
   const currentCard = cardComplete ? undefined : deckById.get(activeCardQueue[cardIndex]);
   const currentExercise = exerciseComplete ? undefined : exerciseById.get(activeExerciseQueue[exerciseIndex]);
+  const copy = UI_COPY[language];
   const selectedCardLabel =
     selectedCardChapters.size === 0
-      ? "32 capítulos"
-      : compactCount(selectedCardChapters.size, "capítulo", "capítulos");
+      ? `32 ${copy.chapterPlural}`
+      : compactCount(selectedCardChapters.size, copy.chapterSingular, copy.chapterPlural);
   const selectedExerciseLabel =
     selectedExerciseChapters.size === 0
-      ? "32 capítulos"
-      : compactCount(selectedExerciseChapters.size, "capítulo", "capítulos");
+      ? `32 ${copy.chapterPlural}`
+      : compactCount(selectedExerciseChapters.size, copy.chapterSingular, copy.chapterPlural);
 
   useEffect(() => {
     if (!saveLoaded) {
@@ -512,7 +608,7 @@ export function App() {
     setStats({ remembered: 0, missed: 0 });
     setDragOffset(0);
     setExerciseResponses({});
-    setSaveMessage("Sessão reiniciada.");
+    setSaveMessage(copy.sessionReset);
   };
 
   const exportProgress = () => {
@@ -540,7 +636,7 @@ export function App() {
     link.download = `dango-n4-progress-${new Date().toISOString().slice(0, 10)}.dango`;
     link.click();
     URL.revokeObjectURL(url);
-    setSaveMessage("Progresso exportado.");
+    setSaveMessage(copy.progressExported);
   };
 
   const importProgress = async (file: File | undefined) => {
@@ -549,10 +645,11 @@ export function App() {
     }
     try {
       const state = await file.arrayBuffer().then(decodeSave);
+      const importedLanguage = normalizeLanguage(state.language);
       setSelectedCardChapters(new Set(state.selectedCardChapters ?? []));
       setSelectedExerciseChapters(new Set(state.selectedExerciseChapters ?? []));
       setIncludeReviewExercises(state.includeReviewExercises ?? true);
-      setLanguage(state.language ?? "pt");
+      setLanguage(importedLanguage);
       setShowExamples(state.showExamples ?? true);
       setCardIndex(state.cardIndex ?? 0);
       setExerciseIndex(state.exerciseIndex ?? 0);
@@ -564,9 +661,9 @@ export function App() {
       setExerciseComplete(state.exerciseComplete ?? false);
       setStats(state.stats ?? { remembered: 0, missed: 0 });
       setExerciseResponses(state.exerciseResponses ?? {});
-      setSaveMessage("Progresso importado.");
-    } catch (error) {
-      setSaveMessage(error instanceof Error ? error.message : "Não foi possível importar o progresso.");
+      setSaveMessage(UI_COPY[importedLanguage].progressImported);
+    } catch {
+      setSaveMessage(copy.progressImportFailed);
     }
   };
 
@@ -605,11 +702,11 @@ export function App() {
         </div>
       </header>
 
-      <section className="controlsBand" aria-label="Controles de revisão">
+      <section className="controlsBand" aria-label={copy.reviewControls}>
         <div className="controlGroup">
-          <span className="controlLabel">Idioma</span>
-          <div className="segmented" role="group" aria-label="Idioma da tradução">
-            {(["pt", "en", "both"] as Language[]).map((option) => (
+          <span className="controlLabel">{copy.language}</span>
+          <div className="segmented" role="group" aria-label={copy.translationLanguage}>
+            {(["pt", "en"] as Language[]).map((option) => (
               <button
                 className={language === option ? "active" : ""}
                 key={option}
@@ -624,17 +721,17 @@ export function App() {
 
         <button className="toggleButton" type="button" onClick={() => setShowExamples((value) => !value)}>
           {showExamples ? <Eye size={18} aria-hidden="true" /> : <EyeOff size={18} aria-hidden="true" />}
-          Frases
+          {copy.examples}
         </button>
 
         <div className="saveActions">
-          <button className="iconButton" type="button" title="Exportar progresso" onClick={exportProgress}>
+          <button className="iconButton" type="button" title={copy.exportProgress} onClick={exportProgress}>
             <Download size={18} aria-hidden="true" />
           </button>
-          <button className="iconButton" type="button" title="Importar progresso" onClick={() => importRef.current?.click()}>
+          <button className="iconButton" type="button" title={copy.importProgress} onClick={() => importRef.current?.click()}>
             <Upload size={18} aria-hidden="true" />
           </button>
-          <button className="iconButton" type="button" title="Reiniciar sessão" onClick={resetSession}>
+          <button className="iconButton" type="button" title={copy.resetSession} onClick={resetSession}>
             <RotateCcw size={18} aria-hidden="true" />
           </button>
           <input
@@ -649,6 +746,7 @@ export function App() {
 
       <ChapterSelector
         chapters={unitChapters}
+        copy={copy}
         label={selectedCardLabel}
         mode="cards"
         selected={selectedCardChapters}
@@ -659,8 +757,8 @@ export function App() {
       <FlashcardPanel
         card={currentCard}
         complete={cardComplete}
+        copy={copy}
         count={activeCardQueue.length}
-        dataMode={dataMode}
         dragOffset={dragOffset}
         index={cardIndex}
         language={language}
@@ -676,7 +774,7 @@ export function App() {
       />
 
       <footer className="credit">
-        Criado por Daniel Prado de Campos para treinar o livro Nihongo Challenge Kotoba N4.
+        {copy.credit}
         {saveMessage && <span>{saveMessage}</span>}
       </footer>
     </main>
@@ -695,6 +793,7 @@ function DangoMark() {
 
 type ChapterSelectorProps = {
   chapters: Chapter[];
+  copy: UiCopy;
   label: string;
   mode: Tab;
   selected: Set<string>;
@@ -702,16 +801,16 @@ type ChapterSelectorProps = {
   onToggle: (chapterId: string) => void;
 };
 
-function ChapterSelector({ chapters, label, mode, selected, onReset, onToggle }: ChapterSelectorProps) {
+function ChapterSelector({ chapters, copy, label, mode, selected, onReset, onToggle }: ChapterSelectorProps) {
   return (
-    <section className="chapterSelector" aria-label="Filtro de capítulos">
+    <section className="chapterSelector" aria-label={copy.chaptersFilter}>
       <div className="selectorHeader">
         <div>
-          <span className="controlLabel">{mode === "cards" ? "Cards" : "Exercícios"}</span>
+          <span className="controlLabel">{mode === "cards" ? copy.cards : copy.exercises}</span>
           <strong>{label}</strong>
         </div>
         <button className={selected.size === 0 ? "active" : ""} type="button" onClick={onReset}>
-          Todos
+          {copy.all}
         </button>
       </div>
       <div className="chapterChips">
@@ -734,8 +833,8 @@ function ChapterSelector({ chapters, label, mode, selected, onReset, onToggle }:
 type FlashcardPanelProps = {
   card?: Flashcard;
   complete: boolean;
+  copy: UiCopy;
   count: number;
-  dataMode: "generated" | "sample";
   dragOffset: number;
   index: number;
   language: Language;
@@ -753,8 +852,8 @@ type FlashcardPanelProps = {
 function FlashcardPanel({
   card,
   complete,
+  copy,
   count,
-  dataMode,
   dragOffset,
   index,
   language,
@@ -772,10 +871,10 @@ function FlashcardPanel({
     return (
       <section className="completionState">
         <Check size={30} aria-hidden="true" />
-        <strong>Revisão completa</strong>
-        <p>Todos os cards desta seleção foram lembrados.</p>
+        <strong>{copy.completionTitle}</strong>
+        <p>{copy.completionBody}</p>
         <button className="primary" type="button" onClick={onRestart}>
-          Revisar novamente
+          {copy.restart}
         </button>
       </section>
     );
@@ -785,7 +884,7 @@ function FlashcardPanel({
     return (
       <section className="emptyState">
         <Layers size={28} aria-hidden="true" />
-        <p>Nenhum card encontrado para a seleção atual.</p>
+        <p>{copy.noCards}</p>
       </section>
     );
   }
@@ -797,9 +896,9 @@ function FlashcardPanel({
     <section className="studyGrid">
       <div className="sessionStats">
         <span>{count} cards</span>
-        <span>{index + 1} atual</span>
-        <span>{stats.remembered} lembrei</span>
-        <span>{stats.missed} revisar</span>
+        <span>{index + 1} {copy.current}</span>
+        <span>{stats.remembered} {copy.rememberedStat}</span>
+        <span>{stats.missed} {copy.reviewStat}</span>
       </div>
 
       <button
@@ -811,17 +910,17 @@ function FlashcardPanel({
         style={{ transform: `translateX(${dragOffset}px) rotate(${rotate}deg)` }}
         type="button"
       >
-        <span className="chapterPill">Página {card.page}</span>
+        <span className="chapterPill">{copy.page} {card.page}</span>
         {!revealed ? (
           <div className="cardFace">
             <div className="jpTerm">{termView(card)}</div>
-            {showExamples && card.example?.ja && <p className="exampleJa">{card.example.ja}</p>}
+            {showExamples && card.example?.ja && <p className="exampleJa">{exampleJaView(card)}</p>}
           </div>
         ) : (
           <div className="cardFace back">
             <div className="meaningBlock">{renderTextByLanguage(card.meanings, language)}</div>
-            {showExamples && card.example && (
-              <div className="exampleBack">{renderTextByLanguage(card.example, language, "Sem exemplo traduzido")}</div>
+            {showExamples && card.example?.[language] && (
+              <div className="exampleBack">{renderTextByLanguage(card.example, language)}</div>
             )}
           </div>
         )}
@@ -830,15 +929,13 @@ function FlashcardPanel({
       <div className="swipeActions">
         <button className="missed" type="button" onClick={() => onGrade("missed")}>
           <ArrowLeft size={20} aria-hidden="true" />
-          Não lembrei
+          {copy.missedButton}
         </button>
         <button className="remembered" type="button" onClick={() => onGrade("remembered")}>
-          Lembrei
+          {copy.rememberedButton}
           <ArrowRight size={20} aria-hidden="true" />
         </button>
       </div>
-
-      {dataMode === "sample" && null}
     </section>
   );
 }
